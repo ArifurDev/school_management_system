@@ -47,9 +47,21 @@
             <div class="row">
               <div class="col-xl-12 col-lg-8">
                     <div class="card">
+                     
+                     @if ($errors->any())
+                     <div class="alert alert-danger">
+                        <ul>
+                              @foreach ($errors->all() as $error)
+                                 <li>{{ $error }}</li>
+                              @endforeach
+                        </ul>
+                     </div>
+                  @endif
+
                        <div class="card-body">
                           <div class="new-user-info">
-                             <form>
+                             <form action="{{ route('students.store') }}" method="POST"  enctype="multipart/form-data">
+                              @csrf
                                 <div class="row">
                                    <div class="form-group col-md-4">
                                       <label for="fname">First Name</label>
@@ -57,8 +69,12 @@
                                    </div>
                                    <div class="form-group col-md-4">
                                       <label for="lname">Last Name</label>
-                                      <input type="text" class="form-control" id="lname" placeholder="Last Name" name="first_name">
+                                      <input type="text" class="form-control" id="lname" placeholder="Last Name" name="last_name">
                                    </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="Email">Email</label>
+                                    <input type="email" class="form-control" id="Email" placeholder="Email" name="email">
+                                 </div>
                                    <div class="form-group col-md-4">
                                       <label for="Gender">Gender</label>
                                       <select class="form-control mb-3" id="Gender" name="gender">
@@ -69,7 +85,7 @@
                                    </div>
                                    <div class="form-group col-md-4">
                                       <label for="add2">Date of Birth</label>
-                                      <input type="date" class="form-control" id="add2" placeholder="Street Address 2" name="first_name">
+                                      <input type="date" class="form-control" id="add2" placeholder="Street Address 2" name="date_of_birth">
                                    </div>
                                    <div class="form-group col-md-4">
                                       <label for="Blood">Blood Group</label>
@@ -81,7 +97,7 @@
                                         <option value="B-">B-</option>
                                         <option value="B+">B+</option>
                                         <option value="AB-">AB-</option>
-                                        <option value="AB+">A+</option>
+                                        <option value="AB+">AB+</option>
                                      </select>
                                      </div>
                                    <div class="form-group col-md-4">
@@ -103,32 +119,41 @@
                                     </div>
                                    <div class="form-group col-md-4">
                                       <label for="Phone">Phone</label>
-                                      <input type="text" class="form-control" id="Phone" placeholder="Phone" name="phone">
+                                      <input type="text" class="form-control"  id="Phone" placeholder="Phone" name="phone">
                                    </div>
                                    <div class="form-group col-md-4">
                                       <label for="address">Address</label>
                                       <input type="text" class="form-control" id="Addresh" placeholder="Address" name="address">
                                    </div>
                                    <div class="form-group col-md-4">
-                                    <label for="Section">Section</label>
-                                    <input type="email" class="form-control" id="Section" placeholder="Email" name="first_name">
+                                    <label for="class">Class</label>
+                                    <select class="form-control mb-3 " id="class" name="class_id">
+                                       @foreach ($Classes as $classes)
+                                          <option value="{{ $classes->id }}">{{ $classes->class_name }}</option>
+                                       @endforeach
+                                    </select> 
                                  </div>
                                  <div class="form-group col-md-4">
                                   <label for="Section">Section</label>
-                                  <input type="email" class="form-control" id="Section" placeholder="Email" name="first_name">
-                               </div>
+                                  <input type="text" class="form-control" id="Section" placeholder="2023-2024" name="section">
+                                 </div>
+                                 
+                                 <div class="form-group col-md-4">
+                                    <label for="Group">Group</label>
+                                    <input type="text" class="form-control" id="Group" placeholder="Group" name="group">
+                                 </div>
                                 </div>
                                 <hr>
                                 <div class="row">
-                                  <div class="col-sm-6 col-6">
+                                  <div class="col-sm-6 col-6 m-1">
                                     <textarea class="form-control" id="horizontalTextarea" rows="3" placeholder="BIO" style="height: 168px;" name="bio"></textarea>
                                  </div>
-                                  <div class="form-group">
+                                 <div class="form-group">
                                     <div class="crm-profile-img-edit position-relative">
-                                       <img class="crm-profile-pic rounded avatar-100" src="{{ asset('backend/assets/images/user/10.jpg') }}" alt="profile-pic">
+                                       <img class="crm-profile-pic rounded avatar-100" src="{{ asset('backend/assets') }}/images/user/10.jpg" alt="profile-pic" id="image">
                                        <div class="crm-p-image bg-primary">
                                           <i class="las la-pen upload-button"></i>
-                                          <input class="file-upload" type="file" accept="image/*" name="image">
+                                          <input class="file-upload" type="file" id="photo"  name="image" accept="image/*" onchange="readURL(this)">
                                        </div>
                                     </div>
                                  <div class="img-extension mt-3">
@@ -143,7 +168,7 @@
                                  </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Add New User</button>
+                                <button type="submit" class="btn btn-primary">Add New Student</button>
                              </form>
                           </div>
                        </div>

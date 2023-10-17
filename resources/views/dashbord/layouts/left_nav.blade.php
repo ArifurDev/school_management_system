@@ -115,20 +115,20 @@
                         <svg class="svg-icon" id="p-dash6" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line>
                         </svg>
-                        <span class="ml-4">Returns</span>
+                        <span class="ml-4">Class</span>
                         <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                         </svg>
                     </a>
                     <ul id="return" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                             <li class="">
-                                    <a href="../backend/page-list-returns.html">
-                                        <i class="las la-minus"></i><span>List Returns</span>
+                                    <a href="{{ route('classes.index') }}">
+                                        <i class="las la-minus"></i><span>Class</span>
                                     </a>
                             </li>
                             <li class="">
-                                    <a href="../backend/page-add-return.html">
-                                        <i class="las la-minus"></i><span>Add Return</span>
+                                    <a href="{{ route('subjects.index') }}">
+                                        <i class="las la-minus"></i><span>Subject</span>
                                     </a>
                             </li>
                     </ul>
@@ -145,7 +145,7 @@
                     </a>
                     <ul id="people" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                             <li class="">
-                                    <a href="../backend/page-list-customers.html">
+                                    <a href="{{ route('students.index') }}">
                                         <i class="las la-minus"></i><span>All Students</span>
                                     </a>
                             </li>

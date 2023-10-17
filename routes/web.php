@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Dashbord\ClassesController as ClassesController;
 use App\Http\Controllers\Dashbord\PermissionController;
 use App\Http\Controllers\Dashbord\RoleController;
+use App\Http\Controllers\Dashbord\StudentController as StudentController;
+use App\Http\Controllers\Dashbord\SubjectController;
 use App\Http\Controllers\Dashbord\UserController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,6 +65,16 @@ Route::middleware(['auth'])->group(function () {
      * Student Controller
      */
     Route::resource('/students', StudentController::class);
+
+    /**
+     * Classes Controller
+     */
+    Route::resource('/classes', ClassesController::class);
+
+    /**
+     * Subject Controller
+     */
+    Route::resource('/subjects', SubjectController::class);
 
 });
 

@@ -9,7 +9,22 @@ class UserInfo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'image', 'address', 'phone'];
+    protected $fillable = [
+        'user_id',
+        'image',
+        'address',
+        'phone',
+        'gender',
+        'date_of_birth',
+        'blood',
+        'father_name',
+        'mother_name',
+        'religion',
+        'class_id',
+        'section',
+        'group',
+        'bio',
+    ];
 
     public function user()
     {

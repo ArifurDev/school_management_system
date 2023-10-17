@@ -39,6 +39,5 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Permission delete']);
 
         $admin->givePermissionTo(Permission::all());
-
     }
 }
