@@ -30,4 +30,10 @@ class UserInfo extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    //classes and userInfo one to one
+    public function class()
+    {
+        return $this->belongsTo(Classes::class);
+    }
 }

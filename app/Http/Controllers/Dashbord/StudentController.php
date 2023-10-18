@@ -18,9 +18,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = User::where('student_status', 'running')->get();
+        $students = User::where('student_status', 'running')->get();
 
-        return $student;
+        return view('dashbord.student.index', compact('students'));
     }
 
     /**
@@ -109,9 +109,9 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Student $student)
+    public function show(User $student)
     {
-        //
+        return view('dashbord.student.show', compact('student'));
     }
 
     /**

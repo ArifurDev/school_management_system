@@ -16,4 +16,10 @@ class Classes extends Model
     {
         return $this->hasMany(Subject::class);
     }
+
+    //classes and userInfo one to one
+    public function userInfo()
+    {
+        return $this->hasOne(Classes::class);
+    }
 }
