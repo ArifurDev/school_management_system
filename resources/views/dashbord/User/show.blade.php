@@ -45,8 +45,8 @@
                             <div class="d-flex align-items-center mb-3">
                                <div class="profile-img position-relative">
 
-                                @if ($user->user_info && $user->user_info->image)
-                                    <img src="{{ asset('storage/upload/users_image/'.$user->user_info->image) }}" class="img-fluid rounded avatar-110" alt="profile-image">
+                                @if ($user->image)
+                                    <img src="{{ asset('storage/upload/users_image/'.$user->image) }}" class="img-fluid rounded avatar-110" alt="profile-image">
                                 @else
                                     <img src="{{ asset('backend/assets/images/user/10.jpg') }}" class="img-fluid rounded avatar-110" alt="profile-image">
                                 @endif
@@ -71,14 +71,14 @@
                             <ul class="list-inline p-0 m-0">
                                <li class="mb-2">
                                 <?php
-                                if (!empty($user->user_info->address)) {?>
+                                if (!empty($user->address)) {?>
                                                                      
                                     <div class="d-flex align-items-center">
                                         <svg class="svg-icon mr-3" height="16" width="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                         </svg>
-                                        <p class="mb-0">{{ $user->user_info->address }}</p>   
+                                        <p class="mb-0">{{ $user->address }}</p>   
 
                                     </div>
                                 <?php
@@ -86,13 +86,13 @@
                                 ?>
                                </li>
                                <li class="mb-2">
-                                <?php if (!empty($user->user_info->phone)) {?>
+                                <?php if (!empty($user->phone)) {?>
 
                                   <div class="d-flex align-items-center">
                                      <svg class="svg-icon mr-3" height="16" width="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                                      </svg>
-                                     <p class="mb-0">{{ $user->user_info->phone }}</p>   
+                                     <p class="mb-0">{{ $user->phone }}</p>   
                                   </div>
 
                                 <?php

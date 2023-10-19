@@ -75,8 +75,8 @@
                                 @method('PUT')
                                <div class="form-group">
                                   <div class="crm-profile-img-edit position-relative">
-                                    @if ($user->user_info && $user->user_info->image)
-                                        <img src="{{ asset('storage/upload/users_image/'.$user->user_info->image) }}" class="img-fluid rounded avatar-110" alt="profile-image">
+                                    @if ($user->image)
+                                        <img src="{{ asset('storage/upload/users_image/'.$user->image) }}" class="img-fluid rounded avatar-110" alt="profile-image">
                                     @else
                                         <img src="{{ asset('backend/assets/images/user/10.jpg') }}" class="img-fluid rounded avatar-110" alt="profile-image">
                                     @endif
@@ -124,7 +124,7 @@
                                      </div>
                                      <div class="form-group col-md-6">
                                         <label for="mobno">Mobile Number:</label>
-                                        <input type="text" class="form-control" id="mobno" placeholder="Mobile Number" name="phone" value="{{  $user->user_info && $user->user_info->phone ? $user->user_info->phone : " " }}">
+                                        <input type="text" class="form-control" id="mobno" placeholder="Mobile Number" name="phone" value="{{  $user->phone }}">
                                      </div>
                                      <div class="form-group col-md-6">
                                         <label for="email">Email</label>
@@ -132,7 +132,7 @@
                                      </div>
                                      <div class="form-group col-md-6">
                                         <label for="add1">Address</label>
-                                        <input type="text" class="form-control" id="add1" placeholder=" Address " name="address" value="{{ $user->user_info && $user->user_info->address ? $user->user_info->address : " "  }}">
+                                        <input type="text" class="form-control" id="add1" placeholder=" Address " name="address" value="{{ $user->address }}">
                                      </div>
                                   </div>
                                   <button type="submit" class="btn btn-primary">Update</button>

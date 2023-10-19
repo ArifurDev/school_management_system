@@ -57,28 +57,28 @@
                     </div><!--profile top section end -->
 
                      <div class="media mb-4 ml-3">
-                        <img src="{{ asset('storage/upload/users_image/'.$student->user_info->image) }}" class="align-self-start mr-3 avatar-120 img-fluid rounded" alt="#">
+                        <img src="{{ asset('storage/upload/users_image/'.$student->image) }}" class="align-self-start mr-3 avatar-120 img-fluid rounded" alt="#">
                         <div class="media-body">
                            <h5 class="mt-0">{{ $student->name }}</h5>
-                           <p>{{ $student->user_info->bio }}</p>
+                           <p>{{ $student->bio }}</p>
                         </div>
                      </div>
 
                     <div class="col-sm-12 mb-2">
                          <ul class="list-group list-group-horizontal-xxl ">
                             <li class="list-group-item">Name: {{ $student->name }}</li>
-                            <li class="list-group-item">Gender: {{ $student->user_info->gender }}</li>
-                            <li class="list-group-item">Father Name: {{ $student->user_info->father_name }}</li>
-                            <li class="list-group-item">Mother Name: {{ $student->user_info->mother_name }}</li>
-                            <li class="list-group-item">Religion: {{ $student->user_info->religion }}</li>
-                            <li class="list-group-item">Date Of Birth: {{ $student->user_info->date_of_birth }}</li>
+                            <li class="list-group-item">Gender: {{ $student->gender }}</li>
+                            <li class="list-group-item">Father Name: {{ $student->father_name }}</li>
+                            <li class="list-group-item">Mother Name: {{ $student->mother_name }}</li>
+                            <li class="list-group-item">Religion: {{ $student->religion }}</li>
+                            <li class="list-group-item">Date Of Birth: {{ $student->date_of_birth }}</li>
                             <li class="list-group-item">E-Mail: {{ $student->email}}</li>
-                            <li class="list-group-item">Admission Date: {{ $student->user_info->created_at }}</li>
-                            <li class="list-group-item">Class: {{ $student->user_info->class->class_name }}</li>
-                            <li class="list-group-item">Section: {{ $student->user_info->section }}</li>
-                            <li class="list-group-item">Adress: {{ $student->user_info->address}}</li>
-                            <li class="list-group-item">Phone: {{ $student->user_info->phone }}</li>
-                            <li class="list-group-item">Blood: {{ $student->user_info->blood }}</li>
+                            <li class="list-group-item">Admission Date: {{ $student->created_at }}</li>
+                            <li class="list-group-item">Class: {{ $student->class_id }}</li>
+                            <li class="list-group-item">Section: {{ $student->section }}</li>
+                            <li class="list-group-item">Adress: {{ $student->address}}</li>
+                            <li class="list-group-item">Phone: {{ $student->phone }}</li>
+                            <li class="list-group-item">Blood: {{ $student->blood }}</li>
                           </ul>
                     </div> 
 
@@ -106,6 +106,39 @@
                          </div>
                      </div>
 
+                     <div class="row m-2">
+                      <div class="col-lg-12 col-md-12">
+                        <div class="card card-block card-stretch card-height">
+                          <div class="card-body">
+                             <div class="table-responsive">
+                               <table id="example" class="data-table table" style="width:100%">
+                                 <thead>
+                                     <tr>
+                                         <th>SL</th>
+                                         <th>Name</th>
+                                         <th>Fee</th>
+                                         <th>Date</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                  <tr>
+                                     <td>1</td>
+                                     <td>Arif</td>
+                                     <td>500</td>
+                                     <td>2021/09/08</td>
+                                  </tr>
+                                 </tbody>
+                             </table>
+                             </div>
+                          </div>
+                       </div>
+                      </div>
+
+                     </div>
+
+                     
+                     
+
 
 
                      
@@ -118,7 +151,18 @@
       </div>
     </div>
 
-  {{-- js --}}
+   <!--datatable-->
+   <script>
+    $(document).ready(function() {
+        var table = $('#example').DataTable( {
+            lengthChange: false,
+            buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
+        } );
+    
+        table.buttons().container()
+            .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+    } );
+ </script>
 
   {{-- add  remove field js --}}
 

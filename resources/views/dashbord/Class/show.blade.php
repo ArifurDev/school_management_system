@@ -66,18 +66,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             @foreach ($students as $student)
+                             {{-- @foreach ($students as $student)
                              <tr>
                                 <td>{{ $loop->iteration  }}</td>
                                 <td>{{ $student->name }}</td>
                               <td>{{ $student->email }}</td>
 
-                                <td>{{ $student->phone }}</td>
-                                <td>{{ $student->gender }}</td> 
-                                <td>{{ $student->religion  }}</td>
-                                <td>{{ $student->blood }}</td>
-                                <td>{{ $student->class_id }}</td>
-                                <td>{{ $student->section }}</td>
+                                <td>{{ $student->user_info ? $student->user_info->phone : " " }}</td>
+                                <td>{{ $student->user_info ? $student->user_info->gender : " " }}</td> 
+                                <td>{{ $student->user_info ? $student->user_info->religion : " " }}</td>
+                                <td>{{ $student->user_info ? $student->user_info->blood : " " }}</td>
+                                <td>{{ $student->user_info ? $student->user_info->class->class_name : " " }}</td>
+                                <td>{{ $student->user_info ? $student->user_info->section : " " }}</td>
 
                                 <td>
                                   <div class="d-flex align-items-center list-action">
@@ -92,7 +92,7 @@
                                 </div>
                                 </td>
                              </tr>
-                             @endforeach
+                             @endforeach --}}
                            
                             </tbody>
                         </table>
@@ -123,8 +123,6 @@
           } );
        </script>
    
-
-
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>

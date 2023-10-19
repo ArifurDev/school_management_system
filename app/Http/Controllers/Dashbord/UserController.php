@@ -58,29 +58,23 @@ class UserController extends Controller
             'password_confirm' => 'required|same:password',  // required and has to match the password field
         ]);
 
+        //image upload image
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $file_name = $request->name.$request->phone.'.'.$image->getClientOriginalExtension();
+            $file_path = 'upload/users_image/'.$file_name;
+            Storage::disk('public')->put($file_path, $image->get());
+        }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'created_at' => Carbon::now(),
-        ]);
-        $user->assignRole($request->role);
-
-        //image upload image
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $file_name = $user->id.'.'.$image->getClientOriginalExtension();
-            $file_path = 'upload/users_image/'.$file_name;
-            Storage::disk('public')->put($file_path, $image->get());
-        }
-
-        UserInfo::create([
-            'user_id' => $user->id,
             'image' => $file_name,
             'address' => $request->address,
             'phone' => $request->phone,
             'created_at' => Carbon::now(),
         ]);
+        $user->assignRole($request->role);
 
         $notification = [
             'message' => 'Account create successfull',
@@ -123,13 +117,9 @@ class UserController extends Controller
         $user->update([
             'name' => $request['name'],
             'email' => $request['email'],
-        ]);
-
-        $user->user_info()->update([
             'phone' => $request['phone'],
             'address' => $request['address'],
         ]);
-
         //image check and upload
         if ($request->hasFile('image')) {
             $request->validate(['image' => 'mimes:png,jpg,jpeg']);
@@ -141,9 +131,7 @@ class UserController extends Controller
             $file_path = 'upload/users_image/'.$file_name;
             Storage::disk('public')->put($file_path, $image->get());
 
-            $user->user_info()->update([
-                'phone' => $request['phone'],
-                'address' => $request['address'],
+            $user->update([
                 'image' => $file_name,
             ]);
 

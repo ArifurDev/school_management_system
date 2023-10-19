@@ -10,6 +10,7 @@ use App\Models\UserInfo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class StudentController extends Controller
 {
@@ -38,14 +39,13 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|unique:users',
             'image' => 'required',
             'address' => 'required',
-            'phone' => 'required|min:11|max:12',
+            'phone' => 'required',
             'gender' => 'required',
             'date_of_birth' => 'required',
             'blood' => 'required',
@@ -58,8 +58,17 @@ class StudentController extends Controller
             'bio' => 'required',
         ]);
 
-        //concate first name and last name
-        $fullName = $request->first_name.' '.$request->last_name;
+ 
+         //concate first name and last name
+         $fullName = $request->first_name.' '.$request->last_name;
+
+        // Check if an image was uploaded
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $file_name = $request->first_name.$request->phone.'.'.$image->getClientOriginalExtension();
+            $file_path = 'upload/users_image/'.$file_name;
+            Storage::disk('public')->put($file_path, $image->get());
+        }
 
         //create a student account
         $student = User::create([
@@ -67,20 +76,6 @@ class StudentController extends Controller
             'email' => $request->email,
             'password' => bcrypt('password'),
             'student_status' => 'running',
-            'created_at' => Carbon::now(),
-        ]);
-        $student->assignRole('student');
-
-        // Check if an image was uploaded
-
-        $image = $request->file('image');
-        $file_name = $student->id.'.'.$image->getClientOriginalExtension();
-        $file_path = 'upload/users_image/'.$file_name;
-        Storage::disk('public')->put($file_path, $image->get());
-
-        // Create the student information
-        UserInfo::create([
-            'user_id' => $student->id,
             'image' => $file_name, // Use the $file_name variable here
             'address' => $request->address,
             'phone' => $request->phone,
@@ -96,6 +91,7 @@ class StudentController extends Controller
             'bio' => $request->bio,
             'created_at' => Carbon::now(),
         ]);
+        $student->assignRole('student');
 
         $notification = [
             'message' => 'Student Admission successfully',
@@ -133,8 +129,13 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function destroy(User $student)
     {
-        //
+        $notification = [
+            'message' => 'Somthing with wrong',
+            'alert-type' => 'warning',
+        ];
+
+        return redirect()->back()->with($notification);
     }
 }

@@ -11,9 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_infos', function (Blueprint $table) {
-            $table->id();
-            $table->string('user_id');
+        Schema::table('users', function (Blueprint $table) {
             $table->string('image')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
@@ -27,7 +25,6 @@ return new class extends Migration
             $table->string('section')->nullable();
             $table->string('group')->nullable();
             $table->text('bio')->nullable();
-            $table->timestamps();
         });
     }
 
@@ -36,6 +33,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_infos');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

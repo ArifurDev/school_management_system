@@ -119,7 +119,7 @@
                                     </div>
                                    <div class="form-group col-md-4">
                                       <label for="Phone">Phone</label>
-                                      <input type="text" class="form-control"  id="Phone" placeholder="Phone" name="phone">
+                                      <input type="text" class="form-control"  id="Phone" placeholder="Phone" name="phone" maxlength="11">
                                    </div>
                                    <div class="form-group col-md-4">
                                       <label for="address">Address</label>
@@ -162,7 +162,7 @@
                                        <a href="javascript:void();">.jpg</a>
                                        <a href="javascript:void();">.png</a>
                                        <a href="javascript:void();">.jpeg</a>
-                                       <span>allowed</span>
+                                       <span>allowed Image Size Max 2MB</span>
                                     </div>
                                  </div>
                                  </div>

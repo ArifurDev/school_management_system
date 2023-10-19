@@ -24,6 +24,19 @@ class User extends Authenticatable
         'password',
         'pass_status',
         'student_status',
+        'image',
+        'address',
+        'phone',
+        'gender',
+        'date_of_birth',
+        'blood',
+        'father_name',
+        'mother_name',
+        'religion',
+        'class_id',
+        'section',
+        'group',
+        'bio'
     ];
 
     /**
@@ -46,8 +59,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function user_info()
-    {
-        return $this->hasOne(UserInfo::class);
-    }
+    
 }
