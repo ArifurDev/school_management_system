@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashbord;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classes;
-use App\Models\UserInfo;
 use Illuminate\Http\Request;
 
 class ClassesController extends Controller
@@ -48,7 +47,7 @@ class ClassesController extends Controller
     public function show(Classes $class)
     {
         // return $class->id;
-       
+
     }
 
     /**

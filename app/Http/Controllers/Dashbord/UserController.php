@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashbord;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\UserInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;

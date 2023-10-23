@@ -40,6 +40,7 @@
 
                                 <h4 class="mb-3">All Student</h4>
                             </div>
+                            <a href="{{ route('students.create') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Admission Student</a>
                         </div>
                     </div>
                  </div>
@@ -70,13 +71,12 @@
                              <tr>
                                 <td>{{ $loop->iteration  }}</td>
                                 <td>{{ $student->name }}</td>
-                              <td>{{ $student->email }}</td>
-
+                                <td>{{ $student->email }}</td>
                                 <td>{{ $student->phone }}</td>
                                 <td>{{ $student->gender }}</td> 
                                 <td>{{ $student->religion  }}</td>
                                 <td>{{ $student->blood }}</td>
-                                <td>{{ $student->class_id }}</td>
+                                <td>{{ $student->classes->class_name}}</td>
                                 <td>{{ $student->section }}</td>
 
                                 <td>

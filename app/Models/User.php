@@ -36,7 +36,7 @@ class User extends Authenticatable
         'class_id',
         'section',
         'group',
-        'bio'
+        'bio',
     ];
 
     /**
@@ -59,5 +59,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    
+    //one to one reletionship --- user model to classes model
+    public function classes()
+    {
+        return $this->hasOne(Classes::class, 'id', 'class_id');
+    }
 }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Classes;
 use App\Models\Student;
 use App\Models\User;
-use App\Models\UserInfo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +18,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = User::where('student_status', 'running')->get();
+        $students = User::where('student_status', 'running')->latest()->get();
 
         return view('dashbord.student.index', compact('students'));
     }
@@ -58,9 +57,8 @@ class StudentController extends Controller
             'bio' => 'required',
         ]);
 
- 
-         //concate first name and last name
-         $fullName = $request->first_name.' '.$request->last_name;
+        //concate first name and last name
+        $fullName = $request->first_name.' '.$request->last_name;
 
         // Check if an image was uploaded
         if ($request->hasFile('image')) {
@@ -113,9 +111,11 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Student $student)
+    public function edit(User $student)
     {
-        //
+        $Classes = Classes::all();
+
+        return view('dashbord.student.edit', compact('Classes', 'student'));
     }
 
     /**
