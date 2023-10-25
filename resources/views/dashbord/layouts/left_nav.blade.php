@@ -19,98 +19,6 @@
                     </a>
                 </li>
                 <li class=" ">
-                    <a href="#product" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash2" width="20" height="20"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                        </svg>
-                        <span class="ml-4">Products</span>
-                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                        </svg>
-                    </a>
-                    <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        <li class="">
-                            <a href="../backend/page-list-product.html">
-                                <i class="las la-minus"></i><span>List Product</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="../backend/page-add-product.html">
-                                <i class="las la-minus"></i><span>Add Product</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" ">
-                    <a href="#category" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash3" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                        <span class="ml-4">Categories</span>
-                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                        </svg>
-                    </a>
-                    <ul id="category" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                            <li class="">
-                                    <a href="../backend/page-list-category.html">
-                                        <i class="las la-minus"></i><span>List Category</span>
-                                    </a>
-                            </li>
-                            <li class="">
-                                    <a href="../backend/page-add-category.html">
-                                        <i class="las la-minus"></i><span>Add Category</span>
-                                    </a>
-                            </li>
-                    </ul>
-                </li>
-                <li class=" ">
-                    <a href="#sale" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash4" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path>
-                        </svg>
-                        <span class="ml-4">Sale</span>
-                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                        </svg>
-                    </a>
-                    <ul id="sale" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                            <li class="">
-                                    <a href="../backend/page-list-sale.html">
-                                        <i class="las la-minus"></i><span>List Sale</span>
-                                    </a>
-                            </li>
-                            <li class="">
-                                    <a href="../backend/page-add-sale.html">
-                                        <i class="las la-minus"></i><span>Add Sale</span>
-                                    </a>
-                            </li>
-                    </ul>
-                </li>
-                <li class=" ">
-                    <a href="#purchase" class="collapsed" data-toggle="collapse" aria-expanded="false">
-                        <svg class="svg-icon" id="p-dash5" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                            <line x1="1" y1="10" x2="23" y2="10"></line>
-                        </svg>
-                        <span class="ml-4">Purchases</span>
-                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                        </svg>
-                    </a>
-                    <ul id="purchase" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                            <li class="">
-                                    <a href="../backend/page-list-purchase.html">
-                                        <i class="las la-minus"></i><span>List Purchases</span>
-                                    </a>
-                            </li>
-                            <li class="">
-                                    <a href="../backend/page-add-purchase.html">
-                                        <i class="las la-minus"></i><span>Add purchase</span>
-                                    </a>
-                            </li>
-                    </ul>
-                </li>
-                <li class=" ">
                     <a href="#return" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <svg class="svg-icon" id="p-dash6" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line>
@@ -133,6 +41,9 @@
                             </li>
                     </ul>
                 </li>
+                <!-----------------------------------------------
+                -------------------students-----------------------
+                ------------------------------------------------->
                 <li class=" ">
                     <a href="#people" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <svg class="svg-icon" id="p-dash8" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -157,6 +68,38 @@
                             <li class="">
                                     <a href="../backend/page-list-users.html">
                                         <i class="las la-minus"></i><span>student p</span>
+                                    </a>
+                            </li>
+                    </ul>
+                </li>
+                <!-----------------------------------------------
+                -------------------Accounts-----------------------
+                ------------------------------------------------->
+
+                <li class=" ">
+                    <a href="#expense" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                        <svg class="svg-icon" id="p-dash4" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                        </svg>
+                        <span class="ml-4">Accounts</span>
+                        <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                        </svg>
+                    </a>
+                    <ul id="expense" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                            <li class="">
+                                    <a href="">
+                                        <i class="las la-minus"></i><span>All Fee Collection</span>
+                                    </a>
+                            </li>
+                            <li class="">
+                                    <a href="{{ route('expenses.index') }}">
+                                        <i class="las la-minus"></i><span>Expense</span>
+                                    </a>
+                            </li>
+                            <li class="">
+                                    <a href="{{ route('expenses.create') }}">
+                                        <i class="las la-minus"></i><span>Add Expense</span>
                                     </a>
                             </li>
                     </ul>
