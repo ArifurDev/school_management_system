@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Dashbord;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\Expense;
 use Illuminate\Http\Request;
 
-class ExpenseController extends Controller
+class ExpenseController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $expenses = Expense::latest()->get();
+        return view('dashbord.Expense.index', compact('expenses'));
     }
 
     /**
@@ -29,7 +30,40 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation
+        $request->validate([
+            'name' => ['required'],
+            'phone' => ['required', 'min:11', 'max:11'],
+            'amount' => ['required', 'numeric'],
+            'expense_type' => ['required'],
+            'date' => ['required'],
+            'status' => ['required'],
+            'description' => ['required'],
+        ]);
+
+        $data = new Expense(); //create object
+
+        $data['name'] = $request->name;
+        $data['phone'] = $request->phone;
+        $data['amount'] = $request->amount;
+        $data['date'] = date('Y-m-d', strtotime($request->date));
+        $data['expens_type'] = $request->expense_type;
+        $data['status'] = $request->status;
+        $data['description'] = $request->description;
+
+        //check
+        if ($request->status != 'paid') {
+            if ($request->status == 'due' && $request->due != null) {
+                $data['due'] = $request->due;
+            } else {
+              return $this->returnMessage('Somthing with wrong due status or due amount! pleace check then submit','warning');
+            }
+        }
+
+        //save all data in Database
+        $data->save();
+        return $this->returnMessage('Expense Submit Successfulliy','success');
+
     }
 
     /**
@@ -45,7 +79,7 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        //
+        return view('dashbord.Expense.edit', compact('expense'));
     }
 
     /**
@@ -53,7 +87,39 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
-        //
+        //validation
+        $request->validate([
+            'name' => ['required'],
+            'phone' => ['required', 'min:11', 'max:11'],
+            'amount' => ['required', 'numeric'],
+            'expense_type' => ['required'],
+            'date' => ['required'],
+            'status' => ['required'],
+            'description' => ['required'],
+        ]);
+
+        $data['name'] = $request->name;
+        $data['phone'] = $request->phone;
+        $data['amount'] = $request->amount;
+        $data['date'] = date('Y-m-d', strtotime($request->date));
+        $data['expens_type'] = $request->expense_type;
+        $data['status'] = $request->status;
+        $data['description'] = $request->description;
+
+        //check
+        if ($request->status != 'paid') {
+            if ($request->status == 'due' && $request->due != null) {
+                $data['due'] = $request->due;
+            } else {
+                return $this->returnMessage('Somthing with wrong due status or due amount! pleace check then submit','warning');
+            }
+        }else{
+            $data['due'] = $request->due;
+        }
+
+        //save all data in Database
+        $expense->update($data);
+        return $this->returnMessage('Expense Submit Successfulliy','success');
     }
 
     /**
@@ -61,6 +127,7 @@ class ExpenseController extends Controller
      */
     public function destroy(Expense $expense)
     {
-        //
+        $expense->delete();
+        return $this->returnMessage('Expense Deleted','info');
     }
 }

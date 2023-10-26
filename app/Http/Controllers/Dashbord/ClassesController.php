@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Dashbord;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\Classes;
 use Illuminate\Http\Request;
 
-class ClassesController extends Controller
+class ClassesController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,6 @@ class ClassesController extends Controller
     public function index()
     {
         $classes = Classes::all();
-
         return view('dashbord.Class.index', compact('classes'));
     }
 
@@ -33,12 +32,7 @@ class ClassesController extends Controller
     {
         $validate = $request->validate(['class_name' => 'required|unique:classes']);
         Classes::create($validate);
-        $notification = [
-            'message' => 'Class Create Successfull',
-            'alert-type' => 'success',
-        ];
-
-        return redirect()->back()->with($notification);
+        return $this->returnMessage('Class Create Successfull','success');
     }
 
     /**
@@ -65,13 +59,7 @@ class ClassesController extends Controller
     {
         $validate = $request->validate(['class_name' => 'required|unique:classes,class_name,'.$class->id]);
         $class->update($validate);
-        $notification = [
-            'message' => 'Class updated',
-            'alert-type' => 'info',
-        ];
-
-        return redirect()->back()->with($notification);
-
+        return $this->returnMessage('Class updated','info');
     }
 
     /**
@@ -80,11 +68,6 @@ class ClassesController extends Controller
     public function destroy(Classes $class)
     {
         $class->delete();
-        $notification = [
-            'message' => ' class Deleted!',
-            'alert-type' => 'info',
-        ];
-
-        return redirect()->back()->with($notification);
+        return $this->returnMessage('class Deleted!','info');
     }
 }

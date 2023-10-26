@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Dashbord;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\Classes;
 use App\Models\Student;
 use App\Models\User;
@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-class StudentController extends Controller
+class StudentController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,6 @@ class StudentController extends Controller
     public function index()
     {
         $students = User::where('student_status', 'running')->latest()->get();
-
         return view('dashbord.student.index', compact('students'));
     }
 
@@ -29,7 +28,6 @@ class StudentController extends Controller
     public function create()
     {
         $Classes = Classes::all();
-
         return view('dashbord.student.create', compact('Classes'));
     }
 
@@ -90,14 +88,7 @@ class StudentController extends Controller
             'created_at' => Carbon::now(),
         ]);
         $student->assignRole('student');
-
-        $notification = [
-            'message' => 'Student Admission successfully',
-            'alert-type' => 'success',
-        ];
-
-        return redirect()->back()->with($notification);
-
+        return $this->returnMessage('Student Admission successfulliy','success');
     }
 
     /**
@@ -114,7 +105,6 @@ class StudentController extends Controller
     public function edit(User $student)
     {
         $Classes = Classes::all();
-
         return view('dashbord.student.edit', compact('Classes', 'student'));
     }
 
@@ -131,11 +121,6 @@ class StudentController extends Controller
      */
     public function destroy(User $student)
     {
-        $notification = [
-            'message' => 'Somthing with wrong',
-            'alert-type' => 'warning',
-        ];
-
-        return redirect()->back()->with($notification);
+        return $this->returnMessage('Somthing with wrong','warning');
     }
 }

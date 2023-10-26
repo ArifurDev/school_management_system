@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Dashbord;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\Classes;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
-class SubjectController extends Controller
+class SubjectController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = Subject::all();
-
         return view('dashbord.Subject.index', compact('subjects'));
     }
 
@@ -25,7 +24,6 @@ class SubjectController extends Controller
     public function create()
     {
         $Classes = Classes::all();
-
         return view('dashbord.Subject.create', compact('Classes'));
     }
 
@@ -44,13 +42,7 @@ class SubjectController extends Controller
             'subject_name' => $request->name,
             'subject_code' => $request->code,
         ]);
-
-        $notification = [
-            'message' => 'Subject Add Successfulliy',
-            'alert-type' => 'success',
-        ];
-
-        return redirect()->back()->with($notification);
+        return $this->returnMessage('Subject Add Successfulliy','success');
     }
 
     /**
@@ -67,7 +59,6 @@ class SubjectController extends Controller
     public function edit(Subject $Subject)
     {
         $Classes = Classes::all();
-
         return view('dashbord.Subject.edit', compact('Subject', 'Classes'));
     }
 
@@ -83,13 +74,7 @@ class SubjectController extends Controller
             'subject_name' => $request->name,
             'subject_code' => $request->code,
         ]);
-
-        $notification = [
-            'message' => 'Subject Updated',
-            'alert-type' => 'info',
-        ];
-
-        return redirect()->back()->with($notification);
+        return $this->returnMessage('Subject Updated','info');
     }
 
     /**
@@ -98,11 +83,6 @@ class SubjectController extends Controller
     public function destroy(Subject $subject)
     {
         $subject->delete();
-        $notification = [
-            'message' => 'Subject Deleted',
-            'alert-type' => 'warning',
-        ];
-
-        return redirect()->back()->with($notification);
+        return $this->returnMessage('Subject Deleted','warning');
     }
 }

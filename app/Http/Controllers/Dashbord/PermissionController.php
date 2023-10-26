@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Dashbord;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class PermissionController extends Controller
+class PermissionController extends BaseController
 {
     public function __construct()
     {
@@ -42,12 +42,7 @@ class PermissionController extends Controller
     {
         $validation = $request->validate(['name' => 'required']);
         Permission::create($validation);
-        $notification = [
-            'message' => 'Permission Create Successfull',
-            'alert-type' => 'success',
-        ];
-
-        return redirect()->back()->with($notification);
+        return $this->returnMessage('Permission Create Successfulliy','success');
     }
 
     /**
@@ -64,7 +59,6 @@ class PermissionController extends Controller
     public function edit(Permission $permission)
     {
         $roles = role::all();
-
         return view('dashbord.Permission.edit', compact('permission', 'roles'));
     }
 
@@ -75,12 +69,7 @@ class PermissionController extends Controller
     {
         $validation = $request->validate(['name' => ['required', 'unique:permissions,name,'.$request->id]]);
         $permission->update($validation);
-        $notification = [
-            'message' => 'Permission updated Successfull',
-            'alert-type' => 'success',
-        ];
-
-        return redirect()->back()->with($notification);
+        return $this->returnMessage('Permission updated Successfulliy','success');
     }
 
     /**
@@ -89,12 +78,7 @@ class PermissionController extends Controller
     public function destroy(Permission $permission)
     {
         $permission->delete();
-        $notification = [
-            'message' => $permission->name.' Permission Delete Successfull',
-            'alert-type' => 'info',
-        ];
-
-        return redirect()->back()->with($notification);
+        return $this->returnMessage($permission->name.' Permission Delete Successfull','info');
     }
 
     /**
@@ -103,20 +87,10 @@ class PermissionController extends Controller
     public function attachRole(Request $request, Permission $permission)
     {
         if ($permission->hasRole($request->role)) {
-            $notification = [
-                'message' => 'This Role already exists',
-                'alert-type' => 'error',
-            ];
-
-            return redirect()->back()->with($notification);
+            return $this->returnMessage('This Role already exists','error');
         } else {
             $permission->assignRole($request->role);
-            $notification = [
-                'message' => 'The '.$request->role.' has been attached successfully',
-                'alert-type' => 'success',
-            ];
-
-            return redirect()->back()->with($notification);
+            return $this->returnMessage('The '.$request->role.' has been attached successfully','success');
         }
     }
 
@@ -127,12 +101,7 @@ class PermissionController extends Controller
     {
         if ($permission->hasRole($role)) {
             $permission->removeRole($role);
-            $notification = [
-                'message' => 'A permission can be remove from a role',
-                'alert-type' => 'info',
-            ];
-
-            return redirect()->back()->with($notification);
+            return $this->returnMessage('A permission can be remove from a role','info');
         }
     }
 }

@@ -28,7 +28,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-
         return view('dashbord.User.index', compact('users'));
     }
 
@@ -38,7 +37,6 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-
         return view('dashbord.User.create', compact('roles'));
     }
 
@@ -74,13 +72,7 @@ class UserController extends Controller
             'created_at' => Carbon::now(),
         ]);
         $user->assignRole($request->role);
-
-        $notification = [
-            'message' => 'Account create successfull',
-            'alert-type' => 'success',
-        ];
-
-        return redirect()->back()->with($notification);
+        return $this->returnMessage('Account create successfulliy','success');
     }
 
     /**
@@ -97,7 +89,6 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $role = Role::all();
-
         return view('dashbord.User.edit', compact('role', 'user'));
     }
 
@@ -133,16 +124,8 @@ class UserController extends Controller
             $user->update([
                 'image' => $file_name,
             ]);
-
         }
-
-        $notification = [
-            'message' => 'Account Update successfull',
-            'alert-type' => 'info',
-        ];
-
-        return redirect()->back()->with($notification);
-
+        return $this->returnMessage('Account Update successfulliy','info');
     }
 
     /**
@@ -158,7 +141,6 @@ class UserController extends Controller
      */
     public function userUpdateRole(Request $request, User $user)
     {
-
         $request->validate(['role' => 'required']);
         // assine roles
         $auth_user_id = Auth::user()->id;
@@ -168,23 +150,13 @@ class UserController extends Controller
             $auth_role = Auth::user()->roles->first()->name;
 
             if ($auth_role == 'admin' && $request->role == 'admin') {
-                $notification = [
-                    'message' => "your role admin. you dont'n change your role ",
-                    'alert-type' => 'error',
-                ];
-
-                return redirect()->back()->with($notification);
+                return $this->returnMessage("your role admin. you dont'n change your role",'error');
             }
+
         } else {
             $user->removeRole($user_old_role);
-
             $user->assignRole($request->role);
-            $notification = [
-                'message' => 'Role update successfull',
-                'alert-type' => 'info',
-            ];
-
-            return redirect()->back()->with($notification);
+            return $this->returnMessage('Role update successfull','info');
         }
     }
 }

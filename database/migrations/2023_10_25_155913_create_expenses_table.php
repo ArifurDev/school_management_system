@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('phone')->nullable();
             $table->string('expens_type')->nullable();
             $table->integer('amount')->nullable();
             $table->integer('due')->nullable();
+            $table->string('date')->nullable();
             $table->string('status')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('email')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });
