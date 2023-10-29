@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashbord\ClassesController as ClassesController;
 use App\Http\Controllers\Dashbord\ExpenseController as ExpenseController;
+use App\Http\Controllers\Dashbord\FeeCollectionController;
 use App\Http\Controllers\Dashbord\PermissionController as PermissionController;
 use App\Http\Controllers\Dashbord\RoleController as RoleController;
 use App\Http\Controllers\Dashbord\StudentController as StudentController;
@@ -81,6 +82,14 @@ Route::middleware(['auth'])->group(function () {
      * Expense Controller
      */
     Route::resource('/expenses', ExpenseController::class);
+    Route::get('/expense/download/{expense}',[ExpenseController::class,'downloadPdf'])->name('expens.download');
+
+    /**
+     * Fee collection Controller
+     */
+    Route::get('/student/fee-collection/{student}',[FeeCollectionController::class,'create'])->name('student.feeCollection');
+    Route::post('/student/fee-collection/{student}',[FeeCollectionController::class,'store'])->name('student.feeStore');
+    Route::get('/student/fee-collection',[FeeCollectionController::class,'index'])->name('all.fees');
 
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashbord;
 use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\Expense;
 use Illuminate\Http\Request;
+Use PDF;
 
 class ExpenseController extends BaseController
 {
@@ -71,7 +72,7 @@ class ExpenseController extends BaseController
      */
     public function show(Expense $expense)
     {
-        //
+        return view('dashbord.Expense.show',compact('expense'));
     }
 
     /**
@@ -129,5 +130,15 @@ class ExpenseController extends BaseController
     {
         $expense->delete();
         return $this->returnMessage('Expense Deleted','info');
+    }
+
+    /**
+     * Single Expens page download pdf
+     */
+
+    public function downloadPdf(Expense $expense)
+    {
+       $pdf = PDF::loadView('dashbord.Expense.singlePdf', compact('expense'));
+       return $pdf->download('Expense.pdf');
     }
 }

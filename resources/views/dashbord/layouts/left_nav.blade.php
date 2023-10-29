@@ -88,7 +88,7 @@
                     </a>
                     <ul id="expense" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                             <li class="">
-                                    <a href="">
+                                    <a href="{{ route('all.fees') }}">
                                         <i class="las la-minus"></i><span>All Fee Collection</span>
                                     </a>
                             </li>

@@ -34,11 +34,10 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb ">
                                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-danger"><i class="ri-home-4-line mr-1 float-left"></i>Dashbord</a></li>
-                                   <li class="breadcrumb-item active" aria-current="page">Expense List</li>
+                                   <li class="breadcrumb-item active" aria-current="page">All Fees Collection</li>
                                 </ol>
                              </nav>
                         </div>
-                        <a href="{{ route('expenses.create') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Expense</a>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -49,11 +48,12 @@
                               <thead>
                                   <tr>
                                       <th>SL</th>
-                                      <th>Name</th>   
+                                      <th>Name</th>
+                                      <th>Image</th>
                                       <th>Phone</th>
-                                      <th>Expens Type</th>
+                                      <th>Class</th>
+                                      <th>Expens </th>
                                       <th>Amount</th>
-                                      <th>status</th>
                                       <th>Due</th>
                                       <th>Date</th>
                                       <th>Des</th>
@@ -61,25 +61,34 @@
                                   </tr>
                               </thead>
                               <tbody>
-                               @foreach ($expenses as $expense)
+                               @foreach ($users as $user)
                                <tr>
                                   <td>{{ $loop->iteration  }}</td>
-                                  <td>{{ $expense->name }}</td>
-                                  <td>{{ $expense->phone }}</td>
-                                  <td>{{ $expense->expens_type }}</td> 
-                                  <td>{{ $expense->amount }}</td>
+                                  <td>{{ $user->name }}</td>
                                   <td>
-                                    <span class="badge @if ($expense->status == 'paid') badge-primary @else badge-danger @endif">{{ $expense->status }}</span>
+                                    <img src="{{ asset('storage/upload/users_image/'.$user->image) }}" class="align-self-start mr-3 avatar-50 img-fluid rounded" alt="#">
                                   </td>
-                                  <td>{{ $expense->due }}</td>
-                                  <td>{{ $expense->date }}</td>
-                                  <td>{{ $expense->description }}</td>
+                                  <td>{{ $user->phone }}</td>
+                                  <td>{{ $user->class_id}}</td>
+                                  <td>{{ $user->expense }}</td> 
+                                  <td>{{ $user->amount }}</td>
+                                  <td>
+                                    <span class="badge @if ($user->due != null ) badge-info @else badge-primary @endif">
+                                      @if ($user->due != null )
+                                          {{ $user->due }}
+                                      @else
+                                          paid
+                                      @endif
+                                    </span>
+                                  </td>
+                                  <td>{{ $user->date }}</td>
+                                  <td>{{ $user->description }}</td>
                                   <td>
                                     <div class="d-flex align-items-center list-action">
-                                      <a href="{{ route('expenses.show',$expense->id) }}" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
-                                      <a href="{{ route('expenses.edit',$expense->id) }}" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
+                                      <a href="" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
+                                      <a href="" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
                                      
-                                      <form action="{{ route('expenses.destroy',$expense->id) }}" method="POST">
+                                      <form action="" method="POST">
                                           @csrf
                                           @method("DELETE")
                                           <button class="badge bg-warning mr-2 border-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" ><i class="ri-delete-bin-line mr-0"></i></button>
