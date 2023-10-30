@@ -85,11 +85,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/expense/download/{expense}',[ExpenseController::class,'downloadPdf'])->name('expens.download');
 
     /**
-     * Fee collection Controller
+     * Fee Collection Controller
      */
     Route::get('/student/fee-collection/{student}',[FeeCollectionController::class,'create'])->name('student.feeCollection');
     Route::post('/student/fee-collection/{student}',[FeeCollectionController::class,'store'])->name('student.feeStore');
-    Route::get('/student/fee-collection',[FeeCollectionController::class,'index'])->name('all.fees');
+    Route::resource('/feecollections', FeeCollectionController::class);
+
 
 });
 

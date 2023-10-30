@@ -59,10 +59,15 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    //one to one reletionship --- user model to classes model
+    //one to one relationship --- user model to classes model
     public function classes()
     {
         return $this->hasOne(Classes::class, 'id', 'class_id');
     }
 
+
+    //one to many relationship -- user model and FeeCollection model
+    public function FeeCollection(){
+        return $this->hasMany(FeeCollection::class);
+    }
 }

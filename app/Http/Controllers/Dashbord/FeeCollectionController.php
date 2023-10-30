@@ -15,11 +15,8 @@ class FeeCollectionController extends BaseController
      */
     public function index()
     {
-        $users = DB::table('users')->where('student_status',['running','passing'])
-                    ->join('fee_collections', 'users.id', '=', 'fee_collections.user_id')
-                    ->select('users.name', 'users.email', 'users.phone', 'users.image', 'users.section', 'users.class_id' ,'fee_collections.date','fee_collections.expense','fee_collections.amount','fee_collections.due','fee_collections.description')
-                    ->get();
-        return view('dashbord.FeeCollection.index',compact('users'));
+        $fee_collections = FeeCollection::latest()->get();
+        return view('dashbord.FeeCollection.index',compact('fee_collections'));
     }
 
     /**
@@ -61,7 +58,7 @@ class FeeCollectionController extends BaseController
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(FeeCollection $feecollection)
     {
         //
     }
@@ -69,15 +66,15 @@ class FeeCollectionController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(FeeCollection $feecollection)
     {
-        //
+        return $feecollection;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,FeeCollection $feecollection)
     {
         //
     }
@@ -85,8 +82,9 @@ class FeeCollectionController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(FeeCollection $feecollection)
     {
-        //
+        $feecollection->delete();
+        return $this->returnMessage('Student Fees Delete!','info');
     }
 }
