@@ -65,9 +65,9 @@ class User extends Authenticatable
         return $this->hasOne(Classes::class, 'id', 'class_id');
     }
 
-
     //one to many relationship -- user model and FeeCollection model
-    public function FeeCollection(){
+    public function FeeCollection()
+    {
         return $this->hasMany(FeeCollection::class);
     }
 }

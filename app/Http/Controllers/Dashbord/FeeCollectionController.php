@@ -6,7 +6,7 @@ use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\FeeCollection;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use PDF;
 
 class FeeCollectionController extends BaseController
 {
@@ -16,7 +16,8 @@ class FeeCollectionController extends BaseController
     public function index()
     {
         $fee_collections = FeeCollection::latest()->get();
-        return view('dashbord.FeeCollection.index',compact('fee_collections'));
+
+        return view('dashbord.FeeCollection.index', compact('fee_collections'));
     }
 
     /**
@@ -25,25 +26,26 @@ class FeeCollectionController extends BaseController
     public function create($student)
     {
         $student_info = User::where('id', $student)
-                            ->select('name', 'email', 'phone', 'image', 'section', 'class_id')
-                            ->first();
-        return view('dashbord.FeeCollection.create',compact('student_info'));
+            ->select('id', 'name', 'email', 'phone', 'image', 'section', 'class_id')
+            ->first();
+
+        return view('dashbord.FeeCollection.create', compact('student_info'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,$student)
+    public function store(Request $request, $student)
     {
         //validation
         $validation = $request->validate([
             'expense_type' => ['required'],
             'amount' => ['required'],
             'date' => ['required'],
-            'description' => ['required','string'],
+            'description' => ['required', 'string'],
         ]);
         $data = new FeeCollection();
-        $data->user_id = $student;//user id
+        $data->user_id = $student; //user id
         $data->date = date('Y-m-d', strtotime($request->date));
         $data->expense = $request->expense_type;
         $data->amount = $request->amount;
@@ -52,7 +54,7 @@ class FeeCollectionController extends BaseController
 
         $data->save();
 
-        return $this->returnMessage('Student Fee Collection Successfulliy','success');
+        return $this->returnMessage('Student Fee Collection Successfulliy', 'success');
     }
 
     /**
@@ -60,7 +62,7 @@ class FeeCollectionController extends BaseController
      */
     public function show(FeeCollection $feecollection)
     {
-        //
+        return view('dashbord.FeeCollection.show', compact('feecollection'));
     }
 
     /**
@@ -68,15 +70,31 @@ class FeeCollectionController extends BaseController
      */
     public function edit(FeeCollection $feecollection)
     {
-        return $feecollection;
+        return view('dashbord.FeeCollection.edit', compact('feecollection'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,FeeCollection $feecollection)
+    public function update(Request $request, FeeCollection $feecollection)
     {
-        //
+        //validation
+        $validation = $request->validate([
+            'expense_type' => ['required'],
+            'amount' => ['required'],
+            'date' => ['required'],
+            'description' => ['required', 'string'],
+        ]);
+
+        $data['date'] = date('Y-m-d', strtotime($request->date));
+        $data['expense'] = $request->expense_type;
+        $data['amount'] = $request->amount;
+        $data['due'] = $request->due;
+        $data['description'] = $request->description;
+
+        $feecollection->update($data);
+
+        return $this->returnMessage('Student Fees update', 'info');
     }
 
     /**
@@ -85,6 +103,17 @@ class FeeCollectionController extends BaseController
     public function destroy(FeeCollection $feecollection)
     {
         $feecollection->delete();
-        return $this->returnMessage('Student Fees Delete!','info');
+
+        return $this->returnMessage('Student Fees Delete!', 'info');
+    }
+
+    /**
+     * download pdf single id Fees details
+     */
+    public function downloadPdf(FeeCollection $feecollection)
+    {
+        $pdf = PDF::loadView('dashbord.FeeCollection.downloadPdf', compact('feecollection'));
+
+        return $pdf->download($feecollection->User->phone.'.pdf');
     }
 }

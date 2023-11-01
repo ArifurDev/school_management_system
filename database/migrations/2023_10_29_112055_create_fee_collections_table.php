@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('fee_collections', function (Blueprint $table) {
             $table->id();
-            $table->integer("user_id");
-            $table->string("date");
-            $table->string("expense");
-            $table->string("amount");
-            $table->string("due")->nullable();
-            $table->text("description")->nullable();
+            $table->integer('user_id');
+            $table->string('date');
+            $table->string('expense');
+            $table->string('amount');
+            $table->string('due')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

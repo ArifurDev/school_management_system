@@ -42,7 +42,8 @@ class PermissionController extends BaseController
     {
         $validation = $request->validate(['name' => 'required']);
         Permission::create($validation);
-        return $this->returnMessage('Permission Create Successfulliy','success');
+
+        return $this->returnMessage('Permission Create Successfulliy', 'success');
     }
 
     /**
@@ -59,6 +60,7 @@ class PermissionController extends BaseController
     public function edit(Permission $permission)
     {
         $roles = role::all();
+
         return view('dashbord.Permission.edit', compact('permission', 'roles'));
     }
 
@@ -69,7 +71,8 @@ class PermissionController extends BaseController
     {
         $validation = $request->validate(['name' => ['required', 'unique:permissions,name,'.$request->id]]);
         $permission->update($validation);
-        return $this->returnMessage('Permission updated Successfulliy','success');
+
+        return $this->returnMessage('Permission updated Successfulliy', 'success');
     }
 
     /**
@@ -78,7 +81,8 @@ class PermissionController extends BaseController
     public function destroy(Permission $permission)
     {
         $permission->delete();
-        return $this->returnMessage($permission->name.' Permission Delete Successfull','info');
+
+        return $this->returnMessage($permission->name.' Permission Delete Successfull', 'info');
     }
 
     /**
@@ -87,10 +91,11 @@ class PermissionController extends BaseController
     public function attachRole(Request $request, Permission $permission)
     {
         if ($permission->hasRole($request->role)) {
-            return $this->returnMessage('This Role already exists','error');
+            return $this->returnMessage('This Role already exists', 'error');
         } else {
             $permission->assignRole($request->role);
-            return $this->returnMessage('The '.$request->role.' has been attached successfully','success');
+
+            return $this->returnMessage('The '.$request->role.' has been attached successfully', 'success');
         }
     }
 
@@ -101,7 +106,8 @@ class PermissionController extends BaseController
     {
         if ($permission->hasRole($role)) {
             $permission->removeRole($role);
-            return $this->returnMessage('A permission can be remove from a role','info');
+
+            return $this->returnMessage('A permission can be remove from a role', 'info');
         }
     }
 }

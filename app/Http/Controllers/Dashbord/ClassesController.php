@@ -14,6 +14,7 @@ class ClassesController extends BaseController
     public function index()
     {
         $classes = Classes::all();
+
         return view('dashbord.Class.index', compact('classes'));
     }
 
@@ -32,7 +33,8 @@ class ClassesController extends BaseController
     {
         $validate = $request->validate(['class_name' => 'required|unique:classes']);
         Classes::create($validate);
-        return $this->returnMessage('Class Create Successfull','success');
+
+        return $this->returnMessage('Class Create Successfull', 'success');
     }
 
     /**
@@ -59,7 +61,8 @@ class ClassesController extends BaseController
     {
         $validate = $request->validate(['class_name' => 'required|unique:classes,class_name,'.$class->id]);
         $class->update($validate);
-        return $this->returnMessage('Class updated','info');
+
+        return $this->returnMessage('Class updated', 'info');
     }
 
     /**
@@ -68,6 +71,7 @@ class ClassesController extends BaseController
     public function destroy(Classes $class)
     {
         $class->delete();
-        return $this->returnMessage('class Deleted!','info');
+
+        return $this->returnMessage('class Deleted!', 'info');
     }
 }

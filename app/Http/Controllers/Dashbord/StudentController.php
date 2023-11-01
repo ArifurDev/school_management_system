@@ -19,6 +19,7 @@ class StudentController extends BaseController
     public function index()
     {
         $students = User::where('student_status', 'running')->latest()->get();
+
         return view('dashbord.student.index', compact('students'));
     }
 
@@ -28,6 +29,7 @@ class StudentController extends BaseController
     public function create()
     {
         $Classes = Classes::all();
+
         return view('dashbord.student.create', compact('Classes'));
     }
 
@@ -88,7 +90,8 @@ class StudentController extends BaseController
             'created_at' => Carbon::now(),
         ]);
         $student->assignRole('student');
-        return $this->returnMessage('Student Admission successfulliy','success');
+
+        return $this->returnMessage('Student Admission successfulliy', 'success');
     }
 
     /**
@@ -105,6 +108,7 @@ class StudentController extends BaseController
     public function edit(User $student)
     {
         $Classes = Classes::all();
+
         return view('dashbord.student.edit', compact('Classes', 'student'));
     }
 
@@ -121,6 +125,6 @@ class StudentController extends BaseController
      */
     public function destroy(User $student)
     {
-        return $this->returnMessage('Somthing with wrong','warning');
+        return $this->returnMessage('Somthing with wrong', 'warning');
     }
 }

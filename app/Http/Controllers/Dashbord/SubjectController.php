@@ -15,6 +15,7 @@ class SubjectController extends BaseController
     public function index()
     {
         $subjects = Subject::all();
+
         return view('dashbord.Subject.index', compact('subjects'));
     }
 
@@ -24,6 +25,7 @@ class SubjectController extends BaseController
     public function create()
     {
         $Classes = Classes::all();
+
         return view('dashbord.Subject.create', compact('Classes'));
     }
 
@@ -42,7 +44,8 @@ class SubjectController extends BaseController
             'subject_name' => $request->name,
             'subject_code' => $request->code,
         ]);
-        return $this->returnMessage('Subject Add Successfulliy','success');
+
+        return $this->returnMessage('Subject Add Successfulliy', 'success');
     }
 
     /**
@@ -59,6 +62,7 @@ class SubjectController extends BaseController
     public function edit(Subject $Subject)
     {
         $Classes = Classes::all();
+
         return view('dashbord.Subject.edit', compact('Subject', 'Classes'));
     }
 
@@ -74,7 +78,8 @@ class SubjectController extends BaseController
             'subject_name' => $request->name,
             'subject_code' => $request->code,
         ]);
-        return $this->returnMessage('Subject Updated','info');
+
+        return $this->returnMessage('Subject Updated', 'info');
     }
 
     /**
@@ -83,6 +88,7 @@ class SubjectController extends BaseController
     public function destroy(Subject $subject)
     {
         $subject->delete();
-        return $this->returnMessage('Subject Deleted','warning');
+
+        return $this->returnMessage('Subject Deleted', 'warning');
     }
 }

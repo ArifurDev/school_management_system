@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashbord;
 use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\Expense;
 use Illuminate\Http\Request;
-Use PDF;
+use PDF;
 
 class ExpenseController extends BaseController
 {
@@ -15,6 +15,7 @@ class ExpenseController extends BaseController
     public function index()
     {
         $expenses = Expense::latest()->get();
+
         return view('dashbord.Expense.index', compact('expenses'));
     }
 
@@ -57,13 +58,14 @@ class ExpenseController extends BaseController
             if ($request->status == 'due' && $request->due != null) {
                 $data['due'] = $request->due;
             } else {
-              return $this->returnMessage('Somthing with wrong due status or due amount! pleace check then submit','warning');
+                return $this->returnMessage('Somthing with wrong due status or due amount! pleace check then submit', 'warning');
             }
         }
 
         //save all data in Database
         $data->save();
-        return $this->returnMessage('Expense Submit Successfulliy','success');
+
+        return $this->returnMessage('Expense Submit Successfulliy', 'success');
 
     }
 
@@ -72,7 +74,7 @@ class ExpenseController extends BaseController
      */
     public function show(Expense $expense)
     {
-        return view('dashbord.Expense.show',compact('expense'));
+        return view('dashbord.Expense.show', compact('expense'));
     }
 
     /**
@@ -112,15 +114,16 @@ class ExpenseController extends BaseController
             if ($request->status == 'due' && $request->due != null) {
                 $data['due'] = $request->due;
             } else {
-                return $this->returnMessage('Somthing with wrong due status or due amount! pleace check then submit','warning');
+                return $this->returnMessage('Somthing with wrong due status or due amount! pleace check then submit', 'warning');
             }
-        }else{
+        } else {
             $data['due'] = $request->due;
         }
 
         //save all data in Database
         $expense->update($data);
-        return $this->returnMessage('Expense Submit Successfulliy','success');
+
+        return $this->returnMessage('Expense Submit Successfulliy', 'success');
     }
 
     /**
@@ -129,16 +132,17 @@ class ExpenseController extends BaseController
     public function destroy(Expense $expense)
     {
         $expense->delete();
-        return $this->returnMessage('Expense Deleted','info');
+
+        return $this->returnMessage('Expense Deleted', 'info');
     }
 
     /**
      * Single Expens page download pdf
      */
-
     public function downloadPdf(Expense $expense)
     {
-       $pdf = PDF::loadView('dashbord.Expense.singlePdf', compact('expense'));
-       return $pdf->download('Expense.pdf');
+        $pdf = PDF::loadView('dashbord.Expense.singlePdf', compact('expense'));
+
+        return $pdf->download('Expense.pdf');
     }
 }
