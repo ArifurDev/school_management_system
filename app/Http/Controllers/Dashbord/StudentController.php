@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashbord;
 
 use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\Classes;
+use App\Models\FeeCollection;
 use App\Models\Student;
 use App\Models\User;
 use Carbon\Carbon;
@@ -99,7 +100,8 @@ class StudentController extends BaseController
      */
     public function show(User $student)
     {
-        return view('dashbord.student.show', compact('student'));
+        $allPayments = FeeCollection::where("user_id",$student->id)->latest()->get();
+        return view('dashbord.student.show', compact('student','allPayments'));
     }
 
     /**

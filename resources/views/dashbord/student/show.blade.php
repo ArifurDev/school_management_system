@@ -115,18 +115,24 @@
                                  <thead>
                                      <tr>
                                          <th>SL</th>
-                                         <th>Name</th>
-                                         <th>Fee</th>
+                                         <th>Expense Type</th>
+                                         <th>Amount</th>
+                                         <th>Due</th>
+                                         <th>Description</th>
                                          <th>Date</th>
                                      </tr>
                                  </thead>
                                  <tbody>
-                                  <tr>
-                                     <td>1</td>
-                                     <td>Arif</td>
-                                     <td>500</td>
-                                     <td>2021/09/08</td>
-                                  </tr>
+                                  @foreach ($allPayments as $payment)
+                                    <tr>
+                                      <td>{{ $loop->iteration  }}</td>
+                                      <td>{{ $payment->expense }}</td>
+                                      <td>{{ $payment->amount }}</td>
+                                      <td>{{ $payment->due }}</td>
+                                      <td>{{ $payment->description }}</td>
+                                      <td>{{ $payment->date }}</td>
+                                   </tr>
+                                  @endforeach
                                  </tbody>
                              </table>
                              </div>

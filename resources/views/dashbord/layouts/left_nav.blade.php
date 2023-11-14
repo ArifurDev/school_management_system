@@ -66,8 +66,8 @@
                                     </a>
                             </li>
                             <li class="">
-                                    <a href="../backend/page-list-users.html">
-                                        <i class="las la-minus"></i><span>student p</span>
+                                    <a href="{{ route('attendance.index') }}">
+                                        <i class="las la-minus"></i><span>Attendance</span>
                                     </a>
                             </li>
                     </ul>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashbord\AttendanceController as AttendanceController;
 use App\Http\Controllers\Dashbord\ClassesController as ClassesController;
 use App\Http\Controllers\Dashbord\ExpenseController as ExpenseController;
 use App\Http\Controllers\Dashbord\FeeCollectionController as FeeCollectionController;
@@ -92,6 +93,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/student/fee-collection/{student}', [FeeCollectionController::class, 'store'])->name('student.feeStore');
     Route::resource('/feecollections', FeeCollectionController::class);
 
+    /**
+     * Attendance Controller
+     */
+    Route::resource('/attendance', AttendanceController::class);
+    Route::post('/find/students',[AttendanceController::class,'find_students'])->name('find.students');
 });
 
 require __DIR__.'/auth.php';
