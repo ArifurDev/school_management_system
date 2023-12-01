@@ -15,6 +15,4 @@ class BaseController extends Controller
 
         return redirect()->back()->with($notification);
     }
-
-
 }

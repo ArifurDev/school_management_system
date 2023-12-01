@@ -97,7 +97,8 @@ Route::middleware(['auth'])->group(function () {
      * Attendance Controller
      */
     Route::resource('/attendance', AttendanceController::class);
-    Route::post('/find/students',[AttendanceController::class,'find_students'])->name('find.students');
+    Route::post('/find/students', [AttendanceController::class, 'find_students'])->name('find.students');
+    Route::get('/attendance/{class}/{subject}/{date}', [AttendanceController::class, 'show'])->name('attendances.show');
 });
 
 require __DIR__.'/auth.php';

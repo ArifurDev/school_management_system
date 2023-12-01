@@ -44,24 +44,27 @@
                 </div>
         </div>
         <div class="row">
+
             <div class="col-lg-12">
                 <div class="card">
-                    <form action="{{ route('find.students') }}" method="post">
+                    <form action="{{ route('find.students') }}" method="POST">
                     @csrf
                     <div class="card-body d-flex flex-wrap align-items-center justify-content-between">
-                            <div class="form-group col-lg-4">
+                            <div class="form-group col-lg-4 ">
                                 <label for="class">Class</label>
-                                <select class="form-control mb-3" id="class" name="class">
+                                <select class="form-control mb-3 {{ $errors->has('class') ? 'border border-danger' : '' }}" id="class" name="class">
                                    <option value="">--Select Class--</option>
                                    @foreach ($classes as $class)
                                    <option value="{{ $class->id }}">{{ $class->class_name }}</option>                                  
                                    @endforeach
                                 </select>
+
                              </div>
+
     
                              <div class="form-group col-lg-4">
                                 <label for="session">Session</label>
-                                <select class="form-control mb-3" id="session" name="session">
+                                <select class="form-control mb-3 {{ $errors->has('session') ? 'border border-danger' : '' }}" id="session" name="session">
                                    <option value="">--Select Session--</option>
                                    @foreach ($sections as $section)
                                    <option value="{{ $section }}">{{ $section }}</option>                                  
@@ -71,7 +74,7 @@
     
                              <div class="form-group col-lg-3">
                                 <label for="group">Group</label>
-                                <select class="form-control mb-3" id="group" name="group">
+                                <select class="form-control mb-3 {{ $errors->has('group') ? 'border border-danger' : '' }}" id="group" name="group">
                                    <option value="">--Select Group--</option>
                                    @foreach ($groupes as $group)
                                    <option value="{{ $group }}">{{ $group }}</option>                                  
@@ -86,12 +89,70 @@
             </div>
         </div>
 
+        <!--show attendance all data-->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card card-block card-stretch card-height">
+               <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example" class="data-table table" style="width:100%">
+                      <thead>
+                          <tr>
+                              <th>SL</th>
+                              <th>Class</th>
+                              <th>Techer</th>
+                              <th>Subject </th>    
+                              <th>Date</th>
+                              <th>Action</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                       @foreach ($attendances as $attendance)
+                       <tr>
+                          <td>{{ $loop->iteration  }}</td>
+                          <td>{{ $attendance->class_id }}</td>
+                          <td>{{ $attendance->user_id }}</td>
+                          <td>{{ $attendance->subject_id }}</td> 
+                          <td>{{ $attendance->date  }}</td>
+                          <td>
+                            <div class="d-flex align-items-center list-action">
+                              <a href="{{ route('attendances.show',['class' => $attendance->class_id, 'subject' => $attendance->subject_id, 'date' => $attendance->date]) }}" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
+                              <a href="" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
+                             
+                              <form action="" method="POST">
+                                  @csrf
+                                  @method("DELETE")
+                                  <button class="badge bg-warning mr-2 border-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" ><i class="ri-delete-bin-line mr-0"></i></button>
+                              </form>
+                          </div>
+                          </td>
+                       </tr>
+                       @endforeach
+                      </tbody> 
+                  </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+        </div>
+
             <!-- Page end  -->
         </div>
       </div>
     </div>
 
-    <!-- ajax code -->
+     <!--datatable-->
+     <script>
+      $(document).ready(function() {
+          var table = $('#example').DataTable( {
+              lengthChange: false,
+              buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
+          } );
+      
+          table.buttons().container()
+              .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+      } );
+   </script>
 
   {{-- js --}}
   @include('dashbord.layouts.js')

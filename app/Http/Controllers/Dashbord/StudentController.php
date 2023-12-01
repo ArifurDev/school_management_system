@@ -100,8 +100,9 @@ class StudentController extends BaseController
      */
     public function show(User $student)
     {
-        $allPayments = FeeCollection::where("user_id",$student->id)->latest()->get();
-        return view('dashbord.student.show', compact('student','allPayments'));
+        $allPayments = FeeCollection::where('user_id', $student->id)->latest()->get();
+
+        return view('dashbord.student.show', compact('student', 'allPayments'));
     }
 
     /**

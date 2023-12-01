@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->integer("user_id");
-            $table->integer("teacher_id");
-            $table->integer("subject_id");
-            $table->string("date");
+            $table->integer('student_id');
+            $table->integer('user_id');
+            $table->integer('subject_id');
+            $table->string('attendances');
+            $table->string('date');
+            $table->string('class_id');
             $table->timestamps();
+
         });
     }
 
