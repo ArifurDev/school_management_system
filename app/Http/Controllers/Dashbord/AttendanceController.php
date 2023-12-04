@@ -55,6 +55,9 @@ class AttendanceController extends BaseController
      */
     public function create()
     {
+        $att = Attendance::where("student_id","3")->first();
+        return $att;
+        return $att->user->name;
 
     }
 
@@ -111,23 +114,47 @@ class AttendanceController extends BaseController
             ->whereDate('date', $date)
             ->get();
 
-        return $attendances;
+        return view('dashbord.Attendance.show',compact('attendances'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Attendance $attendance)
+    public function edit($class, $subject, $date)
     {
-        //
+        $subjects = Subject::where('classes_id', $class)->get();
+
+        $attendances = Attendance::where('class_id', $class)
+        ->where('subject_id', $subject)
+        ->whereDate('date', $date)
+        ->get();
+
+        $date_subject = Attendance::where('class_id', $class)
+        ->where('subject_id', $subject)
+        ->whereDate('date', $date)
+        ->first(); //get date and subject id
+
+        return view('dashbord.Attendance.edit',compact('attendances','subjects','date_subject'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Attendance $attendance)
+    public function update(Request $request)
     {
-        //
+        foreach ($request->studentId as $id) {
+            $data=[
+               'attendances'=>$request->attendances[$id],
+            ];
+          $Att =  Attendance::where(['date' =>$request->date,'student_id' =>$id,'class_id'=>$request->class,'subject_id'=>$request->subject_id])->first();
+          $Att->update($data);
+        }
+
+        if ($Att) {
+            return $this->returnMessage('Attendances Updated', 'success');
+        }else{
+            return $this->returnMessage('Somthing with wrong', 'warning');
+         }
     }
 
     /**
@@ -135,6 +162,7 @@ class AttendanceController extends BaseController
      */
     public function destroy(Attendance $attendance)
     {
-        //
+        $attendance->delete();
+        return $this->returnMessage('Attendance deleted', 'info');
     }
 }

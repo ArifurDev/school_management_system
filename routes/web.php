@@ -99,6 +99,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/attendance', AttendanceController::class);
     Route::post('/find/students', [AttendanceController::class, 'find_students'])->name('find.students');
     Route::get('/attendance/{class}/{subject}/{date}', [AttendanceController::class, 'show'])->name('attendances.show');
+    Route::get('/attendance/edit/{class}/{subject}/{date}', [AttendanceController::class, 'edit'])->name('attendances.edit');
+    Route::post('/attendance/edit', [AttendanceController::class, 'update'])->name('attendances.update');
+
 });
 
 require __DIR__.'/auth.php';

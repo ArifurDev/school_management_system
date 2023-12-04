@@ -34,18 +34,17 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb ">
                                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-danger"><i class="ri-home-4-line mr-1 float-left"></i>Dashbord</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">All Student</li>
+                                    <li class="breadcrumb-item"><a href="{{ route('classes.index') }}" class="text-danger">Class List</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Class Subjectes</li>
                                     </ol>
                                 </nav>
 
-                                <h4 class="mb-3">All Student</h4>
+                                <h4 class="mb-3">Class Subjectes</h4>
                             </div>
                         </div>
                     </div>
                  </div>
-                 <div class="row">
 
-                 </div>
                  <div class="col-lg-12">
                   <div class="card card-block card-stretch card-height">
                      <div class="card-body">
@@ -54,37 +53,23 @@
                             <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Name</th>
-                                    <th>Email </th>    
-                                    <th>Phone</th>
-                                    <th>Gender</th>
-                                    <th>Religion</th>
-                                    <th>Blood</th>
                                     <th>Class</th>
-                                    <th>Section</th>
+                                    <th>Subject </th>    
+                                    <th>code</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                             {{-- @foreach ($students as $student)
+                             @foreach ($subjectes as $subject)
                              <tr>
                                 <td>{{ $loop->iteration  }}</td>
-                                <td>{{ $student->name }}</td>
-                              <td>{{ $student->email }}</td>
-
-                                <td>{{ $student->user_info ? $student->user_info->phone : " " }}</td>
-                                <td>{{ $student->user_info ? $student->user_info->gender : " " }}</td> 
-                                <td>{{ $student->user_info ? $student->user_info->religion : " " }}</td>
-                                <td>{{ $student->user_info ? $student->user_info->blood : " " }}</td>
-                                <td>{{ $student->user_info ? $student->user_info->class->class_name : " " }}</td>
-                                <td>{{ $student->user_info ? $student->user_info->section : " " }}</td>
-
+                                <td>{{ $class->class_name }}</td>
+                                <td>{{ $subject->subject_name }}</td>
+                                <td>{{ $subject->subject_code }}</td>
                                 <td>
                                   <div class="d-flex align-items-center list-action">
-                                    <a href="{{ route('students.show',$student->id) }}" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
-                                    <a href="{{ route('students.edit',$student->id) }}" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
-                                   
-                                    <form action="{{ route('students.destroy',$student->id) }}" method="POST">
+                                    <a href="{{ route('subjects.edit',$subject->id) }}" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>                           
+                                    <form action="{{ route('subjects.destroy',$subject->id) }}" method="POST">
                                         @csrf
                                         @method("DELETE")
                                         <button class="badge bg-warning mr-2 border-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" ><i class="ri-delete-bin-line mr-0"></i></button>
@@ -92,7 +77,7 @@
                                 </div>
                                 </td>
                              </tr>
-                             @endforeach --}}
+                             @endforeach
                            
                             </tbody>
                         </table>

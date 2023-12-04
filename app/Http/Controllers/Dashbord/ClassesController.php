@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashbord;
 
 use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\Classes;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class ClassesController extends BaseController
@@ -42,8 +43,8 @@ class ClassesController extends BaseController
      */
     public function show(Classes $class)
     {
-        // return $class->id;
-
+        $subjectes =  Subject::where('classes_id',$class->id)->get();
+        return view('dashbord.Class.show',compact('class','subjectes'));
     }
 
     /**

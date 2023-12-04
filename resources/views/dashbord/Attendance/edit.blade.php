@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Dashbord</title>
+      <title>Attendences Edit</title>
       
       {{-- css --}}
       @include('dashbord.layouts.css')
@@ -34,12 +34,12 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb ">
                                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-danger"><i class="ri-home-4-line mr-1 float-left"></i>Dashbord</a></li>
-                                   <li class="breadcrumb-item"><a href="{{ route('attendance.index') }}" class="text-danger">Attendances</a></li>
-                                   <li class="breadcrumb-item active" aria-current="page">Attendance Create</li>
+                                   <li class="breadcrumb-item"><a href="{{ route('attendance.index') }}" class="text-danger">Dashbord</a></li>
+                                   <li class="breadcrumb-item active" aria-current="page">Attendances Edit</li>
                                 </ol>
                              </nav>
 
-                            <h4 class="mb-3">Attendance Create</h4>
+                            <h4 class="mb-3">Attendances</h4>
                         </div>
                     </div>
                 </div>
@@ -49,22 +49,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-block card-stretch card-height">
-                  <div class="card-header d-flex flex-wrap align-items-center justify-content-between">
-                      <div class="form-group col-lg-4 ">
-                        <label for="class">Date</label>
-                        <input type="date" class="form-control mb-3 {{ $errors->has('date') ? 'border border-danger' : '' }}" id="date">
-                    </div>
-
-                    <div class="form-group col-lg-4">
-                        <label for="subject">Subject</label>
-                        <select class="form-control mb-3 {{ $errors->has('subject_id') ? 'border border-danger' : '' }}" id="subject" >
-                          <option value="">--Select Subject--</option>
-                          @foreach ($subjects as $subject)
-                          <option value="{{ $subject->id }}">{{ $subject->subject_name }}</option>                                  
-                          @endforeach
-                        </select>
-                      </div>
-                  </div>
                    <div class="card-body">
                       <div class="table-responsive">
                         <table id="example" class="data-table table" style="width:100%">
@@ -73,33 +57,31 @@
                                   <th>SL</th>
                                   <th>Name</th>
                                   <th>Class</th>
-                                  <th>Section</th>
-                                  <th>Group</th>
+                                  <th>Techer</th>
                                   <th>Attendances</th>
                               </tr>
                           </thead>
                           <tbody>
-                            <form action="{{ route('attendance.store') }}" method="POST">
+                            <form action="{{ route('attendances.update') }}" method="POST">
                               @csrf
-                                @foreach ($students as $student)
+                                @foreach ($attendances as $student)
                                 <tr>
                                    <td>{{ $loop->iteration  }}</td>
-                                   <td>{{ $student->name }}</td>
-                                   <td>{{ $student->classes->class_name}}</td>
-                                   <td>{{ $student->section }}</td>
-                                   <td>{{ $student->group }}</td>
+                                   <td>{{ $student->student_id }}</td>
+                                   <td>{{ $student->class_id}}</td>
+                                   <td>{{ $student->user_id }}</td>
                                    <td>
                                     <input type="hidden" name="class" value="{{ $student->class_id }}">
-                                    <input type="hidden" name="studentId[]" value="{{$student->id}}">
-                                    <input type="radio" name="attendances[{{ $student->id }}]"  value="present">Present
-                                    <input type="radio" name="attendances[{{ $student->id }}]"  value="apsent">Apsent
-                                    <input type="radio"  name="attendances[{{ $student->id }}]" value="late">Late
+                                    <input type="hidden" name="studentId[]" value="{{$student->student_id}}">
+                                    <input type="radio" name="attendances[{{ $student->student_id }}]"  value="present" {{ $student->attendances == "present"  ? 'checked="checked"' : '' }}>Present
+                                    <input type="radio" name="attendances[{{ $student->student_id }}]"  value="apsent" {{ $student->attendances == "apsent"  ? 'checked="checked"' : '' }}>Apsent
+                                    <input type="radio"  name="attendances[{{ $student->student_id }}]" value="late" {{ $student->attendances == "late"  ? 'checked="checked"' : '' }}>Late
                                 </td>
                                 </tr>
                                 @endforeach
-                                <input type="hidden" name="date" id="setDate">
-                                <input type="hidden" name="subject_id" id="setSubjectId">
-                                <button type="submit" class="btn btn-primary ">Attendance</button>
+                                <input type="hidden" name="date" id="setDate" value="{{ $date_subject->date }}">
+                                <input type="hidden" name="subject_id" id="setSubjectId" value="{{ $date_subject->subject_id }}">
+                                <button type="submit" class="btn btn-primary ">Attendance Update</button>
                               </form> 
                           </tbody>
                       </table>

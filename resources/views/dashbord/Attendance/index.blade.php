@@ -110,21 +110,15 @@
                        @foreach ($attendances as $attendance)
                        <tr>
                           <td>{{ $loop->iteration  }}</td>
-                          <td>{{ $attendance->class_id }}</td>
-                          <td>{{ $attendance->user_id }}</td>
-                          <td>{{ $attendance->subject_id }}</td> 
+                          <td>{{ $attendance->class->class_name }}</td>
+                          <td>{{ $attendance->user->name }}</td>
+                          <td>{{ $attendance->subject->subject_name }}</td> 
                           <td>{{ $attendance->date  }}</td>
                           <td>
                             <div class="d-flex align-items-center list-action">
                               <a href="{{ route('attendances.show',['class' => $attendance->class_id, 'subject' => $attendance->subject_id, 'date' => $attendance->date]) }}" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
-                              <a href="" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
-                             
-                              <form action="" method="POST">
-                                  @csrf
-                                  @method("DELETE")
-                                  <button class="badge bg-warning mr-2 border-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" ><i class="ri-delete-bin-line mr-0"></i></button>
-                              </form>
-                          </div>
+                              <a href="{{ route('attendances.edit',['class' => $attendance->class_id, 'subject' => $attendance->subject_id, 'date' => $attendance->date]) }}" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
+                            </div>
                           </td>
                        </tr>
                        @endforeach
