@@ -71,13 +71,9 @@ class User extends Authenticatable
         return $this->hasMany(FeeCollection::class);
     }
 
-
-
-
-    //one to many reletionship -- user model and attendance model 
+    //one to many reletionship -- user model and attendance model
     public function Attendances()
     {
         return $this->hasMany(Attendance::class);
     }
-
 }

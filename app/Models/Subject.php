@@ -17,7 +17,6 @@ class Subject extends Model
         return $this->belongsTo(Classes::class);
     }
 
-
     // one to many reletionship --- subject model and Attendence
     public function attendances()
     {

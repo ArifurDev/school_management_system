@@ -43,8 +43,9 @@ class ClassesController extends BaseController
      */
     public function show(Classes $class)
     {
-        $subjectes =  Subject::where('classes_id',$class->id)->get();
-        return view('dashbord.Class.show',compact('class','subjectes'));
+        $subjectes = Subject::where('classes_id', $class->id)->get();
+
+        return view('dashbord.Class.show', compact('class', 'subjectes'));
     }
 
     /**

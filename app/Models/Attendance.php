@@ -11,8 +11,7 @@ class Attendance extends Model
 
     protected $fillable = ['student_id', 'user_id', 'subject_id', 'date', 'attendances', 'class_id'];
 
-
-    //one to many reletionship -- user model and attendance model 
+    //one to many reletionship -- user model and attendance model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
@@ -22,7 +21,6 @@ class Attendance extends Model
     {
         return $this->belongsTo(User::class, 'student_id', 'id');
     }
-
 
     // one to many reletionship --- subject model and Attendence
     public function subject()

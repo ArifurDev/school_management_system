@@ -23,10 +23,9 @@ class Classes extends Model
         return $this->belongsTo(User::class);
     }
 
-
-     // one to many reletionship --- class model and Attendence
-     public function attendances()
-     {
-         return $this->hasMany(Attendance::class, 'class_id', 'id');
-     }
+    // one to many reletionship --- class model and Attendence
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class, 'class_id', 'id');
+    }
 }
