@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('student_status', '0')->latest()->get();
 
         return view('dashbord.User.index', compact('users'));
     }

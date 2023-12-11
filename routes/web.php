@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashbord\FeeCollectionController as FeeCollectionContro
 use App\Http\Controllers\Dashbord\PermissionController as PermissionController;
 use App\Http\Controllers\Dashbord\RoleController as RoleController;
 use App\Http\Controllers\Dashbord\StudentController as StudentController;
+use App\Http\Controllers\Dashbord\StudentPromotionController as StudentPromotionController;
 use App\Http\Controllers\Dashbord\SubjectController as SubjectController;
 use App\Http\Controllers\Dashbord\UserController as UserController;
 use App\Http\Controllers\ProfileController;
@@ -101,6 +102,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/attendance/{class}/{subject}/{date}', [AttendanceController::class, 'show'])->name('attendances.show');
     Route::get('/attendance/edit/{class}/{subject}/{date}', [AttendanceController::class, 'edit'])->name('attendances.edit');
     Route::post('/attendance/edit', [AttendanceController::class, 'update'])->name('attendances.update');
+
+    /**
+     * StudentPromotion controller
+     */
+    Route::resource('/studdentpromotion', StudentPromotionController::class);
+    Route::post('/find/promotion/students', [StudentPromotionController::class, 'find_promotion_students'])->name('findPromotion.students');
 
 });
 

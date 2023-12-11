@@ -82,7 +82,7 @@
                                    </div>
                                    <div class="form-group col-md-4">
                                       <label for="add2">Date of Birth</label>
-                                      <input type="date" class="form-control" id="add2" placeholder="Street Address 2" name="date_of_birth">
+                                      <input type="date" class="form-control" id="add2" placeholder="Street Address 2" name="date_of_birth" value="{{ $student->date_of_birth }}">
                                    </div>
                                    <div class="form-group col-md-4">
                                       <label for="Blood">Blood Group</label>

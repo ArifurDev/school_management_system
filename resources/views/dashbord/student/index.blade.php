@@ -62,12 +62,25 @@
                                     <th>Blood</th>
                                     <th>Class</th>
                                     <th>Section</th>
+                                    <th>Monthly Fee</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                              @foreach ($students as $student)
+
                              <tr>
+
+                              <?php 
+                                  $prevDate = date('Y-m', strtotime("-1 month"));
+                                  $monthlyFee = App\Models\FeeCollection::where('user_id', $student->id)
+                                  ->whereYear('date', date('Y', strtotime($prevDate)))
+                                  ->whereMonth('date', date('m', strtotime($prevDate)))
+                                  ->where('expense', 'Monthly Fee')
+                                  ->first();
+                               ?>
+
+
                                 <td>{{ $loop->iteration  }}</td>
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->email }}</td>
@@ -76,7 +89,17 @@
                                 <td>{{ $student->blood }}</td>
                                 <td>{{ $student->classes->class_name}}</td>
                                 <td>{{ $student->section }}</td>
-
+                                <td>
+                                    @if ($monthlyFee)
+                                        @if ($monthlyFee->due)
+                                          <p class="btn mb-1 bg-danger-light">due</p>
+                                        @else
+                                          <p class="btn mb-1 bg-success-light">paid</p>
+                                        @endif
+                                    @else
+                                          <p class="btn mb-1 bg-danger-light">Unpaid</p>
+                                    @endif
+                                </td>
                                 <td>
                                   <div class="d-flex align-items-center list-action">
                                     <a href="{{ route('student.feeCollection',$student->id) }}" class="badge badge-danger mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Fee Collection" >

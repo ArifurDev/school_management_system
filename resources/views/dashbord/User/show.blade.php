@@ -27,184 +27,145 @@
         {{-- main page --}}
         <div class="container-fluid">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                       <div class="card car-transparent">
-                          <div class="card-body p-0">
-                             <div class="profile-image position-relative">
-                                <img src="{{ asset('backend/assets') }}/images/page-img/profile.png" class="img-fluid rounded w-100" alt="profile-image">
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
-                <div class="row m-sm-0 px-3">            
-                   <div class="col-lg-4 card-profile">
-                      <div class="card card-block card-stretch card-height">
-                         <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                               <div class="profile-img position-relative">
 
-                                @if ($user->image)
-                                    <img src="{{ asset('storage/upload/users_image/'.$user->image) }}" class="img-fluid rounded avatar-110" alt="profile-image">
-                                @else
-                                    <img src="{{ asset('backend/assets/images/user/10.jpg') }}" class="img-fluid rounded avatar-110" alt="profile-image">
-                                @endif
-                                
-                               </div>
-                            </div>
-                            <h6 class="mb-1">{{ $user->name }}</h6>
-                            <p class="mb-2">
-                                @foreach ($user->roles as $role)
-                                    <span class="mt-2 badge badge-pill border border-success text-dark">{{ $role->name }}</span>
-                                @endforeach
-                            </p>
-                            <p class="mb-2">
-                                @if ($user->roles)
-                                    @foreach ($user->roles as $role)
-                                        @foreach ($role->permissions as $permission)
-                                            <span class="mt-2 badge badge-pill border border-dark text-dark">{{ $permission->name }}</span>
-                                        @endforeach
-                                    @endforeach
-                                    @endif
-                            </p>
-                            <ul class="list-inline p-0 m-0">
-                               <li class="mb-2">
-                                <?php
-                                if (!empty($user->address)) {?>
-                                                                     
-                                    <div class="d-flex align-items-center">
-                                        <svg class="svg-icon mr-3" height="16" width="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                        </svg>
-                                        <p class="mb-0">{{ $user->address }}</p>   
-
-                                    </div>
-                                <?php
-                                }    
-                                ?>
-                               </li>
-                               <li class="mb-2">
-                                <?php if (!empty($user->phone)) {?>
-
-                                  <div class="d-flex align-items-center">
-                                     <svg class="svg-icon mr-3" height="16" width="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                     </svg>
-                                     <p class="mb-0">{{ $user->phone }}</p>   
-                                  </div>
-
-                                <?php
-                                }    
-                                ?>
-                               </li>
-                               <li>
-                                <?php if (!empty($user->email)) {?>
-                                  <div class="d-flex align-items-center">
-                                     <svg class="svg-icon mr-3" height="16" width="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                     </svg>
-                                     <p class="mb-0">{{ $user->email }}</p>   
-                                  </div>
-                                  <?php
-                                }    
-                                ?>
-                               </li>
-                            </ul>
-                         </div>
+               <div class="row d-flex justify-content-start bg-light rounded">
+                  <div class="col-lg-2 p-1 ">
+                      <img class="avatar-100 rounded "
+                          src="{{ asset('storage/upload/users_image/'.$user->image ?? 'user/10.jpg' ) }}" alt="#"
+                          data-original-title="" title="">
+                  </div>
+                  <div class="col-lg-8 p-1">
+                      <h2>{{ $user->name }}</h2>
+                      <p>{{ $user->bio ?? 'not available' }}</p>
+                  </div>
+                  <div class="col-lg-2  pt-4 mb-1">
+                      <div class="d-flex align-items-center m-0 list-action">
+                          <a href="{{ route('users.edit',$user->id) }}" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
+                         
+                          <form action="{{ route('users.destroy',$user->id) }}" method="POST">
+                              @csrf
+                              @method("DELETE")
+                              <button class="badge bg-warning mr-2 border-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" ><i class="ri-delete-bin-line mr-0"></i></button>
+                          </form>
                       </div>
-                   </div>
-                   <div class="col-lg-8 card-profile">
-                      <div class="card card-block card-stretch card-height">
-                         <div class="card-body">
-                            <div class="profile-content tab-content">                
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                       <ul class="list-inline p-0 m-0">
-                                          <li class="mb-4">
-                                             <div class="d-flex align-items-center pt-2">
-                                                <img src="{{ asset('backend/assets') }}/images/profile/service/02.png" class="img-fluid mr-3" alt="image">
-                                                <div class="ml-3 w-100">
-                                                   <div class="media align-items-center justify-content-between">
-                                                      <p class="mb-0">Figma</p>
-                                                      <h6>85%</h6>
-                                                   </div>
-                                                   <div class="iq-progress-bar mt-3">
-                                                      <span class="iq-progress iq-progress-danger progress-1" data-percent="85" style="transition: width 2s ease 0s; width: 85%;"></span>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </li>
-                                          <li>
-                                             <div class="d-flex align-items-center pt-2">
-                                                <img src="{{ asset('backend/assets') }}/images/profile/service/03.png" class="img-fluid" alt="image">
-                                                <div class="ml-3 w-100">
-                                                   <div class="media align-items-center justify-content-between">
-                                                      <p class="mb-0">Adobe Photoshop</p>
-                                                      <h6>85%</h6>
-                                                   </div>
-                                                   <div class="iq-progress-bar mt-3">
-                                                      <span class="iq-progress iq-progress-warning progress-1" data-percent="85" style="transition: width 2s ease 0s; width: 85%;"></span>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </li>
-                                       </ul>
-                                    </div>
-                                    <div class="col-lg-6">
-                                       <ul class="list-inline p-0 m-0">
-                                          <li class="mb-4">
-                                             <div class="d-flex align-items-center pt-2">
-                                                <img src="{{ asset('backend/assets') }}/images/profile/service/04.png" class="img-fluid" alt="image">
-                                                <div class="ml-3 w-100">
-                                                   <div class="media align-items-center justify-content-between">
-                                                      <p class="mb-0">Adobe Photoshop</p>
-                                                      <h6>85%</h6>
-                                                   </div>
-                                                   <div class="iq-progress-bar mt-3">
-                                                      <span class="iq-progress iq-progress-success progress-1" data-percent="85" style="transition: width 2s ease 0s; width: 85%;"></span>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </li>
-                                          <li class="mb-4">
-                                             <div class="d-flex align-items-center pt-2">
-                                                <img src="{{ asset('backend/assets') }}/images/profile/service/05.png" class="img-fluid" alt="image">
-                                                <div class="ml-3 w-100">
-                                                   <div class="media align-items-center justify-content-between">
-                                                      <p class="mb-0">Figma</p>
-                                                      <h6>85%</h6>
-                                                   </div>
-                                                   <div class="iq-progress-bar mt-3">
-                                                      <span class="iq-progress iq-progress-info progress-1" data-percent="85" style="transition: width 2s ease 0s; width: 85%;"></span>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </li>
-                                          <li>
-                                             <div class="d-flex align-items-center pt-2">
-                                                <img src="{{ asset('backend/assets') }}/images/profile/service/06.png" class="img-fluid" alt="image">
-                                                <div class="ml-3 w-100">
-                                                   <div class="media align-items-center justify-content-between">
-                                                      <p class="mb-0">Adobe Photoshop</p>
-                                                      <h6>85%</h6>
-                                                   </div>
-                                                   <div class="iq-progress-bar mt-3">
-                                                      <span class="bg-secondary iq-progress progress-1" data-percent="85" style="transition: width 2s ease 0s; width: 85%;"></span>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </li>
-                                       </ul>
-                                    </div>
-                                 </div>
+                  </div>
+              </div>
 
-                            </div>
-                         </div>
+
+              <div class="row bg-light rounded mt-3 p-3" title="general info">
+               <div class="col-lg-4 col-md-6 col-sm-6">
+                   <div class="card bg-white">
+                      <div class="card-body">
+                         <h5 class="card-title font-size-14">Name</h5>
+                         <blockquote class="blockquote mb-0">
+                            <footer class="blockquote-footer font-size-15">{{ $user->name }} <cite title="Source Title" class="text-white"></cite></footer>
+                         </blockquote>
                       </div>
                    </div>
                 </div>
+
+
+               <div class="col-lg-4 col-md-6 col-sm-6">
+                   <div class="card bg-white">
+                      <div class="card-body">
+                         <h5 class="card-title font-size-14">Gender</h5>
+                         <blockquote class="blockquote mb-0">
+                            <footer class="blockquote-footer font-size-15">{{ $user->gender }} <cite title="Source Title" class="text-white"></cite></footer>
+                         </blockquote>
+                      </div>
+                   </div>
+                </div>
+
+               <div class="col-lg-4 col-md-6 col-sm-6">
+                   <div class="card bg-white">
+                      <div class="card-body">
+                         <h5 class="card-title font-size-14">Father's Name</h5>
+                         <blockquote class="blockquote mb-0">
+                            <footer class="blockquote-footer font-size-15">{{ $user->father_name }} <cite title="Source Title" class="text-white"></cite></footer>
+                         </blockquote>
+                      </div>
+                   </div>
+                </div>
+
+               <div class="col-lg-4 col-md-6 col-sm-6">
+                   <div class="card bg-white">
+                      <div class="card-body">
+                         <h5 class="card-title font-size-14">Mother's Name</h5>
+                         <blockquote class="blockquote mb-0">
+                            <footer class="blockquote-footer font-size-15">{{ $user->mother_name }} <cite title="Source Title" class="text-white"></cite></footer>
+                         </blockquote>
+                      </div>
+                   </div>
+                </div>
+
+           <div class="col-lg-4 col-md-6 col-sm-6">
+               <div class="card bg-white">
+                  <div class="card-body">
+                     <h5 class="card-title font-size-14">Religion</h5>
+                     <blockquote class="blockquote mb-0">
+                        <footer class="blockquote-footer font-size-15">{{ $user->religion }} <cite title="Source Title" class="text-white"></cite></footer>
+                     </blockquote>
+                  </div>
+               </div>
+            </div>
+
+               <div class="col-lg-4 col-md-6 col-sm-6">
+                   <div class="card bg-white">
+                      <div class="card-body">
+                         <h5 class="card-title font-size-14">Date Of Birth</h5>
+                         <blockquote class="blockquote mb-0">
+                            <footer class="blockquote-footer font-size-15">{{ $user->date_of_birth }} <cite title="Source Title" class="text-white"></cite></footer>
+                         </blockquote>
+                      </div>
+                   </div>
+                </div>
+
+               <div class="col-lg-4 col-md-6 col-sm-6">
+                   <div class="card bg-white">
+                      <div class="card-body">
+                         <h5 class="card-title font-size-14">E-mail</h5>
+                         <blockquote class="blockquote mb-0">
+                            <footer class="blockquote-footer font-size-15">{{ $user->email }} <cite title="Source Title" class="text-white"></cite></footer>
+                         </blockquote>
+                      </div>
+                   </div>
+                </div>
+
+
+               <div class="col-lg-4 col-md-6 col-sm-6">
+                   <div class="card bg-white">
+                      <div class="card-body">
+                         <h5 class="card-title font-size-14">Address</h5>
+                         <blockquote class="blockquote mb-0">
+                            <footer class="blockquote-footer font-size-15">{{ $user->address }} <cite title="Source Title" class="text-white"></cite></footer>
+                         </blockquote>
+                      </div>
+                   </div>
+                </div>
+
+               <div class="col-lg-4 col-md-6 col-sm-6">
+                   <div class="card bg-white">
+                      <div class="card-body">
+                         <h5 class="card-title font-size-14">Phone</h5>
+                         <blockquote class="blockquote mb-0">
+                            <footer class="blockquote-footer font-size-15">{{ $user->phone }} <cite title="Source Title" class="text-white"></cite></footer>
+                         </blockquote>
+                      </div>
+                   </div>
+                </div>
+
+               <div class="col-lg-4 col-md-6 col-sm-6">
+                   <div class="card bg-white">
+                      <div class="card-body">
+                         <h5 class="card-title font-size-14">Blood</h5>
+                         <blockquote class="blockquote mb-0">
+                            <footer class="blockquote-footer font-size-15" >{{ $user->blood }} <cite title="Source Title" class="text-white"></cite></footer>
+                           </blockquote>
+                      </div>
+                   </div>
+                </div>
+
+           </div>
              </div>
             <!-- Page end  -->
         </div>
