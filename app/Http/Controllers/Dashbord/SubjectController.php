@@ -36,6 +36,7 @@ class SubjectController extends BaseController
     {
         $validate = $request->validate([
             'classes_id' => 'required',
+            'total_class' => 'required|numeric',
             'name' => 'required|unique:subjects,subject_name',
         ]);
 
@@ -43,6 +44,7 @@ class SubjectController extends BaseController
             'classes_id' => $request->classes_id,
             'subject_name' => $request->name,
             'subject_code' => $request->code,
+            'total_class' => $request->total_class,
         ]);
 
         return $this->returnMessage('Subject Add Successfulliy', 'success');
@@ -71,12 +73,13 @@ class SubjectController extends BaseController
      */
     public function update(Request $request, Subject $subject)
     {
-        $validation = $request->validate(['name' => ['required', 'unique:subjects,subject_name,'.$subject->id]]);
+        $validation = $request->validate(['name' => ['required', 'unique:subjects,subject_name,'.$subject->id],'total_class'=>['required']]);
 
         $subject->update([
             'classes_id' => $request->classes_id,
             'subject_name' => $request->name,
             'subject_code' => $request->code,
+            'total_class' => $request->total_class,
         ]);
 
         return $this->returnMessage('Subject Updated', 'info');

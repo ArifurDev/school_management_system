@@ -28,4 +28,17 @@ class Classes extends Model
     {
         return $this->hasMany(Attendance::class, 'class_id', 'id');
     }
+
+    // Define a one-to-many relationship with ExamSchedule
+    public function examSchedules()
+    {
+        return $this->hasMany(ExamSchedule::class, 'class_id');
+    }
+
+
+    // Define a one-to-many relationship with ExamMarksRegistration
+    public function ExamMarksRegistration()
+    {
+        return $this->hasMany(ExamMarksRegistration::class, 'subject_id');
+    }
 }

@@ -2,10 +2,16 @@
 
 use App\Http\Controllers\Dashbord\AttendanceController as AttendanceController;
 use App\Http\Controllers\Dashbord\ClassesController as ClassesController;
+use App\Http\Controllers\Dashbord\ExamController as ExamController;
+use App\Http\Controllers\Dashbord\ExamMarksRegistrationController;
+use App\Http\Controllers\Dashbord\ExamScheduleController as ExamScheduleController;
 use App\Http\Controllers\Dashbord\ExpenseController as ExpenseController;
 use App\Http\Controllers\Dashbord\FeeCollectionController as FeeCollectionController;
 use App\Http\Controllers\Dashbord\PermissionController as PermissionController;
+use App\Http\Controllers\Dashbord\ResultController as ResultController;
 use App\Http\Controllers\Dashbord\RoleController as RoleController;
+use App\Http\Controllers\Dashbord\SalaryController as SalaryController;
+use App\Http\Controllers\Dashbord\SalarysheetController;
 use App\Http\Controllers\Dashbord\StudentController as StudentController;
 use App\Http\Controllers\Dashbord\StudentPromotionController as StudentPromotionController;
 use App\Http\Controllers\Dashbord\SubjectController as SubjectController;
@@ -109,6 +115,52 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/studdentpromotion', StudentPromotionController::class);
     Route::post('/find/promotion/students', [StudentPromotionController::class, 'find_promotion_students'])->name('findPromotion.students');
 
+    /**
+     * salarysheet controller
+     */
+    Route::resource('/salarysheet', SalarysheetController::class);
+
+    /**
+     * Salary controller
+     */
+    Route::resource('/salary', SalaryController::class);
+    Route::get('/teacherSalary/{user_id}', [SalaryController::class, 'create'])->name('teacherSalary.create');
+
+    /**
+     * Exam controller
+     */
+    Route::resource('exams', ExamController::class);
+
+    /**
+     * ExamSchedule Controller
+     */
+    Route::resource('examsschedules', ExamScheduleController::class);
+    Route::get('/get-subjects/{class}', [ExamScheduleController::class, 'getSubjects'])->name('getSubjects');
+    Route::get('/examsschedule/shows/{exam_id}/{class_id}', [ExamScheduleController::class, 'shows'])->name('examsschedules.shows');
+    Route::get('/examsschedule/edites/{ExamSchedule}', [ExamScheduleController::class, 'edites'])->name('examsschedules.edites');
+
+    /**
+     * Exam Marks Registration
+     */
+    Route::resource('exammarksregistrations',ExamMarksRegistrationController::class);
+    Route::get('/exammarksregistrations/shows/{exam_id}/{class_id}', [ExamMarksRegistrationController::class, 'shows'])->name('exammarksregistrations.shows');
+
+    /**
+     * Result controller
+     */
+    // Route::group(['prefix' => 'results'], function () {
+    //     Route::get('/{examtype}/create', [ResultController::class, 'create'])->name('results.create');
+    //     Route::post('/store/{student_id}', [ResultController::class, 'store'])->name('results.store');
+    //     Route::get('/{year}/show/{class_id}/{section_id}/{group_id}/{subject_id?}',
+    //     [ResultController::class, 'index'])->name('results.index');
+    //     // Route::get('/{id}/view',[ResultController::class,'show'])->name('results.show');
+    //     Route::get('/{id}/edit/{student_id}', [ResultController::class, 'edit'])->name('results.edit
+    //     ');
+    //     Route::put('/{id}/update', [ResultController::class, 'update'])->name('results.update');
+    //     Route::delete('/{id}/delete', [ResultController::class, 'destroy'])->name('results.delete');
+    //     });
+
+    Route::resource('/results', ResultController::class);
 });
 
 require __DIR__.'/auth.php';

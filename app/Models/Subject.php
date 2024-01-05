@@ -9,7 +9,7 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['classes_id', 'subject_name', 'subject_code'];
+    protected $fillable = ['classes_id', 'subject_name', 'subject_code','total_class'];
 
     // one to many reletioship ---classes model and subject model
     public function classes()
@@ -21,5 +21,17 @@ class Subject extends Model
     public function attendances()
     {
         return $this->hasMany(Attendance::class, 'subject_id', 'id');
+    }
+
+    // Define a one-to-many relationship with ExamSchedule
+    public function examSchedules()
+    {
+        return $this->hasMany(ExamSchedule::class, 'subject_id');
+    }
+
+    // Define a one-to-many relationship with ExamMarksRegistration
+    public function ExamMarksRegistration()
+    {
+        return $this->hasMany(ExamMarksRegistration::class, 'subject_id');
     }
 }

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Dashbord</title>
+      <title>Subjects</title>
       
       {{-- css --}}
       @include('dashbord.layouts.css')
@@ -52,6 +52,7 @@
                                 <th>Class</th>
                                 <th>Subject</th>
                                 <th>Code</th>
+                                <th>Total Class</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -62,6 +63,7 @@
                                     <td>{{ $subject->classes->class_name }}</td>
                                     <td>{{ $subject->subject_name }}</td>
                                     <td>{{ $subject->subject_code }}</td>
+                                    <td>{{ $subject->total_class }}</td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
                                             <a href="#" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>

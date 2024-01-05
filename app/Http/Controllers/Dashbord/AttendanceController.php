@@ -55,11 +55,11 @@ class AttendanceController extends BaseController
      */
     public function create()
     {
-        $att = Attendance::where('student_id', '3')->first();
+        // $att = Attendance::where('student_id', '3')->first();
 
-        return $att;
+        // return $att;
 
-        return $att->user->name;
+        // return $att->user->name;
 
     }
 

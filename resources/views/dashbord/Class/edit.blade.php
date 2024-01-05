@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Dashbord</title>
+      <title>class Edit</title>
       
       {{-- css --}}
       @include('dashbord.layouts.css')

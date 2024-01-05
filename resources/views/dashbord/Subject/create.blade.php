@@ -56,13 +56,19 @@
 
                 <form action="{{ route('subjects.store') }}" method="POST">
                 @csrf
-                <div class="form-group">
-                   <label for="class">Class</label>
-                   <select class="form-control mb-1 " id="class" name="classes_id">
-                      @foreach ($Classes as $classes)
-                         <option value="{{ $classes->id }}">{{ $classes->class_name }}</option>
-                      @endforeach
-                   </select> 
+                <div class="row">
+                   <div class="form-group col-md-6">
+                       <label for="class">Class</label>
+                       <select class="form-control mb-1 " id="class" name="classes_id">
+                        @foreach ($Classes as $classes)
+                           <option value="{{ $classes->id }}">{{ $classes->class_name }}</option>
+                        @endforeach
+                     </select> 
+                    </div>
+                    <div class="form-group col-md-6">
+                       <label for="total_class">Toatal Class</label>
+                       <input type="number" min="0" class="form-control" id="total_class" placeholder="Total Class" name="total_class">
+                    </div>
                 </div>
 
                 <div class="row">

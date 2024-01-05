@@ -76,4 +76,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Attendance::class);
     }
+
+    //one to one reletionship --- user model to classes model
+    public function salarysheet()
+    {
+        return $this->hasOne(SalarySheet::class);
+    }
 }

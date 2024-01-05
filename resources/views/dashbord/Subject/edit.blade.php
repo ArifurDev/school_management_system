@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Dashbord</title>
+      <title>Subject Edit</title>
       
       {{-- css --}}
       @include('dashbord.layouts.css')
@@ -57,14 +57,20 @@
                 <form action="{{ route('subjects.update',$Subject->id) }}" method="POST">
                 @csrf
                 @method("PUT")
-                <div class="form-group">
-                   <label for="class">Class</label>
-                   <select class="form-control mb-1 " id="class" name="classes_id">
-                      @foreach ($Classes as $classes)
-                         <option @if ($Subject->classes_id == $classes->id) selected @endif value="{{ $classes->id }}">{{ $classes->class_name }}</option>
-                      @endforeach
-                   </select> 
-                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                      <label for="class">Class</label>
+                      <select class="form-control mb-1 " id="class" name="classes_id">
+                       @foreach ($Classes as $classes)
+                          <option @selected($Subject->classes_id == $classes->id) value="{{ $classes->id }}">{{ $classes->class_name }}</option>
+                       @endforeach
+                    </select> 
+                   </div>
+                   <div class="form-group col-md-6">
+                      <label for="total_class">Toatal Class</label>
+                      <input type="number" min="0" class="form-control" id="total_class" placeholder="Total Class" name="total_class" value="{{ $Subject->total_class }}">
+                   </div>
+               </div>
 
                 <div class="row">
                    <div class="form-group col-md-6">

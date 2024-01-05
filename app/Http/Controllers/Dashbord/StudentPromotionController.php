@@ -66,9 +66,19 @@ class StudentPromotionController extends BaseController
             $promotion->update($data);
         }
         if ($promotion) {
-            return $this->returnMessage('Student Promotion', 'success');
+            $notification = [
+                'message' => 'Student Promotion',
+                'alert-type' => 'success',
+            ];
+
+            return redirect('studdentpromotion')->with($notification);
         } else {
-            return $this->returnMessage('Somthing with wrong', 'warning');
+            $notification = [
+                'message' => 'Somthing with wrong',
+                'alert-type' => 'warning',
+            ];
+
+            return redirect('studdentpromotion')->with($notification);
         }
     }
 
