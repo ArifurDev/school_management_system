@@ -15,6 +15,6 @@ class Result extends Model
         'class',
         'subject',
         'marks',
-        'date'
+        'date',
     ];
 }

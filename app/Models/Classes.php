@@ -35,7 +35,6 @@ class Classes extends Model
         return $this->hasMany(ExamSchedule::class, 'class_id');
     }
 
-
     // Define a one-to-many relationship with ExamMarksRegistration
     public function ExamMarksRegistration()
     {

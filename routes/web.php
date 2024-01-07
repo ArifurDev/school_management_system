@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashbord\AttendanceController as AttendanceController;
+use App\Http\Controllers\Dashbord\BaseController;
 use App\Http\Controllers\Dashbord\ClassesController as ClassesController;
 use App\Http\Controllers\Dashbord\ExamController as ExamController;
 use App\Http\Controllers\Dashbord\ExamMarksRegistrationController;
@@ -142,8 +143,8 @@ Route::middleware(['auth'])->group(function () {
     /**
      * Exam Marks Registration
      */
-    Route::resource('exammarksregistrations',ExamMarksRegistrationController::class);
-    Route::get('/exammarksregistrations/shows/{exam_id}/{class_id}', [ExamMarksRegistrationController::class, 'shows'])->name('exammarksregistrations.shows');
+    Route::get('/get-data/{class}', [BaseController::class, 'getData']);
+    Route::resource('exammarksregistrations', ExamMarksRegistrationController::class);
 
     /**
      * Result controller

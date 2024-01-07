@@ -46,6 +46,84 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <div class="header-title">
+                                <h4 class="card-title">Exam Schedule Create</h4>
+                            </div>
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                               <ul>
+                                     @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                     @endforeach
+                               </ul>
+                            </div>
+                         @endif
+                        </div>
+                          <div class="card-body">
+                                <div class="row">   
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="examSelector">Exam</label>
+                                            <select class="custom-select" id="examSelector" name="exam">
+                                                <option value=" " >Please Select</option>    
+         
+                                            </select>
+                                         </div>
+                                    </div> 
+  
+                                    <div class="col-md-5">
+                                      <div class="form-group">
+                                          <label for="classSelector">Class</label>
+                                          <select class="custom-select"  name="class" id="classSelector">
+                                              <option value=" " >Please Select</option>    
+                                             
+                                          </select>
+                                       </div>
+                                  </div> 
+                                </div>                            
+  
+                        </div> 
+                    </div>
+                </div>
+  
+                  <div class="col-lg-12">
+                      <div class="card card-block card-stretch card-height">
+                         <div class="card-body">
+                            <div class="table-responsive">
+                              <form action="" method="post" >
+                               @csrf
+                                  <table id="example" class="data-table table" style="width:100%">
+                                  <thead>
+                                      <tr>
+                                          <th>Subject Name</th>
+                                          <th>Exam Date</th>   
+                                          <th>Start Time</th>
+                                          <th>End Time</th>
+                                          <th>Room Number</th>   
+                                          <th>Full Marks</th>
+                                          <th>Pass Marks</th>
+                                      </tr>
+                                  </thead>
+  
+                                  <tbody id="subjectsContainer">
+                                      
+                                  </tbody>
+                                  <input type="hidden" name="exam_id" id="setExamId"> 
+                                  <input type="hidden" name="class_id" id="setClassId"> 
+                              </table>
+                            <button type="submit" class="btn btn-primary ">Create Schedule</button>
+                          </form>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+
 
             </div>
         </div>

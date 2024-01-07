@@ -66,7 +66,7 @@
                                           <select class="custom-select" id="examSelector" name="exam">
                                               <option value=" " >Please Select</option>    
                                               @foreach ($exams as $exam)
-                                              <option value="{{ $exam->id }}">{{ $exam->exam }}</option>
+                                                 <option value="{{ $exam->id }}" >{{ $exam->exam }}</option>    
                                               @endforeach
                                           </select>
                                        </div>
@@ -78,7 +78,7 @@
                                         <select class="custom-select"  name="class" id="classSelector">
                                             <option value=" " >Please Select</option>    
                                             @foreach ($classes as $class)
-                                            <option value="{{ $class->id }}">{{ $class->class_name }}</option>
+                                               <option value="{{ $class->id }}" >{{ $class->class_name }}</option>    
                                             @endforeach
                                         </select>
                                      </div>
@@ -97,15 +97,12 @@
                              @csrf
                                 <table id="example" class="data-table table" style="width:100%">
                                 <thead>
-                                    <tr>
-                                        <th>Subject Name</th>
-                                        <th>Class Work</th>   
-                                        <th>Home Work</th>
-                                        <th>Exam</th>
+                                    <tr id="table_head_tr">
+
                                     </tr>
                                 </thead>
 
-                                <tbody id="subjectsContainer">
+                                <tbody id="studentsContainer">
                                     
                                 </tbody>
                                 <input type="hidden" name="exam_id" id="setExamId"> 
@@ -123,26 +120,11 @@
       </div>
     </div>
 
-    <script>
-        const examInput = document.getElementById("examSelector");
-        const classInput = document.getElementById("classSelector");
+      {{-- set exam id and class id in input --}}
+      <script src="{{ asset('backend/assets/setInputValue.js') }}"></script>
 
-        const setExamId = document.getElementById("setExamId");
-        const setClassId = document.getElementById("setClassId");
-
-
-        examInput.addEventListener("change" , (e) =>{
-            let input = e.target.value ;
-            setExamId.value = input;
-        })
-
-        classInput.addEventListener("change" , (e) =>{
-            let input = e.target.value ;
-            setClassId.value = input;
-        })
-    </script>
-
-     <script src="{{ asset('backend/assets/getSubjectsMarks.js') }}"></script>
+      {{-- get subjects and students --}}
+      <script src="{{ asset('backend/assets/getData.js') }}"></script>
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>

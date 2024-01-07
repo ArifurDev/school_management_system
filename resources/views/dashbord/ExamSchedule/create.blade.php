@@ -126,25 +126,10 @@
       </div>
     </div>
 
-    <script>
-        const examInput = document.getElementById("examSelector");
-        const classInput = document.getElementById("classSelector");
+    {{-- set exam id and class id in input --}}
+    <script src="{{ asset('backend/assets/setInputValue.js') }}"></script>
 
-        const setExamId = document.getElementById("setExamId");
-        const setClassId = document.getElementById("setClassId");
-
-
-        examInput.addEventListener("change" , (e) =>{
-            let input = e.target.value ;
-            setExamId.value = input;
-        })
-
-        classInput.addEventListener("change" , (e) =>{
-            let input = e.target.value ;
-            setClassId.value = input;
-        })
-    </script>
-
+    {{-- get Subjects --}}
      <script src="{{ asset('backend/assets/getSubjects.js') }}"></script>
   {{-- js --}}
   @include('dashbord.layouts.js')

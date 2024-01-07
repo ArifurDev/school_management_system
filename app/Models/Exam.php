@@ -19,9 +19,10 @@ class Exam extends Model
     {
         return $this->hasMany(ExamSchedule::class, 'exam_id');
     }
-        // Define a one-to-many relationship with ExamMarksRegistration
-        public function ExamMarksRegistration()
-        {
-            return $this->hasMany(ExamMarksRegistration::class, 'subject_id');
-        }
+
+    // Define a one-to-many relationship with ExamMarksRegistration
+    public function ExamMarksRegistration()
+    {
+        return $this->hasMany(ExamMarksRegistration::class, 'subject_id');
+    }
 }

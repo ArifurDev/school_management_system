@@ -63,17 +63,17 @@ class ExamScheduleController extends BaseController
             'exam_id' => 'required|numeric',
             'class_id' => 'required|numeric',
         ],
-        [
-            "class_id.required"     => "Please Select an Class!",
-            "exam_id.required"      => "Please Select an exam!",
-            "start_time.required"   => "Start Time is Empty! Please Input Start Time",
-            "end_time.required"     => "End Time is Empty! Please Input End Time",
-            "room_number.required"  => "Room Number is Empty! Please Input Room Number",
-            "full_marks.required"   => "Full Marks is Empty! Please Input Full Marks",
-            "pass_marks.required"   => "Pass Marks is Empty! Please Input Pass Marks",
-            "subjectId.required"    => "Subject is Empty!",
-            "date"                  => "Please Select an Date",
-        ]
+            [
+                'class_id.required' => 'Please Select an Class!',
+                'exam_id.required' => 'Please Select an exam!',
+                'start_time.required' => 'Start Time is Empty! Please Input Start Time',
+                'end_time.required' => 'End Time is Empty! Please Input End Time',
+                'room_number.required' => 'Room Number is Empty! Please Input Room Number',
+                'full_marks.required' => 'Full Marks is Empty! Please Input Full Marks',
+                'pass_marks.required' => 'Pass Marks is Empty! Please Input Pass Marks',
+                'subjectId.required' => 'Subject is Empty!',
+                'date' => 'Please Select an Date',
+            ]
         );
 
         $subject_id = $request->subjectId[0];
@@ -85,8 +85,8 @@ class ExamScheduleController extends BaseController
 
             $data = [];
             foreach ($request->subjectId as $subjectId) {
-               $exam_schedule_check = ExamSchedule::where('subject_id',$subjectId)->where('exam_id',$request->exam_id)->where('class_id',$request->class_id)->first();
-                if (!$exam_schedule_check) {
+                $exam_schedule_check = ExamSchedule::where('subject_id', $subjectId)->where('exam_id', $request->exam_id)->where('class_id', $request->class_id)->first();
+                if (! $exam_schedule_check) {
                     $data[] = [
                         'subject_id' => $subjectId,
                         'exam_id' => $request->exam_id,
@@ -103,13 +103,13 @@ class ExamScheduleController extends BaseController
             if ($data) {
                 $insertData = ExamSchedule::insert($data);
             } else {
-                return $this->returnMessage('You have alrady add Exam Schedule','error');
+                return $this->returnMessage('You have alrady add Exam Schedule', 'error');
             }
-    
+
             if ($insertData) {
-                 return $this->returnMessage('Exam Schedule Inserted Successfully!', 'success');
+                return $this->returnMessage('Exam Schedule Inserted Successfully!', 'success');
             } else {
-                 return $this->returnMessage('Somthing went wrong!', 'error');
+                return $this->returnMessage('Somthing went wrong!', 'error');
             }
 
         } else {

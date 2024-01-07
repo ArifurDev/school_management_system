@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('exam_marks_registrations', function (Blueprint $table) {
             $table->id();
+            $table->string('student_id');
             $table->string('subject_id');
             $table->string('class_id');
             $table->string('exam_id');
-            $table->string('class_work');
-            $table->string('home_work');
-            $table->string('exam');            
+            $table->float('class_work')->nullable()->default(0);
+            $table->float('home_work')->nullable()->default(0);
+            $table->float('mark')->nullable()->default(0);
+            $table->string('full_marks')->nullable()->default(0);
+            $table->string('pass_marks')->nullable()->default(0);
             $table->timestamps();
         });
     }

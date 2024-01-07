@@ -37,17 +37,33 @@ class SubjectController extends BaseController
         $validate = $request->validate([
             'classes_id' => 'required',
             'total_class' => 'required|numeric',
-            'name' => 'required|unique:subjects,subject_name',
+            'name' => 'required',
+            'attendances_marks' => 'required|numeric',
+        ], [
+            'classes_id.required' => 'Select class name',
+            'total_class.required' => 'Total Class is emty!',
+            'total_class.numeric' => 'Enter Numeric Value Only!',
+            'name.required' => 'The Subject field is required!',
+            'attendances_marks.required' => 'Attendances Marks Field Is Emty!',
         ]);
+        // Insert Data into database
 
-        Subject::insert([
-            'classes_id' => $request->classes_id,
-            'subject_name' => $request->name,
-            'subject_code' => $request->code,
-            'total_class' => $request->total_class,
-        ]);
+        $subject_insert_check = Subject::where('classes_id', $request->classes_id)->where('subject_name', $request->name)->first();
 
-        return $this->returnMessage('Subject Add Successfulliy', 'success');
+        if (! $subject_insert_check) {
+            Subject::insert([
+                'classes_id' => $request->classes_id,
+                'subject_name' => $request->name,
+                'subject_code' => $request->code,
+                'total_class' => $request->total_class,
+                'attendances_marks' => $request->attendances_marks,
+            ]);
+
+            return $this->returnMessage('Subject Add Successfulliy', 'success');
+        } else {
+            return $this->returnMessage('This subject already exists!', 'error');
+        }
+
     }
 
     /**
@@ -73,16 +89,35 @@ class SubjectController extends BaseController
      */
     public function update(Request $request, Subject $subject)
     {
-        $validation = $request->validate(['name' => ['required', 'unique:subjects,subject_name,'.$subject->id],'total_class'=>['required']]);
-
-        $subject->update([
-            'classes_id' => $request->classes_id,
-            'subject_name' => $request->name,
-            'subject_code' => $request->code,
-            'total_class' => $request->total_class,
+        $validate = $request->validate([
+            'classes_id' => 'required',
+            'total_class' => 'required|numeric',
+            'name' => 'required',
+            'attendances_marks' => 'required|numeric',
+        ], [
+            'classes_id.required' => 'Select class name',
+            'total_class.required' => 'Total Class is emty!',
+            'total_class.numeric' => 'Enter Numeric Value Only!',
+            'name.required' => 'The Subject field is required!',
+            'attendances_marks.required' => 'Attendances Marks Field Is Emty!',
         ]);
 
-        return $this->returnMessage('Subject Updated', 'info');
+        $subject_insert_check = Subject::where('classes_id', $request->classes_id)->where('subject_name', $request->name)->count();
+
+        if ($subject_insert_check == 1) {
+            $subject->update([
+                'classes_id' => $request->classes_id,
+                'subject_name' => $request->name,
+                'subject_code' => $request->code,
+                'total_class' => $request->total_class,
+                'attendances_marks' => $request->attendances_marks,
+            ]);
+
+            return $this->returnMessage('Subject Updated', 'info');
+        } else {
+            return $this->returnMessage('Somthing with wrong', 'warning');
+        }
+
     }
 
     /**

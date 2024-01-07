@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Dashbord</title>
+      <title>Subject Create</title>
       
       {{-- css --}}
       @include('dashbord.layouts.css')
@@ -72,14 +72,18 @@
                 </div>
 
                 <div class="row">
-                   <div class="form-group col-md-6">
+                   <div class="form-group col-md-4">
                        <label for="Subject">Subject Name</label>
                        <input type="text" class="form-control"  id="Subject" placeholder="Subject Name" name="name">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                        <label for="Code">Code</label>
                        <input type="text" class="form-control" id="Code" placeholder="Code" name="code">
                     </div>
+                    <div class="form-group col-md-4">
+                      <label for="attendances_marks">Attendances Marks</label>
+                      <input type="number" min="0" class="form-control" id="attendances_marks" placeholder="Attendances Marks" name="attendances_marks">
+                   </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>

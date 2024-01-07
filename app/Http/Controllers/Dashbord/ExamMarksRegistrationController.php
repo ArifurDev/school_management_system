@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Dashbord;
 
 use App\Http\Controllers\Dashbord\BaseController as BaseController;
-use App\Http\Controllers\Controller;
 use App\Models\Classes;
 use App\Models\Exam;
 use App\Models\ExamMarksRegistration;
+use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ExamMarksRegistrationController extends BaseController
@@ -16,10 +17,8 @@ class ExamMarksRegistrationController extends BaseController
      */
     public function index()
     {
-        $marks_registrations = ExamMarksRegistration::groupBy('exam_id', 'class_id')
-                                                    ->select('exam_id', 'class_id')
-                                                    ->get();
-        return view('dashbord.ExamMarksRegistration.index',compact('marks_registrations'));
+
+        return view('dashbord.ExamMarksRegistration.index');
     }
 
     /**
@@ -27,7 +26,7 @@ class ExamMarksRegistrationController extends BaseController
      */
     public function create()
     {
-        $exams = Exam::where('status', 'Show')->latest()->get();
+        $exams = Exam::where('status','Show')->latest()->get();
         $classes = Classes::all();
         return view('dashbord.ExamMarksRegistration.create',compact('exams','classes'));
     }
@@ -37,59 +36,43 @@ class ExamMarksRegistrationController extends BaseController
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "class_id"      => "required",
-            "exam_id"       => "required",
-            "subjectId"     => "required",
-            "class_work"    => "required",
-            "home_work"     => "required",
-            "exam"          => "required"
-        ],[
-            "class_id.required"     => "Please Select an Class!",
-            "exam_id.required"      => "Please Select an exam!",
-            "class_work.required"   => "Class Work is Empty! Please Input Class Work Marks",
-            "home_work.required"    => "Home Work is Empty! Please Input Home Work Marks",
-            "exam.required"         => "Exam Marks are Empty! Please Input Exam",
-            "subjectId.required"    => "Subject is Empty!"
-        ]
-    );
-        
+       $request->validate([
+            'studentId' => 'required',
+            'subjectId' => 'required',
+            'class_work' => 'required',
+            'home_work' => 'required',
+            'exam' => 'required',
+            'exam_id' => 'required',
+            'class_id' => 'required'
+       ]);
 
-        $data = [];
-        foreach ($request->subjectId as $subject_id) {
-           $marks_registration_check = ExamMarksRegistration::where('subject_id',$subject_id)->where('exam_id',$request->exam_id)->where('class_id',$request->class_id)->first();
-            if (!$marks_registration_check) {
-                $data[] = [
-                    'subject_id' => $subject_id,
-                    'class_id' => $request->class_id,
-                    'exam_id' => $request->exam_id,
-                    'class_work' => $request->class_work[$subject_id],
-                    'home_work' => $request->home_work[$subject_id],
-                    'exam' => $request->exam[$subject_id],
-                ];
-            }
-        }
-        if ($data) {
-            $insertData = ExamMarksRegistration::insert($data);
-        } else {
-            return $this->returnMessage('You have alrady add subjects','error');
-        }
+       $data = [];
 
-        if ($insertData) {
-             return $this->returnMessage('Exam Marks Registration Inserted Successfully!', 'success');
-        } else {
-             return $this->returnMessage('Somthing went wrong!', 'error');
-        }
-
+       foreach ($request->studentId as $student_id) {
+          foreach ($request->subjectId as $subject_id) {
+                // $data[] =[
+                //     'student_id' => $student_id,
+                //     'subject_id' => $subject_id,
+                //     'class_id'=> $request->class_id,
+                //     'exam_id' => $request->exam_id,
+                //     'class_work' => $request->class_work[$student_id][$subject_id],
+                //     'home_work' => $request->class_work[$student_id][$subject_id],
+                //     'mark' => $request->class_work[$student_id][$subject_id],
+                //     'full_marks'
+                //     'pass_marks'
+                // ];
+          }
+       }
+       
     }
 
     /**
      * Display the specified resource.
      */
-    public function shows($exam_id, $class_id)
+    public function show(ExamMarksRegistration $exammarksregistration)
     {
-        $ExamMarksRegistrations = ExamMarksRegistration::where('exam_id', $exam_id)->where('class_id', $class_id)->get();
-        return view('dashbord.ExamMarksRegistration.show',compact('ExamMarksRegistrations'));
+
+        return view('dashbord.ExamMarksRegistration.show');
     }
 
     /**
@@ -97,8 +80,7 @@ class ExamMarksRegistrationController extends BaseController
      */
     public function edit(ExamMarksRegistration $exammarksregistration)
     {
-        $exams = Exam::where('status', 'Show')->latest()->get();
-        return view('dashbord.ExamMarksRegistration.edit',compact('exammarksregistration','exams'));
+        return view('dashbord.ExamMarksRegistration.edit');
     }
 
     /**
@@ -106,30 +88,7 @@ class ExamMarksRegistrationController extends BaseController
      */
     public function update(Request $request, ExamMarksRegistration $exammarksregistration)
     {
-        $request->validate([
-            "exam_id"    => "required",
-            "class_work" => "required",
-            "home_work"  => "required",
-            "exam"       => "required"
-        ],[
-            "exam_id.required"    => "Please Select an exam!",
-            "class_work.required" => "Class Work is Empty! Please Input Class Work Marks",
-            "home_work.required"  => "Home Work is Empty! Please Input Home Work Marks",
-            "exam.required"       => "Exam Marks are Empty! Please Input Exam"
-        ]);
-        //Update Data
-        $updateData = $exammarksregistration->update([
-            "exam_id" => $request->exam_id,
-            "class_work" => $request->class_work,
-            "home_work" => $request->home_work,
-            "exam" => $request->exam,
-        ]);
-
-        if ($updateData) {
-            return $this->returnMessage('Exam Marks  Updated Successfully!', 'success');
-        } else {
-            return $this->returnMessage('Something Went Wrong!', 'error');
-        }
+       
     }
 
     /**
