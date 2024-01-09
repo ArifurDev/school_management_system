@@ -16,12 +16,6 @@ document.querySelector('#classSelector').addEventListener('change', (e) => {
               subjects.forEach(subject => {
                   tableHeadTr.innerHTML += `<th>${subject.subject_name}</th>`;
               });
-              // action column
-              tableHeadTr.innerHTML += '<th>Action</th>';
-
-
-
-
 
 
               const studentsContainer = document.getElementById('studentsContainer');
@@ -41,15 +35,15 @@ document.querySelector('#classSelector').addEventListener('change', (e) => {
                       <td>
                           <div class="form-group">
                               <label for="class_work[${student.id}]">Class Work</label>
-                              <input type="number" min="0" id="class_work[${student.id}]" class="form-control form-control-sm"  name="class_work[${student.id}][${subject.id}]">
+                              <input type="text" id="class_work[${student.id}]" class="form-control form-control-sm"  name="class_work[${student.id}][${subject.id}]">
                           </div>
                           <div class="form-group">
                               <label for="home_work[${student.id}]">Home Work</label>
-                              <input type="number" min="0" id="home_work[${student.id}]" class="form-control form-control-sm"  name="home_work[${student.id}][${subject.id}]">
+                              <input type="text" id="home_work[${student.id}]" class="form-control form-control-sm"  name="home_work[${student.id}][${subject.id}]">
                           </div>
                           <div class="form-group">
                               <label for="exam[${student.id}]">Exam</label>
-                              <input type="number" min="0" id="exam[${student.id}]" class="form-control form-control-sm"  name="exam[${student.id}][${subject.id}]">
+                              <input type="text" id="exam[${student.id}]" class="form-control form-control-sm"  name="exam[${student.id}][${subject.id}]">
                           </div>
                       </td>`;
               });

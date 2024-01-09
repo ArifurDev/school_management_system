@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Marks Registration show</title>
+      <title>Exam Result</title>
       
       {{-- css --}}
       @include('dashbord.layouts.css')
@@ -35,7 +35,7 @@
                                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-danger"><i class="ri-home-4-line mr-1 float-left"></i>Dashbord</a></li>
                                    <li class="breadcrumb-item"><a href="{{ route('exammarksregistrations.create') }}" class="text-danger">Marks Registration Insert</a></li>
                                    <li class="breadcrumb-item"><a href="{{ route('exammarksregistrations.index') }}" class="text-danger">Marks Registration</a></li>
-                                   <li class="breadcrumb-item active" aria-current="page">Marks Registration show</li>
+                                   <li class="breadcrumb-item active" aria-current="page">Exam Result</li>
                                 </ol>
                              </nav>
                         </div>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="col-lg-12">
-                    <h4 class="card-title">Marks Registration show</h4>    
+                    <h4 class="card-title">Exam Result</h4>    
               </div>
 
                 <div class="col-lg-12">
@@ -55,7 +55,14 @@
                                   <tr>
                                       <th>SL</th>
                                       <th>Student</th>
+                                      <th>Class</th>
+                                      <th>Subject</th>
                                       <th>Exam</th>
+                                      <th>Class Work</th>
+                                      <th>Home Work</th>                                      
+                                      <th>Mark</th>
+                                      <th>Full Marks</th>
+                                      <th>Pass Marks</th>
                                       <th>Action</th>
                                   </tr>
                               </thead>
@@ -63,14 +70,18 @@
                                @foreach ($MarksRegistrations as $MarksRegistration)
                                <tr>
                                   <td>{{ $loop->iteration  }}</td>
-                                  <td>
-                                    {{ $MarksRegistration->user->name }}<br>
-                                    {{ $MarksRegistration->user->email }}
-                                  </td>
+                                  <td>{{ $MarksRegistration->user->name }}</td>
+                                  <td>{{ $MarksRegistration->classes->class_name }}</td>
+                                  <td>{{ $MarksRegistration->subject->subject_name }}</td>
                                   <td>{{ $MarksRegistration->exams->exam }}</td>
+                                  <td>{{ $MarksRegistration->class_work }}</td>
+                                  <td>{{ $MarksRegistration->home_work }}</td>
+                                  <td>{{ $MarksRegistration->mark }}</td>
+                                  <td>{{ $MarksRegistration->full_marks }}</td>
+                                  <td>{{ $MarksRegistration->pass_marks }}</td>
                                   <td>
                                     <div class="d-flex align-items-center list-action">
-                                      <a href="{{ route('marksregistrations.result',['exam_id'=>$MarksRegistration->exam_id,'student_id'=>$MarksRegistration->student_id]) }}" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
+                                      <a href="" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
                                   </div>
                                   </td>
                                </tr>

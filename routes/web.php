@@ -145,6 +145,8 @@ Route::middleware(['auth'])->group(function () {
      */
     Route::get('/get-data/{class}', [BaseController::class, 'getData']);
     Route::resource('exammarksregistrations', ExamMarksRegistrationController::class);
+    Route::get('/exammarksregistrations/shows/{exam_id}/{class_id}', [ExamMarksRegistrationController::class, 'shows'])->name('marksregistrations.shows');
+    Route::get('/exammarksregistrations/result/shows/{student_id}/{exam_id}', [ExamMarksRegistrationController::class, 'result_show'])->name('marksregistrations.result');
 
     /**
      * Result controller

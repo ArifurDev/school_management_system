@@ -63,7 +63,7 @@
                                   <div class="col-md-5">
                                       <div class="form-group">
                                           <label for="examSelector">Exam</label>
-                                          <select class="custom-select" id="examSelector" name="exam">
+                                          <select class="custom-select" id="examSelector" name="exam_id">
                                               <option value=" " >Please Select</option>    
                                               @foreach ($exams as $exam)
                                                  <option value="{{ $exam->id }}" >{{ $exam->exam }}</option>    

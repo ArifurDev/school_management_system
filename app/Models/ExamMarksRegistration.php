@@ -18,7 +18,7 @@ class ExamMarksRegistration extends Model
         'home_work',
         'mark',
         'full_marks',
-        'pass_marks'
+        'pass_marks',
     ];
 
     // Define the inverse of the relationship
@@ -36,5 +36,10 @@ class ExamMarksRegistration extends Model
     public function subject()
     {
         return $this->belongsTo(Subject::class, 'subject_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'student_id');
     }
 }

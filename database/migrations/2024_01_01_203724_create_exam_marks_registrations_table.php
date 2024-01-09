@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('subject_id');
             $table->string('class_id');
             $table->string('exam_id');
-            $table->float('class_work')->nullable()->default(0);
-            $table->float('home_work')->nullable()->default(0);
-            $table->float('mark')->nullable()->default(0);
+            $table->string('class_work')->nullable()->default(0);
+            $table->string('home_work')->nullable()->default(0);
+            $table->string('mark')->nullable()->default(0);
             $table->string('full_marks')->nullable()->default(0);
             $table->string('pass_marks')->nullable()->default(0);
             $table->timestamps();
