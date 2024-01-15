@@ -26,12 +26,12 @@ document.querySelector('#classSelector').addEventListener('change', (e) => {
               students.forEach(student => {
                 let studentRow = `<tr>
                 <input type="hidden" name="studentId[]" value="${student.id}">
+               
                 <td>${student.name}</td>`;
                 // Add input fields for each subject
                 subjects.forEach(subject => {
                   studentRow += `
-                  <input type="hidden" name="subjectId[]" value="${subject.id}">
-                    
+                      <input type="hidden" name="subjectId[]" value="${subject.id}">
                       <td>
                           <div class="form-group">
                               <label for="class_work[${student.id}]">Class Work</label>

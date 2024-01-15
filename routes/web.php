@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dashbord\AttendanceController as AttendanceController;
 use App\Http\Controllers\Dashbord\BaseController;
 use App\Http\Controllers\Dashbord\ClassesController as ClassesController;
+use App\Http\Controllers\Dashbord\dashbordController;
 use App\Http\Controllers\Dashbord\ExamController as ExamController;
 use App\Http\Controllers\Dashbord\ExamMarksRegistrationController;
 use App\Http\Controllers\Dashbord\ExamScheduleController as ExamScheduleController;
@@ -35,10 +36,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    // return view('dashboard');
-    return view('dashbord.maniDashbord');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     // return view('dashboard');
+//     return view('dashbord.maniDashbord');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -52,6 +53,11 @@ Route::middleware('auth')->group(function () {
  * -------------------------------------------------
  */
 Route::middleware(['auth'])->group(function () {
+    /**
+     * Dashbord Controller
+     */
+    Route::get('/dashboard', [dashbordController::class, 'index'])->name('dashboard');
+
     /**
      * Role Controller
      */

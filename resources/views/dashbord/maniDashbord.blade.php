@@ -53,82 +53,120 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-3 col-md-3">
-                            <a href="#">
+                            <a href="{{ route('students.index') }}">
                                 <div class="card card-block card-stretch card-height">
                                     <div class="card-body">
-                                        <div class="d-flex align-items-center mb-4 card-total-sale">
+                                        <div class="d-flex align-items-center card-total-sale">
                                             <div class="icon iq-icon-box-2 bg-info-light">
-                                                <img src="{{ asset('backend/assets') }}/images/product/1.png" class="img-fluid" alt="image">
-                                            </div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                                                  </svg>                                            </div>
                                             <div>
                                                 <p class="mb-2">Students</p>
-                                                <h4>31.50</h4>
+                                                <h4>{{ $students }}</h4>
                                             </div>
                                         </div>                                
-                                        <div class="iq-progress-bar mt-2">
-                                            <span class="bg-info iq-progress progress-1" data-percent="85" style="transition: width 2s ease 0s; width: 85%;">
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-3">
+                            <a href="{{ route('salary.index') }}">
+                                <div class="card card-block card-stretch card-height">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center card-total-sale">
+                                            <div class="icon iq-icon-box-2 bg-info-light">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                                  </svg>                                            </div>
+                                            <div>
+                                                <p class="mb-2">Teachers</p>
+                                                <h4>{{ $teachers }}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                           </a>
+                        </div>
+                        <div class="col-lg-3 col-md-3">
+                            <a href="{{ route('attendance.index') }}">
                             <div class="card card-block card-stretch card-height">
                                 <div class="card-body">
-                                    <div class="d-flex align-items-center mb-4 card-total-sale">
+                                    <div class="d-flex align-items-center card-total-sale">
+                                        <div class="icon iq-icon-box-2 bg-success-light">
+                                            <img src="{{ asset('backend/assets') }}/images/product/3.png" class="img-fluid" alt="image">
+                                        </div>
+                                        <div>
+                                            <p class="mb-2">Today Present</p>
+                                            <h4>{{ $today_present }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-3">
+                            <a href="{{ route('attendance.index') }}">
+                            <div class="card card-block card-stretch card-height">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center card-total-sale">
                                         <div class="icon iq-icon-box-2 bg-danger-light">
-                                            <img src="{{ asset('backend/assets') }}/images/product/2.png" class="img-fluid" alt="image">
-                                        </div>
-                                        <div>
-                                            <p class="mb-2">Teachers</p>
-                                            <h4>$ 4598</h4>
-                                        </div>
-                                    </div>
-                                    <div class="iq-progress-bar mt-2">
-                                        <span class="bg-danger iq-progress progress-1" data-percent="70" style="transition: width 2s ease 0s; width: 70%;">
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3">
-                            <div class="card card-block card-stretch card-height">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-4 card-total-sale">
-                                        <div class="icon iq-icon-box-2 bg-success-light">
                                             <img src="{{ asset('backend/assets') }}/images/product/3.png" class="img-fluid" alt="image">
                                         </div>
                                         <div>
-                                            <p class="mb-2">Product Sold</p>
-                                            <h4>4589 M</h4>
+                                            <p class="mb-2">Today Absent</p>
+                                            <h4>{{ $today_absent }}</h4> 
                                         </div>
-                                    </div>
-                                    <div class="iq-progress-bar mt-2">
-                                        <span class="bg-success iq-progress progress-1" data-percent="75" style="transition: width 2s ease 0s; width: 75%;">
-                                        </span>
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
-                        <div class="col-lg-3 col-md-3">
-                            <div class="card card-block card-stretch card-height">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-4 card-total-sale">
-                                        <div class="icon iq-icon-box-2 bg-success-light">
-                                            <img src="{{ asset('backend/assets') }}/images/product/3.png" class="img-fluid" alt="image">
-                                        </div>
-                                        <div>
-                                            <p class="mb-2">Product Sold</p>
-                                            <h4>4589 M</h4>
-                                        </div>
-                                    </div>
-                                    <div class="iq-progress-bar mt-2">
-                                        <span class="bg-success iq-progress progress-1" data-percent="75" style="transition: width 2s ease 0s; width: 75%;">
-                                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                           <a href="{{ route('expenses.index') }}">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="header-title">
+                                        <h4 class="card-title">Expenses</h4>
                                     </div>
                                 </div>
+                                <div class="row no-gutters">
+                                    <div class="col-md-6 col-lg-6 p-3">
+                                            <h5>${{ $today_expens_due ?? 'Zero' }}</h5>
+                                            <p class="mb-0 text-danger">Expenses Due</p>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6  p-3">                           
+                                            <h5>${{ $today_expens ?? 'Zero' }}</h5>
+                                            <p class="mb-0 text-success">Expenses Amount</p>
+                                    </div>
+                                 </div>
                             </div>
+                          </a>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">
+                            <a href="{{ route('feecollections.index') }}">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="header-title">
+                                            <h4 class="card-title">Fee Collection</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters">
+                                        <div class="col-md-6 col-lg-6 p-3">
+                                            <h5>${{ $today_feeCollection_due }}</h5>
+                                            <p class="mb-0 text-danger">Due</p>
+                                        </div>
+                                        <div class="col-md-6 col-lg-6  p-3">                           
+                                            <h5>${{ $today_feeCollection }}</h5>
+                                            <p class="mb-0 text-success">Amount</p>
+                                        </div>
+                                     </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -312,58 +350,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="card card-block card-stretch card-height-helf">
-                            <div class="card-body">
-                                <div class="d-flex align-items-top justify-content-between">
-                                    <div class="">
-                                        <p class="mb-0">Income</p>
-                                        <h5>$ 98,7800 K</h5>
-                                    </div>
-                                    <div class="card-header-toolbar d-flex align-items-center">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton003"
-                                                data-toggle="dropdown">
-                                                This Month<i class="ri-arrow-down-s-line ml-1"></i>
-                                            </span>
-                                            <div class="dropdown-menu dropdown-menu-right shadow-none"
-                                                aria-labelledby="dropdownMenuButton003">
-                                                <a class="dropdown-item" href="#">Year</a>
-                                                <a class="dropdown-item" href="#">Month</a>
-                                                <a class="dropdown-item" href="#">Week</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="layout1-chart-3" class="layout-chart-1"></div>
-                            </div>
-                        </div>
-                        <div class="card card-block card-stretch card-height-helf">
-                            <div class="card-body">
-                                <div class="d-flex align-items-top justify-content-between">
-                                    <div class="">
-                                        <p class="mb-0">Expenses</p>
-                                        <h5>$ 45,8956 K</h5>
-                                    </div>
-                                    <div class="card-header-toolbar d-flex align-items-center">
-                                        <div class="dropdown">
-                                            <span class="dropdown-toggle dropdown-bg btn" id="dropdownMenuButton004"
-                                                data-toggle="dropdown">
-                                                This Month<i class="ri-arrow-down-s-line ml-1"></i>
-                                            </span>
-                                            <div class="dropdown-menu dropdown-menu-right shadow-none"
-                                                aria-labelledby="dropdownMenuButton004">
-                                                <a class="dropdown-item" href="#">Year</a>
-                                                <a class="dropdown-item" href="#">Month</a>
-                                                <a class="dropdown-item" href="#">Week</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="layout1-chart-4" class="layout-chart-2"></div>
-                            </div>
-                        </div>
-                    </div>
+     
                     <div class="col-lg-8">
                         <div class="card card-block card-stretch card-height">
                             <div class="card-header d-flex justify-content-between">
@@ -432,6 +419,8 @@
         </div>
     </div>
 
+    {{-- dashbord custom js --}}
+    <script src="{{ asset('backend/assets/dashbordData.js') }}"></script>
     {{-- js --}}
     @include('dashbord.layouts.js')
 </body>

@@ -73,9 +73,8 @@
                                    <td>
                                     <input type="hidden" name="class" value="{{ $student->class_id }}">
                                     <input type="hidden" name="studentId[]" value="{{$student->student_id}}">
-                                    <input type="radio" name="attendances[{{ $student->student_id }}]"  value="present" {{ $student->attendances == "present"  ? 'checked="checked"' : '' }}>Present
-                                    <input type="radio" name="attendances[{{ $student->student_id }}]"  value="apsent" {{ $student->attendances == "apsent"  ? 'checked="checked"' : '' }}>Apsent
-                                    <input type="radio"  name="attendances[{{ $student->student_id }}]" value="late" {{ $student->attendances == "late"  ? 'checked="checked"' : '' }}>Late
+                                    <input type="radio" name="attendances[{{ $student->student_id }}]"  value="Present" {{ $student->attendances == "Present"  ? 'checked="checked"' : '' }}>Present
+                                    <input type="radio" name="attendances[{{ $student->student_id }}]"  value="Absent" {{ $student->attendances == "Absent"  ? 'checked="checked"' : '' }}>Absent
                                 </td>
                                 </tr>
                                 @endforeach
