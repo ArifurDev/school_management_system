@@ -125,47 +125,42 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                           <a href="{{ route('expenses.index') }}">
+                        <div class="col-lg-4 col-md-4">
+                            <a href="{{ route('expenses.index') }}">
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header d-flex justify-content-between">
                                     <div class="header-title">
-                                        <h4 class="card-title">Expenses</h4>
+                                      <h4 class="card-title">Expenses</h4>
                                     </div>
                                 </div>
-                                <div class="row no-gutters">
-                                    <div class="col-md-6 col-lg-6 p-3">
-                                            <h5>${{ $today_expens_due ?? 'Zero' }}</h5>
-                                            <p class="mb-0 text-danger">Expenses Due</p>
-                                    </div>
-                                    <div class="col-md-6 col-lg-6  p-3">                           
-                                            <h5>${{ $today_expens ?? 'Zero' }}</h5>
-                                            <p class="mb-0 text-success">Expenses Amount</p>
-                                    </div>
-                                 </div>
-                            </div>
-                          </a>
+                                <div class="card-body"> 
+                                    <span class="btn mb-1 bg-success-light">
+                                        Amount <span class="badge badge-success ml-2">${{ $today_expens ?? '00.00' }}</span>
+                                    </span>      
+                                    <span class="btn mb-1 bg-primary-light">
+                                        Due <span class="badge badge-primary ml-2">${{ $today_expens_due ?? '00.00' }}</span>
+                                    </span>
+                                </div>
+                              </div>
+                            </a>
                         </div>
-
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-4 col-md-4">
                             <a href="{{ route('feecollections.index') }}">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <div class="header-title">
-                                            <h4 class="card-title">Fee Collection</h4>
-                                        </div>
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between">
+                                    <div class="header-title">
+                                      <h4 class="card-title">Fee Collection</h4>
                                     </div>
-                                    <div class="row no-gutters">
-                                        <div class="col-md-6 col-lg-6 p-3">
-                                            <h5>${{ $today_feeCollection_due }}</h5>
-                                            <p class="mb-0 text-danger">Due</p>
-                                        </div>
-                                        <div class="col-md-6 col-lg-6  p-3">                           
-                                            <h5>${{ $today_feeCollection }}</h5>
-                                            <p class="mb-0 text-success">Amount</p>
-                                        </div>
-                                     </div>
                                 </div>
+                                <div class="card-body"> 
+                                    <span class="btn mb-1 bg-success-light">
+                                        Amount <span class="badge badge-success ml-2">${{ $today_feeCollection ?? '00.00' }}</span>
+                                    </span>      
+                                    <span class="btn mb-1 bg-primary-light">
+                                        Due <span class="badge badge-primary ml-2">${{ $today_feeCollection_due ?? '00.00' }}</span>
+                                    </span>
+                                </div>
+                              </div>
                             </a>
                         </div>
                     </div>

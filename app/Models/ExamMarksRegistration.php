@@ -17,6 +17,8 @@ class ExamMarksRegistration extends Model
         'class_work',
         'home_work',
         'mark',
+        'attendance_mark',
+        'total_mark',
         'full_marks',
         'pass_marks',
     ];

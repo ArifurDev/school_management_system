@@ -43,8 +43,21 @@
                 </div>
 
                 <div class="col-lg-12">
-                    <h4 class="card-title">Exam Result</h4>    
-              </div>
+                  <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+                      <div>
+                          <h4 class="mb-3">Exam Result</h4>
+                          <p class="m-3">
+                            <div class="d-flex align-items-center">
+                              <img src="{{ asset('storage/upload/users_image/'.$studentInfo->user->image ?? 'user/10.jpg' ) }}" class="img-fluid rounded avatar-50 mr-3" alt="image">
+                              <div>
+                                  {{ $studentInfo->user->name }}                 
+                                  <p class="mb-0"><small>{{ $studentInfo->classes->class_name }}</small></p>
+                              </div>
+                          </div>
+                          </p>
+                      </div>
+                  </div>
+                </div>
 
                 <div class="col-lg-12">
                     <div class="card card-block card-stretch card-height">
@@ -54,13 +67,13 @@
                               <thead>
                                   <tr>
                                       <th>SL</th>
-                                      <th>Student</th>
-                                      <th>Class</th>
                                       <th>Subject</th>
                                       <th>Exam</th>
                                       <th>Class Work</th>
                                       <th>Home Work</th>                                      
                                       <th>Mark</th>
+                                      <th>Attendance Mark</th>
+                                      <th>Total</th>
                                       <th>Full Marks</th>
                                       <th>Pass Marks</th>
                                       <th>Action</th>
@@ -70,13 +83,13 @@
                                @foreach ($MarksRegistrations as $MarksRegistration)
                                <tr>
                                   <td>{{ $loop->iteration  }}</td>
-                                  <td>{{ $MarksRegistration->user->name }}</td>
-                                  <td>{{ $MarksRegistration->classes->class_name }}</td>
                                   <td>{{ $MarksRegistration->subject->subject_name }}</td>
                                   <td>{{ $MarksRegistration->exams->exam }}</td>
                                   <td>{{ $MarksRegistration->class_work }}</td>
                                   <td>{{ $MarksRegistration->home_work }}</td>
                                   <td>{{ $MarksRegistration->mark }}</td>
+                                  <td>{{ $MarksRegistration->attendance_mark }}</td>
+                                  <td>{{ $MarksRegistration->total_mark }}</td>
                                   <td>{{ $MarksRegistration->full_marks }}</td>
                                   <td>{{ $MarksRegistration->pass_marks }}</td>
                                   <td>

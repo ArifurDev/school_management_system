@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('class_work')->nullable()->default(0);
             $table->string('home_work')->nullable()->default(0);
             $table->string('mark')->nullable()->default(0);
+            $table->string('attendance_mark')->nullable()->default(0);
+            $table->string('total_mark')->nullable()->default(0);
             $table->string('full_marks')->nullable()->default(0);
             $table->string('pass_marks')->nullable()->default(0);
             $table->timestamps();
