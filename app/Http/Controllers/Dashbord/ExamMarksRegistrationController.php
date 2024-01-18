@@ -150,8 +150,14 @@ class ExamMarksRegistrationController extends BaseController
     public function result_show($student_id, $exam_id)
     {
         $MarksRegistrations = ExamMarksRegistration::where('exam_id', $exam_id)->where('student_id', $student_id)->select('exam_id', 'subject_id', 'class_work', 'home_work', 'mark', 'attendance_mark', 'total_mark', 'full_marks', 'pass_marks')->get();
-        $studentInfo = ExamMarksRegistration::where('exam_id', $exam_id)->where('student_id', $student_id)->select('student_id', 'class_id')->first();
+        $studentInfo = ExamMarksRegistration::where('exam_id', $exam_id)->where('student_id', $student_id)->select('exam_id', 'student_id', 'class_id')->first();
 
         return view('dashbord.ExamMarksRegistration.result', compact('MarksRegistrations', 'studentInfo'));
+    }
+
+    //marksheet Generator
+    public function markSheetGenerate($student_id, $student_slug, $exam_id, $exam_slug, $class_id, $class_slug)
+    {
+        return $student_id;
     }
 }

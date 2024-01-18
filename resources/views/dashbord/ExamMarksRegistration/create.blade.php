@@ -89,29 +89,24 @@
                   </div>
               </div>
 
-                <div class="col-lg-12">
-                    <div class="card card-block card-stretch card-height">
-                       <div class="card-body">
-                          <div class="table-responsive">
-                            <form action="{{ route('exammarksregistrations.store') }}" method="post" >
-                             @csrf
-                                <table id="example" class="data-table table" style="width:100%">
-                                <thead>
-                                    <tr id="table_head_tr">
-
-                                    </tr>
-                                </thead>
-
-                                <tbody id="studentsContainer">
-                                    
-                                </tbody>
-                                <input type="hidden" name="exam_id" id="setExamId"> 
-                                <input type="hidden" name="class_id" id="setClassId"> 
-                            </table>
-                          <button type="submit" class="btn btn-primary ">Create Schedule</button>
-                        </form>
+                <div class="col-lg-12" id="tableData">
+                      <div class="card card-block card-stretch card-height">
+                          <div class="card-body" >
+                                <div class="table-responsive" >
+                                    <form action="{{ route('exammarksregistrations.store') }}" method="post" >
+                                        @csrf
+                                        <table id="example" class="data-table table" style="width:100%">
+                                        <thead>
+                                            <tr id="table_head_tr"><!--show data dynamically--></tr>
+                                        </thead>
+                                            <tbody id="studentsContainer"><!--show data dynamically--></tbody>
+                                            <input type="hidden" name="exam_id" id="setExamId"> 
+                                            <input type="hidden" name="class_id" id="setClassId"> 
+                                        </table>
+                                        <button type="submit" class="btn btn-primary ">Create Schedule</button>
+                                    </form>
+                                </div>
                           </div>
-                       </div>
                     </div>
                  </div>
            </div>

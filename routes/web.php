@@ -154,6 +154,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/exammarksregistrations/shows/{exam_id}/{class_id}', [ExamMarksRegistrationController::class, 'shows'])->name('marksregistrations.shows');
     Route::get('/exammarksregistrations/result/shows/{student_id}/{exam_id}', [ExamMarksRegistrationController::class, 'result_show'])->name('marksregistrations.result');
 
+    Route::get('/marksheet/generate/{student_id}-{student_slug}/{exam_id}-{exam_slug}/{class_id}-{class_slug}', [ExamMarksRegistrationController::class, 'markSheetGenerate'])->name('marksheet.show');
+    // Route::get('/marksheet/generate/{student_id}/{exam_id}/{class_id}', [ExamMarksRegistrationController::class, 'markSheetGenerate'])->name('marksheet.show');
+
     /**
      * Result controller
      */
