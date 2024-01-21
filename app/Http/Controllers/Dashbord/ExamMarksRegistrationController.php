@@ -8,6 +8,7 @@ use App\Models\Exam;
 use App\Models\ExamMarksRegistration;
 use App\Models\ExamSchedule;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ExamMarksRegistrationController extends BaseController
@@ -158,6 +159,44 @@ class ExamMarksRegistrationController extends BaseController
     //marksheet Generator
     public function markSheetGenerate($student_id, $student_slug, $exam_id, $exam_slug, $class_id, $class_slug)
     {
-        return $student_id;
+        $student = User::find($student_id)->where('name', $student_slug)->first();
+        $class = Classes::find($class_id)->where('class_name', $class_slug)->first();
+        $exam = Exam::find($exam_id)->where('exam', $exam_slug)->first();
+
+        if ($student && $class && $exam) {
+
+            $examMarks = ExamMarksRegistration::where(['student_id' => $student_id], ['class_id' => $class_id], ['exam_id' => $exam_id])->get();
+
+            if ($examMarks) {
+                foreach ($examMarks as $examMark) {
+
+                    $totalMarks = $examMark->total_mark;
+                    $fullMarks = $examMark->full_marks;
+                    $passMarks = $examMark->pass_marks;
+
+                    //Grade Calculator
+                    $Grade_Calculator = $this->gradeCalculation($totalMarks, $fullMarks, $passMarks);
+
+                    $MarkSheet[] = [
+                        'subject_id' => $examMark->subject_id,
+                        'subject_name' => $examMark->subject->subject_name,
+                        'subject_code' => $examMark->subject->subject_code,
+                        'total_marks' => $examMark->subject_id,
+                        'Grade' => $Grade_Calculator[0],
+                        'gpa' => $Grade_Calculator[1],
+                    ];
+
+                }
+
+                //count total gap then get get GPA and Grade
+
+                // echo number_format((float)$total, 2);
+
+                return view('dashbord.ExamMarksRegistration.markSheet', compact('student', 'exam', 'class', 'MarkSheet'));
+            }
+        } else {
+            abort(404); // Or redirect to an error page
+        }
+
     }
 }

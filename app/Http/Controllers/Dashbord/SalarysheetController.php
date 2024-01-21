@@ -24,15 +24,13 @@ class SalarysheetController extends BaseController
      */
     public function create()
     {
-        $teachers = User::where('student_status', '0')->get();
-        // $teachers = [];
+        $teachers = User::where('student_status', '0')
+            ->whereHas('roles', function ($query) {
+                $query->where('name', 'Teacher');
+            })
+            ->get();
 
-        // // Now $teachers array contains only the users with the 'Teacher' role and student_status '0'
-        // foreach ($users as $user) {
-        //     if ($user->roles->first() && $user->roles->first()->name == 'Teacher') {
-        //         $teachers[] = $user;
-        //     }
-        // }
+        // $teachers = User::where('student_status', '0')->get();
         return view('dashbord.salarysheets.create', compact('teachers'));
     }
 

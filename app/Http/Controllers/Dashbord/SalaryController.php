@@ -15,15 +15,6 @@ class SalaryController extends BaseController
      */
     public function index()
     {
-        // $users = User::where('student_status', '0')->get();
-        // $teachers = [];
-
-        // // Now $teachers array contains only the users with the 'Teacher' role and student_status '0'
-        // foreach ($users as $user) {
-        //     if ($user->roles->first() && $user->roles->first()->name == 'Teacher') {
-        //         $teachers[] = $user;
-        //     }
-        // }
         $prev_full_date = date('Y-m', strtotime('-1 month'));
 
         $salarySheets = Salarysheet::all();

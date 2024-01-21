@@ -38,4 +38,29 @@ class BaseController extends Controller
 
         return $roundedAttendanceMark * $countAttendance;
     }
+
+    //Grade Calculator
+    protected function gradeCalculation($totalMarks, $fullMarks, $passMarks)
+    {
+        // Calculate percentage
+        // $percentage = ($totalMarks / $fullMarks) * 100 ;
+        $percentage = round(($totalMarks / $fullMarks) * 100, 2);
+
+        if ($percentage >= 80 && $percentage <= 100) {
+            return $point = ['A+', '5'];
+        } elseif ($percentage >= 70 && $percentage < 79) {
+            return $point = ['A', '4'];
+        } elseif ($percentage >= 60 && $percentage < 69) {
+            return $point = ['A-', '3.5'];
+        } elseif ($percentage >= 50 && $percentage < 59) {
+            return $point = ['B', '3'];
+        } elseif ($percentage >= 40 && $percentage < 49) {
+            return $point = ['C', '2'];
+        } elseif ($percentage >= 30 && $percentage < 39) {
+            return $point = ['D', '1'];
+        } elseif ($percentage >= 0 && $percentage < 32) {
+            return $point = ['F', '0'];
+        }
+
+    }
 }
