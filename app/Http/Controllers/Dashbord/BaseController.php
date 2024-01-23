@@ -40,27 +40,66 @@ class BaseController extends Controller
     }
 
     //Grade Calculator
-    protected function gradeCalculation($totalMarks, $fullMarks, $passMarks)
+    protected function gradeCalculation($percentage)
     {
         // Calculate percentage
         // $percentage = ($totalMarks / $fullMarks) * 100 ;
-        $percentage = round(($totalMarks / $fullMarks) * 100, 2);
+        // $percentage = round(($totalMarks / $fullMarks) * 100, 2);
 
-        if ($percentage >= 80 && $percentage <= 100) {
-            return $point = ['A+', '5'];
-        } elseif ($percentage >= 70 && $percentage < 79) {
-            return $point = ['A', '4'];
-        } elseif ($percentage >= 60 && $percentage < 69) {
-            return $point = ['A-', '3.5'];
-        } elseif ($percentage >= 50 && $percentage < 59) {
-            return $point = ['B', '3'];
-        } elseif ($percentage >= 40 && $percentage < 49) {
-            return $point = ['C', '2'];
-        } elseif ($percentage >= 30 && $percentage < 39) {
-            return $point = ['D', '1'];
-        } elseif ($percentage >= 0 && $percentage < 32) {
-            return $point = ['F', '0'];
+        // if ($percentage >= 80 && $percentage <= 100) {
+        //     return $point = ['A+', '5'];
+        // } elseif ($percentage >= 70 && $percentage < 79) {
+        //     return $point = ['A', '4'];
+        // } elseif ($percentage >= 60 && $percentage < 69) {
+        //     return $point = ['A-', '3.5'];
+        // } elseif ($percentage >= 50 && $percentage < 59) {
+        //     return $point = ['B', '3'];
+        // } elseif ($percentage >= 40 && $percentage < 49) {
+        //     return $point = ['C', '2'];
+        // } elseif ($percentage >= 30 && $percentage < 39) {
+        //     return $point = ['D', '1'];
+        // } elseif ($percentage >= 0 && $percentage < 32) {
+        //     return $point = ['F', '0'];
+        // }
+
+        $grade = '';
+        $point = '';
+
+        switch (true) {
+            case $percentage >= 80 && $percentage <= 100:
+                $grade = 'A+';
+                $point = '5';
+                break;
+            case $percentage >= 70 && $percentage < 80:
+                $grade = 'A';
+                $point = '4';
+                break;
+            case $percentage >= 60 && $percentage < 70:
+                $grade = 'A-';
+                $point = '3.5';
+                break;
+            case $percentage >= 50 && $percentage < 60:
+                $grade = 'B';
+                $point = '3';
+                break;
+            case $percentage >= 40 && $percentage < 50:
+                $grade = 'C';
+                $point = '2';
+                break;
+            case $percentage >= 30 && $percentage < 40:
+                $grade = 'D';
+                $point = '1';
+                break;
+            case $percentage >= 0 && $percentage < 30:
+                $grade = 'F';
+                $point = '0';
+                break;
+            default:
+                // Handle the case when the percentage is out of expected range
+                break;
         }
+
+        return [$grade, $point];
 
     }
 }

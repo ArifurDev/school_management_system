@@ -76,7 +76,7 @@
                             <td>
                                 <td>
                                    <span> Total GPA :
-
+                                    
                                    </span>
                                   <span>Average Grade:
                                     

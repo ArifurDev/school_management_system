@@ -175,7 +175,8 @@ class ExamMarksRegistrationController extends BaseController
                     $passMarks = $examMark->pass_marks;
 
                     //Grade Calculator
-                    $Grade_Calculator = $this->gradeCalculation($totalMarks, $fullMarks, $passMarks);
+                    $percentage = round(($totalMarks / $fullMarks) * 100, 2);
+                    $Grade_Calculator = $this->gradeCalculation($percentage);
 
                     $MarkSheet[] = [
                         'subject_id' => $examMark->subject_id,
@@ -189,8 +190,6 @@ class ExamMarksRegistrationController extends BaseController
                 }
 
                 //count total gap then get get GPA and Grade
-
-                // echo number_format((float)$total, 2);
 
                 return view('dashbord.ExamMarksRegistration.markSheet', compact('student', 'exam', 'class', 'MarkSheet'));
             }
