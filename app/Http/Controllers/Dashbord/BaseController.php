@@ -102,4 +102,35 @@ class BaseController extends Controller
         return [$grade, $point];
 
     }
+
+    //get Remarks
+    public function getRemark($grade)
+    {
+        switch ($grade) {
+            case 'A+':
+                return 'Excellent';
+                break;
+            case 'A':
+                return 'Very Good';
+                break;
+            case 'A-':
+                return 'Good';
+                break;
+            case 'B':
+                return 'Above Avaerage';
+                break;
+            case 'C':
+                return 'Avaerage';
+                break;
+            case 'D':
+                return 'Pass';
+                break;
+            case 'F':
+                return 'Need Improvement';
+                break;
+            default:
+                // code...
+                break;
+        }
+    }
 }

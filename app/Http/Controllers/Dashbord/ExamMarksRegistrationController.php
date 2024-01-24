@@ -168,6 +168,11 @@ class ExamMarksRegistrationController extends BaseController
             $examMarks = ExamMarksRegistration::where(['student_id' => $student_id], ['class_id' => $class_id], ['exam_id' => $exam_id])->get();
 
             if ($examMarks) {
+
+                //store calculated total  marks
+                $all_subject_total_marks = 0;
+                $all_subject_full_marks = 0;
+
                 foreach ($examMarks as $examMark) {
 
                     $totalMarks = $examMark->total_mark;
@@ -177,6 +182,10 @@ class ExamMarksRegistrationController extends BaseController
                     //Grade Calculator
                     $percentage = round(($totalMarks / $fullMarks) * 100, 2);
                     $Grade_Calculator = $this->gradeCalculation($percentage);
+
+                    //count total gap and Grade
+                    $all_subject_total_marks += $examMark->total_mark;
+                    $all_subject_full_marks += $examMark->full_marks;
 
                     $MarkSheet[] = [
                         'subject_id' => $examMark->subject_id,
@@ -189,9 +198,14 @@ class ExamMarksRegistrationController extends BaseController
 
                 }
 
-                //count total gap then get get GPA and Grade
+                //calculate Average Grade and point
+                $percentage = ($all_subject_total_marks / $all_subject_full_marks) * 100;
+                $Avarage_Grade_point_calculator = $this->gradeCalculation($percentage);
 
-                return view('dashbord.ExamMarksRegistration.markSheet', compact('student', 'exam', 'class', 'MarkSheet'));
+                //get Remarks
+                $Remarks = $this->getRemark($Avarage_Grade_point_calculator[0]);
+
+                return view('dashbord.ExamMarksRegistration.markSheet', compact('student', 'exam', 'class', 'MarkSheet', 'Avarage_Grade_point_calculator', 'Remarks', 'percentage'));
             }
         } else {
             abort(404); // Or redirect to an error page

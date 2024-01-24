@@ -69,26 +69,41 @@
                             <td>{{ $Mark_sheet['gpa'] }}</td>
                         </tr>
                         @endforeach
-
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <td>
-                                   <span> Total GPA :
-                                    
-                                   </span>
-                                  <span>Average Grade:
-                                    
-                                  </span>          
-                                </td>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
+
+                  
+
                 </div>
             </div>
         </div>
+        <div class="row d-flex justify-content-between ">
+            <div class="col-md-6 border">
+                
+            </div>
+            <div class="col-md-6 border">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Remarks</th>
+                        <td>{{ $Remarks ?? 'not found' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">GPA</th>
+                        <td>{{ $Avarage_Grade_point_calculator[1] ?? 'not found' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Percentage</th>
+                        <td>{{ $percentage }}%</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Grade</th>
+                        <td>{{ $Avarage_Grade_point_calculator[0] ?? 'not found' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+         </div>
 
             <!-- Page end  -->
         </div>
