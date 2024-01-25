@@ -33,20 +33,26 @@
             </div>   
            </div>
            <div class="row">
-            <div class="col-lg-12">
-                <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
-                    <div class="style-text text-left ml-3">
-                        <p class="mb-2">Name: {{ $student->name }}</p>
-                        <p class="mb-2">Father's Name: {{ $student->father_name }}</p>
-                        <p class="mb-2">Mother's Name: {{ $student->mother_name }}</p>
-                        <p class="mb-2">Religion: {{ $student->religion }}</p>
-                        <p class="mb-2">Class: {{ $class->class_name }}</p>
-                        <p class="mb-2">Date Of Birth: {{ $student->date_of_birth }}</p>
+            <div class="col-lg-12 d-flex flex-wrap align-items-center justify-content-between mb-4">
+                <div class="col-md-6 style-text text-left ml-3">
+                    <p class="mb-2">Name: {{ $student->name }}</p>
+                    <p class="mb-2">Father's Name: {{ $student->father_name }}</p>
+                    <p class="mb-2">Mother's Name: {{ $student->mother_name }}</p>
+                    <p class="mb-2">Religion: {{ $student->religion }}</p>
+                    <p class="mb-2">Class: {{ $class->class_name }}</p>
+                    <p class="mb-2">Date Of Birth: {{ $student->date_of_birth }}</p>
+                </div>
+                <div>
+                    <div style="font-size: 1rem">
+                        <span>80% to 100% = A+</span><br>
+                        <span>70% to 79% = A</span><br>
+                        <span>60% to 69% = A-</span><br>
+                        <span>50% to 59% = B</span><br>
+                        <span>40% to 49% = C</span><br>
+                        <span>33% to 39% = D</span><br>
+                        <span>0% to 32% = F</span>
                     </div>
-
-                    <div>
-                        <img src="{{ asset('storage/upload/users_image/'.$student->image ?? 'user/10.jpg' ) }}" class="style-img img-fluid m-auto p-3" alt="image">
-                    </div>
+                    <img src="{{ asset('storage/upload/users_image/'.$student->image ?? 'user/10.jpg' ) }}" class="style-img img-fluid m-auto p-3" width="150" alt="image">
                 </div>
             </div>
             <div class="col-lg-12">
@@ -77,41 +83,53 @@
                 </div>
             </div>
         </div>
-        <div class="row d-flex justify-content-between ">
-            <div class="col-md-6 border">
-                
-            </div>
-            <div class="col-md-6 border">
+        <div class="row m-3">
                 <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Remarks</th>
+                        <th scope="col">GPA</th>
+                        <th scope="col">Percentage</th>
+                        <th scope="col">Grade</th>
+                        <th scope="col">Result</th>
+                      </tr>
+                    </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">Remarks</th>
-                        <td>{{ $Remarks ?? 'not found' }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">GPA</th>
+                      <tr>
+                        <th scope="row">{{ $Remarks ?? 'not found' }}</th>
                         <td>{{ $Avarage_Grade_point_calculator[1] ?? 'not found' }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Percentage</th>
                         <td>{{ $percentage }}%</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Grade</th>
                         <td>{{ $Avarage_Grade_point_calculator[0] ?? 'not found' }}</td>
-                    </tr>
+                        <td></td>
+                      </tr>
+                      <tr>
                     </tbody>
-                </table>
-            </div>
+                  </table>
          </div>
-
+         <div class="row d-flex flex-wrap align-items-center justify-content-between p-5 text-center">
+            <div class="col-md-6">Class Teacher</div>
+            <div class="col-md-6">Principal</div>
+         </div>
+         <div class="row d-flex flex-wrap align-items-center justify-content-between p-5 text-center">
+            <button type="button" class="btn btn-danger mt-2" onclick="printPage()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+                    <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1"/>
+                    <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/>
+                  </svg>
+                Print</button>
+         </div>
             <!-- Page end  -->
         </div>
       </div>
     </div>
 
     
-
+    {{-- js code --}}
+    <script>
+        const printPage = () =>{
+            window.print();
+        }
+     </script>
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>

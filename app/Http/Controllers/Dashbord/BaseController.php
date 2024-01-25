@@ -70,27 +70,27 @@ class BaseController extends Controller
                 $grade = 'A+';
                 $point = '5';
                 break;
-            case $percentage >= 70 && $percentage < 80:
+            case $percentage >= 70 && $percentage <= 79:
                 $grade = 'A';
                 $point = '4';
                 break;
-            case $percentage >= 60 && $percentage < 70:
+            case $percentage >= 60 && $percentage <= 69:
                 $grade = 'A-';
                 $point = '3.5';
                 break;
-            case $percentage >= 50 && $percentage < 60:
+            case $percentage >= 50 && $percentage <= 59:
                 $grade = 'B';
                 $point = '3';
                 break;
-            case $percentage >= 40 && $percentage < 50:
+            case $percentage >= 40 && $percentage <= 49:
                 $grade = 'C';
                 $point = '2';
                 break;
-            case $percentage >= 30 && $percentage < 40:
+            case $percentage >= 33 && $percentage <= 39:
                 $grade = 'D';
                 $point = '1';
                 break;
-            case $percentage >= 0 && $percentage < 30:
+            case $percentage >= 0 && $percentage < 33:
                 $grade = 'F';
                 $point = '0';
                 break;
