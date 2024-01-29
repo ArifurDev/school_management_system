@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashbord\ExamMarksRegistrationController;
 use App\Http\Controllers\Dashbord\ExamScheduleController as ExamScheduleController;
 use App\Http\Controllers\Dashbord\ExpenseController as ExpenseController;
 use App\Http\Controllers\Dashbord\FeeCollectionController as FeeCollectionController;
+use App\Http\Controllers\Dashbord\MailSettingController;
 use App\Http\Controllers\Dashbord\PermissionController as PermissionController;
 use App\Http\Controllers\Dashbord\ResultController as ResultController;
 use App\Http\Controllers\Dashbord\RoleController as RoleController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Dashbord\StudentPromotionController as StudentPromotion
 use App\Http\Controllers\Dashbord\SubjectController as SubjectController;
 use App\Http\Controllers\Dashbord\UserController as UserController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +33,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('test', function () {
+
+    $message = 'ki khbor kemon achen';
+
+    Mail::raw('assalamu alaikum', function ($message) {
+        $message->to('arifurrahmanrifat72@gmail.com')
+            ->subject('test');
+    });
+
+    dd('send');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -58,6 +72,10 @@ Route::middleware(['auth'])->group(function () {
      */
     Route::get('/dashboard', [dashbordController::class, 'index'])->name('dashboard');
 
+    /**
+     * MailSettings Controller
+     */
+    Route::resource('mailsettings', MailSettingController::class);
     /**
      * Role Controller
      */

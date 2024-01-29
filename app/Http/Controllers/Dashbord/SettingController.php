@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class SettingController extends BaseController
 {
-     /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
