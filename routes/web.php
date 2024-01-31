@@ -20,7 +20,6 @@ use App\Http\Controllers\Dashbord\StudentPromotionController as StudentPromotion
 use App\Http\Controllers\Dashbord\SubjectController as SubjectController;
 use App\Http\Controllers\Dashbord\UserController as UserController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,13 +32,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('test', function () {
 
-    $message = 'ki khbor kemon achen';
+    $textMessage = 'ki khbor kemon achen';
 
-    Mail::raw('assalamu alaikum', function ($message) {
-        $message->to('arifurrahmanrifat72@gmail.com')
+    \Mail::raw($textMessage, function ($mailMessage) {
+        $mailMessage->to('arifurrahmanrifat72@gmail.com')
             ->subject('test');
     });
 

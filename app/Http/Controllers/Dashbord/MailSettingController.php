@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashbord;
 use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\MailSetting;
 use Carbon\Carbon;
+use Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -86,6 +87,7 @@ class MailSettingController extends BaseController
             'updated_at' => Carbon::now(),
         ]);
         Artisan::call('config:clear');
+        $this->setEnv();
 
         return $this->returnMessage('Settings Has Been Updated Successfully', 'success');
     }
@@ -96,5 +98,26 @@ class MailSettingController extends BaseController
     public function destroy(MailSetting $mailSetting)
     {
         //
+    }
+
+    public function setEnv()
+    {
+        $mailSetting = MailSetting::first();
+        if ($mailSetting) {
+            $data = [
+                'driver' => $mailSetting->mail_transport,
+                'host' => $mailSetting->mail_host,
+                'port' => $mailSetting->mail_port,
+                'encryption' => $mailSetting->mail_encryption,
+                'username' => $mailSetting->mail_username,
+                'password' => $mailSetting->mail_password,
+                'from' => [
+                    'address' => $mailSetting->mail_from,
+                    'name' => 'School Management',
+                ],
+            ];
+            Config::set('mail', $data);
+        }
+
     }
 }
