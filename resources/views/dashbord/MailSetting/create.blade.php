@@ -33,6 +33,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb ">
                                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-danger"><i class="ri-home-4-line mr-1 float-left"></i>Dashbord</a></li>
+                                   <li class="breadcrumb-item"><a href="{{ route('mailsettings.index') }}" class="text-danger">Add Env</a></li>
                                    <li class="breadcrumb-item active" aria-current="page">set env Mail</li>
                                 </ol>
                              </nav>
@@ -56,61 +57,78 @@
                          @endif
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('mailsettings.update',['mailsetting'=>$mail->id]) }}" method="POST" data-toggle="validator" novalidate="true">
+                            <form action="{{ route('mailsettings.store') }}" method="POST" data-toggle="validator" novalidate="true">
                                 @csrf
-                                @method('PUT')
                                 <div class="row"> 
                                     <div class="col-md-4">                      
                                         <div class="form-group">
                                             <label>Mail Transport</label>
-                                            <input type="text" class="form-control" required="" placeholder="Mail Transport" name="mail_transport" value="{{ $mail->mail_transport ?? 'not found' }}">
+                                            <input type="text" class="form-control" required="" placeholder="Mail Transport" name="mail_transport" >
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>    
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Mail Host</label>
-                                            <input type="text" class="form-control" required="" placeholder="Mail Host" name="mail_host" value="{{ $mail->mail_host ?? 'not found' }}">
+                                            <input type="text" class="form-control" required="" placeholder="Mail Host" name="mail_host" >
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div> 
                                     <div class="col-md-4">                      
                                         <div class="form-group">
                                             <label>Mail Port</label>
-                                            <input type="text" class="form-control" required="" placeholder="Mail Port" name="mail_port" value="{{ $mail->mail_port ?? 'not found' }}">
+                                            <input type="text" class="form-control" required="" placeholder="Mail Port" name="mail_port" >
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>    
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Mail Username</label>
-                                            <input type="text" class="form-control" required="" placeholder="Mail Username" name="mail_username" value="{{ $mail->mail_username ?? 'not found' }}">
+                                            <input type="text" class="form-control" required="" placeholder="Mail Username" name="mail_username" >
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div> 
                                     <div class="col-md-4">                      
                                         <div class="form-group">
                                             <label>Mail Passwor</label>
-                                            <input type="text" class="form-control" required="" placeholder="Mail Password" name="mail_password" value="{{ $mail->mail_password ?? 'not found' }}">
+                                            <input type="text" class="form-control" required="" placeholder="Mail Password" name="mail_password" >
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>    
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Mail Encryption</label>
-                                            <input type="text" class="form-control" required="" placeholder="Mail Encryption" name="mail_encryption" value="{{ $mail->mail_encryption ?? 'not found' }}">
+                                            <input type="text" class="form-control" required="" placeholder="Mail Encryption" name="mail_encryption" >
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div> 
                                     <div class="col-md-4">                      
                                         <div class="form-group">
                                             <label>Mail From</label>
-                                            <input type="text" class="form-control" required="" placeholder="Mail From" name="mail_from" value="{{ $mail->mail_from ?? 'not found' }}">
+                                            <input type="text" class="form-control" required="" placeholder="Mail From" name="mail_from" >
                                             <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>  
+                                    <div class="col-md-4">                      
+                                        <div class="form-group">
+                                            <label>Mail From Name</label>
+                                            <input type="text" class="form-control" required="" placeholder="Mail From Name" name="mail_from_name" >
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>  
+                                    <div class="col-md-4">                      
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select class="form-control mb-3" name="status">
+                                                <option selected="">Select Status</option>
+                                                <option value="0">Hidden</option>
+                                                <option value="1">Active</option>
+                                             </select>
+                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>                                   
                                 </div>                            
-                                <button type="submit" class="btn btn-primary mr-2 disabled">Update</button>
+                                <button type="submit" class="btn btn-primary mr-2 disabled">Submit</button>
                             </form>
                         </div>
                     </div>

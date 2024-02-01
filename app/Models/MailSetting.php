@@ -17,5 +17,7 @@ class MailSetting extends Model
         'mail_password',
         'mail_encryption',
         'mail_from',
+        'mail_from_name',
+        'status',
     ];
 }

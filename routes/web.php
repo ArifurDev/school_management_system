@@ -32,17 +32,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('test', function () {
-
-    $textMessage = 'ki khbor kemon achen';
-
-    \Mail::raw($textMessage, function ($mailMessage) {
-        $mailMessage->to('arifurrahmanrifat72@gmail.com')
-            ->subject('test');
-    });
-
-    dd('send');
-});
 
 Route::get('/', function () {
     return view('welcome');

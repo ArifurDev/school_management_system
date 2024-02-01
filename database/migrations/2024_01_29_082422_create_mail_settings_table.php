@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('mail_password');
             $table->string('mail_encryption');
             $table->string('mail_from');
+            $table->string('mail_from_name');
+            $table->string('status');
             $table->timestamps();
         });
     }
