@@ -291,6 +291,45 @@
                      </div>
                   </div>
                 </div>
+
+
+                <div class="row bg-light rounded mt-3 p-3">
+                  <div class="col-lg-12">
+                     <div class="card card-block card-stretch card-height">
+                        <div class="card-body">
+                           <div class="table-responsive">
+                             <table id="example" class="data-table table" style="width:100%">
+                               <thead>
+                                   <tr>
+                                       <th>SL</th>
+                                       <th>Expense</th>
+                                       <th>Amount </th>    
+                                       <th>Due</th>
+                                       <th>Description</th>
+                                       <th>Date</th>
+                                       <th>Submition Date</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                @foreach ($allPayments as $Payment)
+                                <tr>
+                                   <td>{{ $loop->iteration  }}</td>
+                                   <td>{{ $Payment->expense ?? "Not available" }}</td>
+                                   <td>{{ $Payment->amount ?? "Not available"}}</td>
+                                   <td>{{ $Payment->due ?? "Paid"}}</td> 
+                                   <td>{{ $Payment->description ?? "Not available" }}</td>
+                                   <td>{{ $Payment->date ?? "Not available" }}</td> 
+                                   <td>{{ $Payment->created_at ?? "Not available"  }}</td>
+                                </tr>
+                                @endforeach
+                              
+                               </tbody>
+                           </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
                 <!-- Page end  -->
             </div>
         </div>

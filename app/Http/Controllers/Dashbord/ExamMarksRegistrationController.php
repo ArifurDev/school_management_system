@@ -180,8 +180,8 @@ class ExamMarksRegistrationController extends BaseController
                     $passMarks = $examMark->pass_marks;
 
                     //Grade Calculator
-                    $percentage = round(($totalMarks / $fullMarks) * 100, 2);
-                    $Grade_Calculator = $this->gradeCalculation($percentage);
+                    $GradePercentage = round(($totalMarks / $fullMarks) * 100, 2);
+                    $Grade_Calculator = $this->gradeCalculation($GradePercentage);
 
                     //count total gap and Grade
                     $all_subject_total_marks += $examMark->total_mark;
@@ -199,13 +199,13 @@ class ExamMarksRegistrationController extends BaseController
                 }
 
                 //calculate Average Grade and point
-                $percentage = ($all_subject_total_marks / $all_subject_full_marks) * 100;
-                $Avarage_Grade_point_calculator = $this->gradeCalculation($percentage);
+                $totalPercentage = ($all_subject_total_marks / $all_subject_full_marks) * 100;
+                $Avarage_Grade_point_calculator = $this->gradeCalculation($totalPercentage);
 
                 //get Remarks
                 $Remarks = $this->getRemark($Avarage_Grade_point_calculator[0]);
 
-                return view('dashbord.ExamMarksRegistration.markSheet', compact('student', 'exam', 'class', 'MarkSheet', 'Avarage_Grade_point_calculator', 'Remarks', 'percentage'));
+                return view('dashbord.ExamMarksRegistration.markSheet', compact('student', 'exam', 'class', 'MarkSheet', 'Avarage_Grade_point_calculator', 'Remarks', 'totalPercentage'));
             }
         } else {
             abort(404); // Or redirect to an error page

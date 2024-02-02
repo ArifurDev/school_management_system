@@ -94,9 +94,9 @@ class MailSettingController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(MailSetting $mailSetting)
+    public function edit(MailSetting $mailsetting)
     {
-        //
+        return view('dashbord.MailSetting.edit', compact('mailsetting'));
     }
 
     /**
@@ -127,23 +127,40 @@ class MailSettingController extends BaseController
             'mail_host' => $request->mail_host,
             'mail_port' => $request->mail_port,
             'mail_username' => $request->mail_username,
-            'mail_password' => bcrypt($request->mail_password),
+            'mail_password' => $request->mail_password,
             'mail_encryption' => $request->mail_encryption,
             'mail_from' => $request->mail_from,
+            'mail_from_name' => $request->mail_from_name,
             'updated_at' => Carbon::now(),
         ]);
-        Artisan::call('config:clear');
-        $this->setEnv();
+        if ($request->status == 1) {
+            MailSetting::Where('status', 1)
+                ->where('id', '!=', $mailsetting->id)
+                ->update(['status' => 0]);
+            $this->setEnvMailer($mailsetting);
+        }
 
-        return $this->returnMessage('Settings Has Been Updated Successfully', 'success');
+        Artisan::call('config:clear');
+
+        if ($mailsetting) {
+            return $this->returnMessage('Mail Updated Successfully', 'success');
+        } else {
+            return $this->returnMessage('Opps! Somthing with wrong', 'error');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MailSetting $mailSetting)
+    public function destroy(MailSetting $mailsetting)
     {
-        //
+        if ($mailsetting->status == '1') {
+            return $this->returnMessage('Opps!', 'error');
+        } else {
+            $mailsetting->delete();
+
+            return $this->returnMessage('Delete Successfully', 'success');
+        }
     }
 
     public function setEnvMailer($data)
@@ -159,7 +176,7 @@ class MailSettingController extends BaseController
             'MAIL_PASSWORD' => $data->mail_password,
             'MAIL_ENCRYPTION' => $data->mail_encryption,
             'MAIL_FROM_ADDRESS' => $data->mail_from,
-            'MAIL_FROM_NAME' => $data->mail_from_name,
+            'APP_NAME' => $data->mail_from_name,
         ];
 
         foreach ($replacements as $key => $newValue) {

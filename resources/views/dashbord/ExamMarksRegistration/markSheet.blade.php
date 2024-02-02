@@ -98,7 +98,7 @@
                       <tr>
                         <th scope="row">{{ $Remarks ?? 'not found' }}</th>
                         <td>{{ $Avarage_Grade_point_calculator[1] ?? 'not found' }}</td>
-                        <td>{{ $percentage }}%</td>
+                        <td>{{  round($totalPercentage,2) }}%</td>
                         <td>{{ $Avarage_Grade_point_calculator[0] ?? 'not found' }}</td>
                         <td></td>
                       </tr>

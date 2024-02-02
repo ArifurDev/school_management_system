@@ -78,9 +78,9 @@
                                   <td>
                                     <div class="d-flex align-items-center list-action">
                                       <a href="" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
-                                      <a href="" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
+                                      <a href="{{ route('mailsettings.edit',['mailsetting'=>$mailList->id]) }}" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
                                      
-                                      <form action="" method="POST">
+                                      <form action="{{ route('mailsettings.destroy',['mailsetting'=>$mailList->id]) }}" method="POST">
                                           @csrf
                                           @method("DELETE")
                                           <button class="badge bg-warning mr-2 border-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" ><i class="ri-delete-bin-line mr-0"></i></button>

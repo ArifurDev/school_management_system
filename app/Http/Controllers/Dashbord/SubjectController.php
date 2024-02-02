@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class SubjectController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:Subject access|Subject create|Subject edit|Subject delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Subject create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Subject edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:Subject delete', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      */

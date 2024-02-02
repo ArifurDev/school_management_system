@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class StudentPromotionController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:StudentPromotion access|StudentPromotion create|StudentPromotion edit|StudentPromotion delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:StudentPromotion find', ['only' => ['find_promotion_students']]);
+        $this->middleware('role_or_permission:StudentPromotion edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:StudentPromotion delete', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
