@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class ClassesController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:Classes access|Classes create|Classes edit|Classes delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Classes create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Classes edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:Classes delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

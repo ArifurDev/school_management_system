@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class ExamController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:Exam access|Exam create|Exam edit|Exam delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Exam create', ['only' => ['index', 'store']]);
+        $this->middleware('role_or_permission:Exam edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:Exam delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

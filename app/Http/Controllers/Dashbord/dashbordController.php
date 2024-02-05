@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
 
 class dashbordController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:Dashbord access|Dashbord create|Dashbord edit|Dashbord delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Dashbord create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Dashbord edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:Dashbord delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

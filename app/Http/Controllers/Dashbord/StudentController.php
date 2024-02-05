@@ -15,6 +15,13 @@ use Intervention\Image\Facades\Image;
 
 class StudentController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:Student access|Student create|Student edit|Student delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Student create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Student edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:Student delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

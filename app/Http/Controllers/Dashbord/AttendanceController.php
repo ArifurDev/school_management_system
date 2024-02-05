@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:Attendance access|Attendance create|Attendance edit|Attendance delete', ['only' => ['index', 'shows']]);
+        $this->middleware('role_or_permission:Attendance create', ['only' => ['find_students', 'store']]);
+        $this->middleware('role_or_permission:Attendance edit', ['only' => ['edites', 'update']]);
+        $this->middleware('role_or_permission:Attendance delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

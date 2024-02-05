@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Artisan;
 
 class MailSettingController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:MailSetting access|MailSetting create|MailSetting edit|MailSetting delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:MailSetting create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:MailSetting edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:MailSetting delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

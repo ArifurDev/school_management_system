@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class SalaryController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:Salary access|Salary create|Salary edit|Salary delete', ['only' => ['index', 'show']]);
+        $this->middleware('role_or_permission:Salary create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:Salary edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:Salary delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */

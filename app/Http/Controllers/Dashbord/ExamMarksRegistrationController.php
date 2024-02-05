@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 
 class ExamMarksRegistrationController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:ExamMarks access|ExamMarks create|ExamMarks edit|ExamMarks delete|Exam result', ['only' => ['index', 'shows']]);
+        $this->middleware('role_or_permission:ExamMarks create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:ExamMarks edit', ['only' => ['edit', 'update']]);
+        $this->middleware('role_or_permission:ExamMarks delete', ['only' => ['destroy']]);
+        $this->middleware('role_or_permission:Exam result', ['only' => ['result_show', 'markSheetGenerate']]);
+    }
     /**
      * Display a listing of the resource.
      */

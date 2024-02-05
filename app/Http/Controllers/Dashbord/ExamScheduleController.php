@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
 
 class ExamScheduleController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:ExamSchedule access|ExamSchedule create|ExamSchedule edit|ExamSchedule delete', ['only' => ['index', 'shows']]);
+        $this->middleware('role_or_permission:ExamSchedule create', ['only' => ['create', 'store']]);
+        $this->middleware('role_or_permission:ExamSchedule edit', ['only' => ['edites', 'update']]);
+        $this->middleware('role_or_permission:ExamSchedule delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */
