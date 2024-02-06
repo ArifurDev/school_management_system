@@ -16,6 +16,7 @@ class ExamController extends BaseController
         $this->middleware('role_or_permission:Exam edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:Exam delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */

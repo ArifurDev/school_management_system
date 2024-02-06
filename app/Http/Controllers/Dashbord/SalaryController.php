@@ -17,6 +17,7 @@ class SalaryController extends BaseController
         $this->middleware('role_or_permission:Salary edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:Salary delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */

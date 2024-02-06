@@ -162,21 +162,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/marksheet/generate/{student_id}-{student_slug}/{exam_id}-{exam_slug}/{class_id}-{class_slug}', [ExamMarksRegistrationController::class, 'markSheetGenerate'])->name('marksheet.show');
     // Route::get('/marksheet/generate/{student_id}/{exam_id}/{class_id}', [ExamMarksRegistrationController::class, 'markSheetGenerate'])->name('marksheet.show');
 
-    /**
-     * Result controller
-     */
-    // Route::group(['prefix' => 'results'], function () {
-    //     Route::get('/{examtype}/create', [ResultController::class, 'create'])->name('results.create');
-    //     Route::post('/store/{student_id}', [ResultController::class, 'store'])->name('results.store');
-    //     Route::get('/{year}/show/{class_id}/{section_id}/{group_id}/{subject_id?}',
-    //     [ResultController::class, 'index'])->name('results.index');
-    //     // Route::get('/{id}/view',[ResultController::class,'show'])->name('results.show');
-    //     Route::get('/{id}/edit/{student_id}', [ResultController::class, 'edit'])->name('results.edit
-    //     ');
-    //     Route::put('/{id}/update', [ResultController::class, 'update'])->name('results.update');
-    //     Route::delete('/{id}/delete', [ResultController::class, 'destroy'])->name('results.delete');
-    //     });
-
     Route::resource('/results', ResultController::class);
 });
 

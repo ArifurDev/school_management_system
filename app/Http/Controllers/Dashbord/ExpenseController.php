@@ -11,11 +11,12 @@ class ExpenseController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware('role_or_permission:Expense access|Expense create|Expense edit|Expense delete', ['only' => ['index', 'show','downloadPdf']]);
+        $this->middleware('role_or_permission:Expense access|Expense create|Expense edit|Expense delete', ['only' => ['index', 'show', 'downloadPdf']]);
         $this->middleware('role_or_permission:Expense create', ['only' => ['create', 'store']]);
         $this->middleware('role_or_permission:Expense edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:Expense delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */

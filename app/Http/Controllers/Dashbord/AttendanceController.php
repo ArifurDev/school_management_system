@@ -20,6 +20,7 @@ class AttendanceController extends BaseController
         $this->middleware('role_or_permission:Attendance edit', ['only' => ['edites', 'update']]);
         $this->middleware('role_or_permission:Attendance delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */

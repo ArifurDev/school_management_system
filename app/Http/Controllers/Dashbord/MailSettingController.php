@@ -17,6 +17,7 @@ class MailSettingController extends BaseController
         $this->middleware('role_or_permission:MailSetting edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:MailSetting delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */

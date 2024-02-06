@@ -18,6 +18,7 @@ class dashbordController extends Controller
         $this->middleware('role_or_permission:Dashbord edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:Dashbord delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */

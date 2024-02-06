@@ -18,6 +18,7 @@ class ExamScheduleController extends BaseController
         $this->middleware('role_or_permission:ExamSchedule edit', ['only' => ['edites', 'update']]);
         $this->middleware('role_or_permission:ExamSchedule delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */

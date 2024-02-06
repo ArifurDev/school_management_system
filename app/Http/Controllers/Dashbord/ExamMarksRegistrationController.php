@@ -21,6 +21,7 @@ class ExamMarksRegistrationController extends BaseController
         $this->middleware('role_or_permission:ExamMarks delete', ['only' => ['destroy']]);
         $this->middleware('role_or_permission:Exam result', ['only' => ['result_show', 'markSheetGenerate']]);
     }
+
     /**
      * Display a listing of the resource.
      */

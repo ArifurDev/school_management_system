@@ -22,6 +22,7 @@ class StudentController extends BaseController
         $this->middleware('role_or_permission:Student edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:Student delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */

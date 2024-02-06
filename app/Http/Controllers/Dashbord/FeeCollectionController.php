@@ -12,11 +12,12 @@ class FeeCollectionController extends BaseController
 {
     public function __construct()
     {
-        $this->middleware('role_or_permission:FeeCollection access|FeeCollection create|FeeCollection edit|FeeCollection delete', ['only' => ['index', 'show','downloadPdf']]);
+        $this->middleware('role_or_permission:FeeCollection access|FeeCollection create|FeeCollection edit|FeeCollection delete', ['only' => ['index', 'show', 'downloadPdf']]);
         $this->middleware('role_or_permission:FeeCollection create', ['only' => ['create', 'store']]);
         $this->middleware('role_or_permission:FeeCollection edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:FeeCollection delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */

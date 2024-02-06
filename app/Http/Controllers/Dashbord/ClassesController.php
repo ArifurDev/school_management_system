@@ -16,6 +16,7 @@ class ClassesController extends BaseController
         $this->middleware('role_or_permission:Classes edit', ['only' => ['edit', 'update']]);
         $this->middleware('role_or_permission:Classes delete', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */
