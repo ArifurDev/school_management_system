@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Dashbord;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\ExamSchedule;
+use App\Models\FeeCollection;
 use App\Models\Subject;
 use App\Models\User;
+use Carbon\Carbon;
 
 class BaseController extends Controller
 {
@@ -132,5 +135,28 @@ class BaseController extends Controller
                 // code...
                 break;
         }
+    }
+
+    public function Profile(User $student)
+    {
+        $presentCount = Attendance::where('student_id', $student->id)->where('attendances', 'present')->count();
+        $lateCount = Attendance::where('student_id', $student->id)->where('attendances', 'late')->count();
+        $apsentCount = Attendance::where('student_id', $student->id)->where('attendances', 'apsent')->count();
+
+        $allPayments = FeeCollection::where('user_id', $student->id)->latest()->get();
+
+        $prevDate = date('Y-m', strtotime('-1 month'));
+        $monthlyFee = FeeCollection::where('user_id', $student->id)
+            ->whereYear('date', date('Y', strtotime($prevDate)))
+            ->whereMonth('date', date('m', strtotime($prevDate)))
+            ->where('expense', 'Monthly Fee')
+            ->first();
+
+        $ExamSchedules = ExamSchedule::where(function ($query) use ($student) {
+            $query->whereDate('exam_date', '>=', Carbon::today());
+            $query->where('class_id', $student->class_id);
+        })->get();
+
+        return compact('student', 'monthlyFee', 'allPayments', 'presentCount', 'lateCount', 'apsentCount', 'ExamSchedules');
     }
 }

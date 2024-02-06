@@ -242,7 +242,7 @@
                                             <h5 class="mb-1">JoanDuo@property.com</h5>
                                             <p class="mb-0">Since 10 march, 2020</p>
                                             <div class="d-flex align-items-center justify-content-center mt-3">
-                                                <a href="../app/user-profile.html" class="btn border mr-2">Profile</a>
+                                                <a href="{{ route('auth-profile.index') }}" class="btn border mr-2">Profile</a>
 
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
@@ -284,4 +284,4 @@
             </div>
         </div>
     </div>
-</div>      
+</div>

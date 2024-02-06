@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashbord\ExpenseController as ExpenseController;
 use App\Http\Controllers\Dashbord\FeeCollectionController as FeeCollectionController;
 use App\Http\Controllers\Dashbord\MailSettingController;
 use App\Http\Controllers\Dashbord\PermissionController as PermissionController;
+use App\Http\Controllers\Dashbord\ProfileController as DashbordProfileController;
 use App\Http\Controllers\Dashbord\ResultController as ResultController;
 use App\Http\Controllers\Dashbord\RoleController as RoleController;
 use App\Http\Controllers\Dashbord\SalaryController as SalaryController;
@@ -54,6 +55,11 @@ Route::middleware('auth')->group(function () {
  * -------------------------------------------------
  */
 Route::middleware(['auth'])->group(function () {
+    /**
+     * Auth Profile Dashbord
+     */
+    Route::resource('auth-profile', DashbordProfileController::class);
+
     /**
      * Dashbord Controller
      */

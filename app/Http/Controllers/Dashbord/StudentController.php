@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Dashbord;
 
 use App\Http\Controllers\Dashbord\BaseController as BaseController;
-use App\Models\Attendance;
 use App\Models\Classes;
-use App\Models\FeeCollection;
 use App\Models\Student;
 use App\Models\User;
 use Carbon\Carbon;
@@ -109,21 +107,9 @@ class StudentController extends BaseController
      */
     public function show(User $student)
     {
+        $studentProfile = $this->Profile($student);
 
-        $presentCount = Attendance::where('student_id', $student->id)->where('attendances', 'present')->count();
-        $lateCount = Attendance::where('student_id', $student->id)->where('attendances', 'late')->count();
-        $apsentCount = Attendance::where('student_id', $student->id)->where('attendances', 'apsent')->count();
-
-        $allPayments = FeeCollection::where('user_id', $student->id)->latest()->get();
-
-        $prevDate = date('Y-m', strtotime('-1 month'));
-        $monthlyFee = FeeCollection::where('user_id', $student->id)
-            ->whereYear('date', date('Y', strtotime($prevDate)))
-            ->whereMonth('date', date('m', strtotime($prevDate)))
-            ->where('expense', 'Monthly Fee')
-            ->first();
-
-        return view('dashbord.student.show', compact('student', 'monthlyFee', 'allPayments', 'presentCount', 'lateCount', 'apsentCount'));
+        return view('dashbord.student.show', $studentProfile);
     }
 
     /**
