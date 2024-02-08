@@ -1,6 +1,6 @@
 document.querySelector('#classSelector').addEventListener('change', (e) => {
     var selectedClass = e.target.value;
-  
+
     // Make an AJAX request to get subjects based on the selected class
     fetch('/get-data/'+ selectedClass)
     .then(res =>res.json())
@@ -26,7 +26,7 @@ document.querySelector('#classSelector').addEventListener('change', (e) => {
               students.forEach(student => {
                 let studentRow = `<tr>
                 <input type="hidden" name="studentId[]" value="${student.id}">
-               
+
                 <td>${student.name}</td>`;
                 // Add input fields for each subject
                 subjects.forEach(subject => {
@@ -47,20 +47,20 @@ document.querySelector('#classSelector').addEventListener('change', (e) => {
                           </div>
                       </td>`;
               });
-              
+
               studentRow += `</tr>`;
               studentsContainer.innerHTML += studentRow;
-                
+
       });
 
     })
     .catch(error => console.error('Error fetching subjects:', error));
   });
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 
 

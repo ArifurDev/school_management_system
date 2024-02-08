@@ -19,6 +19,7 @@ use App\Http\Controllers\Dashbord\SalarysheetController;
 use App\Http\Controllers\Dashbord\StudentController as StudentController;
 use App\Http\Controllers\Dashbord\StudentPromotionController as StudentPromotionController;
 use App\Http\Controllers\Dashbord\SubjectController as SubjectController;
+use App\Http\Controllers\Dashbord\SystemConfigController;
 use App\Http\Controllers\Dashbord\UserController as UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -169,6 +170,10 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/marksheet/generate/{student_id}/{exam_id}/{class_id}', [ExamMarksRegistrationController::class, 'markSheetGenerate'])->name('marksheet.show');
 
     Route::resource('/results', ResultController::class);
+
+    //site configurations setting  route are here
+    Route::resource('site-configurations', SystemConfigController::class);
+    Route::post('/db-backup', [SystemConfigController::class, 'backup'])->name('system.backup');
 });
 
 require __DIR__.'/auth.php';

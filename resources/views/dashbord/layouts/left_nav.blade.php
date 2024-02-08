@@ -11,7 +11,7 @@
         <nav class="iq-sidebar-menu">
             <ul id="iq-sidebar-toggle" class="iq-menu">
                 <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-                    <a href="{{ route('dashboard') }}" class="svg-icon">                        
+                    <a href="{{ route('dashboard') }}" class="svg-icon">
                         <svg  class="svg-icon" id="p-dash1" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
                         </svg>
@@ -111,7 +111,7 @@
                                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>
                                     </svg>
                                     <span class="ml-4">Exams</span>
-                                </a> 
+                                </a>
                             </li>
                             <li class="{{ Request::is('examsschedules','examsschedules/*') ? 'active' : '' }} ">
                                 <a href="#Examsschedules" class="collapsed" data-toggle="collapse" aria-expanded="false">
@@ -283,7 +283,7 @@
                                 <span class="ml-4">Users</span>
                             </a>
                         </li>
-        
+
                         <li class="{{ Request::is('roles','roles/*') ? 'active' : '' }}">
                             <a href="{{ route('roles.index') }}" class="">
                                 <svg class="svg-icon" id="p-dash7" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -292,7 +292,7 @@
                                 <span class="ml-4">Role</span>
                             </a>
                         </li>
-        
+
                         <li class="{{ Request::is('permissions','permissions/*') ? 'active' : '' }}">
                             <a href="{{ route('permissions.index') }}" class="">
                                 <svg class="svg-icon" id="p-dash7" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -309,7 +309,7 @@
                 -------------------Setting-----------------------
                 ------------------------------------------------->
 
-                <li class="{{ Request::is('mailsettings','mailsettings/*') ? 'active' : '' }} ">
+                <li class="{{ Request::is('mailsettings','mailsettings/*') || Request::is('site-configurations','site-configurations/*') ? 'active' : '' }} ">
                     <a href="#Setting" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                             <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
@@ -326,11 +326,12 @@
                                         <i class="las la-minus"></i><span>Env List</span>
                                     </a>
                             </li>
-                            <li class="{{ Request::is('mailsettings/create') ? 'active' : '' }}">
-                                    <a href="{{ route('mailsettings.create') }}">
-                                        <i class="las la-minus"></i><span>Add Env</span>
+                            <li class="{{ Request::is('site-configurations/*') ? 'active' : '' }}">
+                                    <a href="{{ route('site-configurations.create') }}">
+                                        <i class="las la-minus"></i><span>Configuration</span>
                                     </a>
                             </li>
+
                     </ul>
                 </li>
 
@@ -341,4 +342,4 @@
 
         <div class="p-3"></div>
     </div>
-    </div> 
+    </div>
