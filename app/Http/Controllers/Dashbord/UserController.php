@@ -59,10 +59,14 @@ class UserController extends BaseController
 
         //image upload image
         if ($request->hasFile('image')) {
+            // $image = $request->file('image');
+            // $file_name = $request->name.$request->phone.'.'.$image->getClientOriginalExtension();
+            // $file_path = 'upload/users_image/'.$file_name;
+            // Storage::disk('public')->put($file_path, $image->get());
+
             $image = $request->file('image');
-            $file_name = $request->name.$request->phone.'.'.$image->getClientOriginalExtension();
-            $file_path = 'upload/users_image/'.$file_name;
-            Storage::disk('public')->put($file_path, $image->get());
+            $file_name = $request->phone.time().'.'.$image->getClientOriginalExtension();
+            $image->storeAs('public/images', $file_name);
         }
         $user = User::create([
             'name' => $request->name,

@@ -143,7 +143,7 @@ class BaseController extends Controller
         $lateCount = Attendance::where('student_id', $student->id)->where('attendances', 'late')->count();
         $apsentCount = Attendance::where('student_id', $student->id)->where('attendances', 'apsent')->count();
 
-        $allPayments = FeeCollection::where('user_id', $student->id)->latest()->get();
+        $allPayments = FeeCollection::where('user_id', $student->id)->get();
 
         $prevDate = date('Y-m', strtotime('-1 month'));
         $monthlyFee = FeeCollection::where('user_id', $student->id)

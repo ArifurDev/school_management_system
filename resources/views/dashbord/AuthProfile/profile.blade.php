@@ -32,9 +32,14 @@
             <div class="container-fluid">
                 <div class="row d-flex justify-content-start bg-light rounded">
                     <div class="col-lg-2 p-1 ">
-                        <img class="avatar-100 rounded "
-                            src="{{ asset('storage/upload/users_image/' . $student->image) }}" alt="#"
-                            data-original-title="" title="">
+
+                            <img src="{{ asset('storage/images/'.$student->image) }}" alt="User Image">
+
+
+
+                            {{-- <img class="avatar-100 rounded "
+                            src="{{ storage_path()'./app/users_image/'.$student->image }}" alt="#"
+                            data-original-title="" title=""> --}}
                     </div>
                     <div class="col-lg-8 p-1">
                         <h2>{{ $student->name }}</h2>

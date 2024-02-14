@@ -68,40 +68,43 @@ class SystemConfigController extends BaseController
     //Backup
     public function backup(Request $request)
     {
-        // switch ($request->command) {
-        //     case 'db':
-        //         Artisan::call('backup:run --only-db');
-        //         return $this->returnMessage('Backup MySQL file', 'success');
-        //     break;
-        //     case 'file':
-        //         Artisan::call('backup:run --only-files');
-        //         return $this->returnMessage('Backup Project File', 'success');
-        //     break;
-        //     case 'both':
-        //         Artisan::call('backup:run');
-        //         return $this->returnMessage('Backup MySQL and Project Flie', 'success');
-        //     break;
+        switch ($request->command) {
+            case 'db':
+                Artisan::call('backup:run --only-db');
 
-        //     default:
-        //         return $this->returnMessage('Somting with wrong', 'error');
-        //         break;
-        // }
+                return $this->returnMessage('Backup MySQL file', 'success');
+                break;
+            case 'file':
+                Artisan::call('backup:run --only-files');
 
-        if ($request->command == 'db') {
-            Artisan::call('backup:run --only-db');
+                return $this->returnMessage('Backup Project File', 'success');
+                break;
+            case 'both':
+                Artisan::call('backup:run');
 
-            return $this->returnMessage('Backup MySQL file', 'success');
-        } elseif ($request->command == 'file') {
-            Artisan::call('backup:run --only-files');
+                return $this->returnMessage('Backup MySQL and Project Flie', 'success');
+                break;
 
-            return $this->returnMessage('Backup Project File', 'success');
-        } elseif ($request->command == 'both') {
-            Artisan::call('backup:run');
-
-            return $this->returnMessage('Backup MySQL and Project Flie', 'success');
-        } else {
-            return $this->returnMessage('Somting with wrong', 'error');
+            default:
+                return $this->returnMessage('Somting with wrong', 'error');
+                break;
         }
+
+        // if ($request->command == 'db') {
+        //     Artisan::call('backup:run --only-db');
+
+        //     return $this->returnMessage('Backup MySQL file', 'success');
+        // } elseif ($request->command == 'file') {
+        //     Artisan::call('backup:run --only-files');
+
+        //     return $this->returnMessage('Backup Project File', 'success');
+        // } elseif ($request->command == 'both') {
+        //     Artisan::call('backup:run');
+
+        //     return $this->returnMessage('Backup MySQL and Project Flie', 'success');
+        // } else {
+        //     return $this->returnMessage('Somting with wrong', 'error');
+        // }
 
     }
 }

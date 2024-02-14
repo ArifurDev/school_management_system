@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Dashbord</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -48,7 +48,7 @@
             <div class="row">
               <div class="col-xl-12 col-lg-8">
                     <div class="card">
-                     
+
                      @if ($errors->any())
                      <div class="alert alert-danger">
                         <ul>
@@ -61,12 +61,13 @@
 
                        <div class="card-body">
                           <div class="new-user-info">
-                             <form action="{{ route('students.store') }}" method="POST"  enctype="multipart/form-data">
+                             <form action="{{ route('students.update',$student->id) }}" method="POST"  enctype="multipart/form-data">
                               @csrf
+                              @method('PUT')
                                 <div class="row">
                                    <div class="form-group col-md-4">
                                       <label for="fname">Full Name</label>
-                                      <input type="text" class="form-control" id="fname" placeholder="Full Name" name="first_name" value="{{ $student->name }}">
+                                      <input type="text" class="form-control" id="fname" placeholder="Full Name" name="full_name" value="{{ $student->name }}">
                                    </div>
                                    <div class="form-group col-md-4">
                                     <label for="Email">Email</label>
@@ -112,7 +113,7 @@
                                         <option @selected($student->religion == "Christianity") value="Christianity">Christianity</option>
                                         <option @selected($student->religion == "Hinduism") value="Hinduism">Hinduism</option>
                                         <option @selected($student->religion == "Others") value="Others">Others</option>
-                                     </select>                                   
+                                     </select>
                                     </div>
                                    <div class="form-group col-md-4">
                                       <label for="Phone">Phone</label>
@@ -128,13 +129,13 @@
                                        @foreach ($Classes as $classes)
                                           <option @selected($student->class_id == $classes->id) value="{{ $classes->id }}">{{ $classes->class_name }}</option>
                                        @endforeach
-                                    </select> 
+                                    </select>
                                  </div>
                                  <div class="form-group col-md-4">
                                   <label for="Section">Section</label>
                                   <input type="text" class="form-control" id="Section" placeholder="2023-2024" name="section" value="{{ $student->section }}">
                                  </div>
-                                 
+
                                  <div class="form-group col-md-4">
                                     <label for="Group">Group</label>
                                     <input type="text" class="form-control" id="Group" placeholder="Group" name="group" value="{{ $student->group }}">

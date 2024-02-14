@@ -70,10 +70,14 @@ class StudentController extends BaseController
 
         // Check if an image was uploaded
         if ($request->hasFile('image')) {
+            // $image = $request->file('image');
+            // $file_name = $request->first_name.$request->phone.'.'.$image->getClientOriginalExtension();
+            // $file_path = 'upload/users_image/'.$file_name;
+            // Storage::disk('public')->put($file_path, $image->get());
+
             $image = $request->file('image');
-            $file_name = $request->first_name.$request->phone.'.'.$image->getClientOriginalExtension();
-            $file_path = 'upload/users_image/'.$file_name;
-            Storage::disk('public')->put($file_path, $image->get());
+            $file_name = $request->phone.time().'.'.$image->getClientOriginalExtension();
+            $image->storeAs('public/images', $file_name);
         }
 
         //create a student account
@@ -125,9 +129,65 @@ class StudentController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, User $student)
     {
-        //
+        $request->validate([
+            'full_name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$student->id,
+            'image' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'gender' => 'required',
+            'date_of_birth' => 'required',
+            'blood' => 'required',
+            'father_name' => 'required',
+            'mother_name' => 'required',
+            'religion' => 'required',
+            'class_id' => 'required',
+            'section' => 'required',
+            'group' => 'required',
+            'bio' => 'required',
+        ]);
+
+        $student->update([
+            'name' => $request->full_name,
+            'email' => $request->email,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+            'date_of_birth' => $request->date_of_birth,
+            'blood' => $request->blood,
+            'father_name' => $request->father_name,
+            'mother_name' => $request->mother_name,
+            'religion' => $request->religion,
+            'class_id' => $request->class_id,
+            'section' => $request->section,
+            'group' => $request->group,
+            'bio' => $request->bio,
+        ]);
+
+        //image check and upload
+        if ($request->hasFile('image')) {
+            $request->validate(['image' => 'mimes:png,jpg,jpeg']);
+
+            // Delete the previous image associated with the student
+            if ($student->image) {
+                $previous_image_path = public_path('storage/images/'.$student->image);
+                if (file_exists($previous_image_path)) {
+                    unlink($previous_image_path);
+                }
+            }
+
+            $image = $request->file('image');
+            $file_name = $request->phone.time().'.'.$image->getClientOriginalExtension();
+            $image->storeAs('public/images', $file_name);
+
+            $student->update([
+                'image' => $file_name,
+            ]);
+        }
+
+        return $this->returnMessage('Account Update successfulliy', 'info');
     }
 
     /**
