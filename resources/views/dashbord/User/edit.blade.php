@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Dashbord</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -76,9 +76,9 @@
                                <div class="form-group">
                                   <div class="crm-profile-img-edit position-relative">
                                     @if ($user->image)
-                                        <img src="{{ asset('storage/upload/users_image/'.$user->image) }}" class="img-fluid rounded avatar-110" alt="profile-image">
+                                    <img class="avatar-100 rounded " src="{{ asset('upload/images/'.$user->image) }}" alt="profile-pic" id="image">
                                     @else
-                                        <img src="{{ asset('backend/assets/images/user/10.jpg') }}" class="img-fluid rounded avatar-110" alt="profile-image">
+                                    <img class="avatar-100 rounded " src="{{ asset('backend/assets') }}/images/user/10.jpg" alt="profile-pic" id="image">
                                     @endif
 
                                      <div class="crm-p-image bg-primary">

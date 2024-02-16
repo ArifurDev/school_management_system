@@ -32,9 +32,11 @@
             <div class="container-fluid">
                 <div class="row d-flex justify-content-start bg-light rounded">
                     <div class="col-lg-2 p-1 ">
-                        <img class="avatar-100 rounded "
-                            src="{{ asset('storage/upload/users_image/' . $student->image) }}" alt="#"
-                            data-original-title="" title="">
+                            @if ($student->image)
+                            <img class="avatar-100 rounded " src="{{ asset('upload/images/'.$student->image) }}" alt="profile-pic" id="image">
+                            @else
+                            <img class="avatar-100 rounded " src="{{ asset('backend/assets') }}/images/user/10.jpg" alt="profile-pic" id="image">
+                            @endif
                     </div>
                     <div class="col-lg-8 p-1">
                         <h2>{{ $student->name }}</h2>

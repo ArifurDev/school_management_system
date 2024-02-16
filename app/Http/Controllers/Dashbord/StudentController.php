@@ -9,7 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class StudentController extends BaseController
 {
@@ -75,9 +75,10 @@ class StudentController extends BaseController
             // $file_path = 'upload/users_image/'.$file_name;
             // Storage::disk('public')->put($file_path, $image->get());
 
-            $image = $request->file('image');
-            $file_name = $request->phone.time().'.'.$image->getClientOriginalExtension();
-            $image->storeAs('public/images', $file_name);
+            //image upload image
+            $file_name = $request->phone.'-'.time().'.'.$request->file('image')->getClientOriginalExtension();
+            $img = Image::make($request->file('image'));
+            $img->save(base_path('public/upload/images/'.$file_name), 80);
         }
 
         //create a student account
@@ -168,19 +169,18 @@ class StudentController extends BaseController
 
         //image check and upload
         if ($request->hasFile('image')) {
-            $request->validate(['image' => 'mimes:png,jpg,jpeg']);
+            //product image validation if set image
+            $request->validate([
+                'image' => 'mimes:jpg,png,jpeg,gif',
+            ]);
 
-            // Delete the previous image associated with the student
-            if ($student->image) {
-                $previous_image_path = public_path('storage/images/'.$student->image);
-                if (file_exists($previous_image_path)) {
-                    unlink($previous_image_path);
-                }
-            }
+            //delete old image from folder
+            unlink(base_path('public/upload/images/'.$student->image));
 
-            $image = $request->file('image');
-            $file_name = $request->phone.time().'.'.$image->getClientOriginalExtension();
-            $image->storeAs('public/images', $file_name);
+            //customer image update
+            $file_name = $request->phone.'-'.time().'.'.$request->file('image')->getClientOriginalExtension();
+            $img = Image::make($request->file('image'));
+            $img->save(base_path('public/upload/images/'.$file_name), 80);
 
             $student->update([
                 'image' => $file_name,

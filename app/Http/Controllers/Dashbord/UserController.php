@@ -58,15 +58,12 @@ class UserController extends BaseController
         ]);
 
         //image upload image
+        // Check if an image was uploaded
         if ($request->hasFile('image')) {
-            // $image = $request->file('image');
-            // $file_name = $request->name.$request->phone.'.'.$image->getClientOriginalExtension();
-            // $file_path = 'upload/users_image/'.$file_name;
-            // Storage::disk('public')->put($file_path, $image->get());
-
-            $image = $request->file('image');
-            $file_name = $request->phone.time().'.'.$image->getClientOriginalExtension();
-            $image->storeAs('public/images', $file_name);
+            //image upload image
+            $file_name = $request->phone.'-'.time().'.'.$request->file('image')->getClientOriginalExtension();
+            $img = Image::make($request->file('image'));
+            $img->save(base_path('public/upload/images/'.$file_name), 80);
         }
         $user = User::create([
             'name' => $request->name,
@@ -118,16 +115,19 @@ class UserController extends BaseController
             'phone' => $request['phone'],
             'address' => $request['address'],
         ]);
+
         //image check and upload
         if ($request->hasFile('image')) {
-            $request->validate(['image' => 'mimes:png,jpg,jpeg']);
+            //product image validation if set image
+            $request->validate([
+                'image' => 'mimes:jpg,png,jpeg,gif',
+            ]);
             //delete old image from folder
-            unlink('storage/upload/users_image/'.$user->user_info->image);
-
-            $image = $request->file('image');
-            $file_name = $user->id.'.'.$image->getClientOriginalExtension();
-            $file_path = 'upload/users_image/'.$file_name;
-            Storage::disk('public')->put($file_path, $image->get());
+            unlink(base_path('public/upload/images/'.$user->image));
+            //customer image update
+            $file_name = $request->phone.'-'.time().'.'.$request->file('image')->getClientOriginalExtension();
+            $img = Image::make($request->file('image'));
+            $img->save(base_path('public/upload/images/'.$file_name), 80);
 
             $user->update([
                 'image' => $file_name,

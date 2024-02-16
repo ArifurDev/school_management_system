@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Dashbord</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -30,9 +30,11 @@
 
                <div class="row d-flex justify-content-start bg-light rounded">
                   <div class="col-lg-2 p-1 ">
-                      <img class="avatar-100 rounded "
-                          src="{{ asset('storage/upload/users_image/'.$user->image ?? 'user/10.jpg' ) }}" alt="#"
-                          data-original-title="" title="">
+                    @if ($user->image)
+                    <img class="avatar-100 rounded " src="{{ asset('upload/images/'.$user->image) }}" alt="profile-pic" id="image">
+                    @else
+                    <img class="avatar-100 rounded " src="{{ asset('backend/assets') }}/images/user/10.jpg" alt="profile-pic" id="image">
+                    @endif
                   </div>
                   <div class="col-lg-8 p-1">
                       <h2>{{ $user->name }}</h2>
@@ -41,7 +43,7 @@
                   <div class="col-lg-2  pt-4 mb-1">
                       <div class="d-flex align-items-center m-0 list-action">
                           <a href="{{ route('users.edit',$user->id) }}" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
-                         
+
                           <form action="{{ route('users.destroy',$user->id) }}" method="POST">
                               @csrf
                               @method("DELETE")

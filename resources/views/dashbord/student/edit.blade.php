@@ -149,7 +149,7 @@
                                  <div class="form-group">
                                     <div class="crm-profile-img-edit position-relative">
                                         @if ($student->image)
-                                        <img class="crm-profile-pic rounded avatar-100" src="{{ asset('storage/upload/users_image/'.$student->image) }}" alt="profile-pic" id="image">
+                                        <img class="crm-profile-pic rounded avatar-100" src="{{ asset('upload/images/'.$student->image) }}" alt="profile-pic" id="image">
                                         @else
                                         <img class="crm-profile-pic rounded avatar-100" src="{{ asset('backend/assets') }}/images/user/10.jpg" alt="profile-pic" id="image">
                                         @endif
