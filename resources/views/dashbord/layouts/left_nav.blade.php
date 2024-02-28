@@ -18,6 +18,20 @@
                         <span class="ml-4">Dashboards</span>
                     </a>
                 </li>
+
+
+
+                @if(Auth::user()->role == 'student')
+                    <li class="">
+                        <a href="{{ route('auth-profile.index') }}" class="svg-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
+                              </svg>
+                            <span class="ml-4">Student Profile</span>
+                        </a>
+                    </li>
+                @endif
+
                 <li class="{{ Request::is('classes','classes/*') || Request::is('subjects','subjects/*') ? 'active' : '' }} ">
                     <a href="#return" class="collapsed" data-toggle="collapse" aria-expanded="false">
                         <svg class="svg-icon" id="p-dash6" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
