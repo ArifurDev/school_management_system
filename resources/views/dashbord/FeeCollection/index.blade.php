@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Dashbord</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -67,11 +67,11 @@
                                   <td>{{ $loop->iteration  }}</td>
                                   <td>{{ $fee->User->name }}</td>
                                   <td>
-                                    <img src="{{ asset('storage/upload/users_image/'.$fee->User->image) }}" class="align-self-start mr-3 avatar-50 img-fluid rounded" alt="#">
+                                    <img src="{{ asset('upload/images/'.$fee->User->image) }}" class="align-self-start mr-3 avatar-50 img-fluid rounded" alt="#">
                                   </td>
                                   <td>{{ $fee->User->phone }}</td>
                                   <td>{{ $fee->User->classes->class_name}}</td>
-                                  <td>{{ $fee->expense }}</td> 
+                                  <td>{{ $fee->expense }}</td>
                                   <td>{{ $fee->amount }}</td>
                                   <td>
                                     <span class="badge @if ($fee->due != null ) badge-primary @else badge-success @endif">
@@ -98,7 +98,7 @@
                                               </div>
                                               <div class="modal-footer">
                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                                                              
+
                                                   <form action="{{ route("feecollections.destroy",$fee->id) }}" method="POST">
                                                     @csrf
                                                     @method("DELETE")
@@ -132,7 +132,7 @@
                 lengthChange: false,
                 buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
             } );
-        
+
             table.buttons().container()
                 .appendTo( '#example_wrapper .col-md-6:eq(0)' );
         } );
@@ -141,4 +141,4 @@
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

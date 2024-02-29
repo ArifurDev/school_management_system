@@ -38,6 +38,78 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Permission create']);
         $permission = Permission::create(['name' => 'Permission delete']);
 
+        $permission = Permission::create(['name' => 'Attendance access']);
+        $permission = Permission::create(['name' => 'Attendance create']);
+        $permission = Permission::create(['name' => 'Attendance edit']);
+        $permission = Permission::create(['name' => 'Attendance delete']);
+
+        $permission = Permission::create(['name' => 'Classes access']);
+        $permission = Permission::create(['name' => 'Classes create']);
+        $permission = Permission::create(['name' => 'Classes edit']);
+        $permission = Permission::create(['name' => 'Classes delete']);
+
+        $permission = Permission::create(['name' => 'Dashbord access']);
+        $permission = Permission::create(['name' => 'Dashbord create']);
+        $permission = Permission::create(['name' => 'Dashbord edit']);
+        $permission = Permission::create(['name' => 'Dashbord delete']);
+
+        $permission = Permission::create(['name' => 'Exam access']);
+        $permission = Permission::create(['name' => 'Exam create']);
+        $permission = Permission::create(['name' => 'Exam edit']);
+        $permission = Permission::create(['name' => 'Exam delete']);
+
+        $permission = Permission::create(['name' => 'ExamMarks access']);
+        $permission = Permission::create(['name' => 'ExamMarks create']);
+        $permission = Permission::create(['name' => 'ExamMarks edit']);
+        $permission = Permission::create(['name' => 'ExamMarks delete']);
+
+        $permission = Permission::create(['name' => 'Exam result']);
+
+        $permission = Permission::create(['name' => 'ExamSchedule access']);
+        $permission = Permission::create(['name' => 'ExamSchedule create']);
+        $permission = Permission::create(['name' => 'ExamSchedule edit']);
+        $permission = Permission::create(['name' => 'ExamSchedule delete']);
+
+        $permission = Permission::create(['name' => 'Expense access']);
+        $permission = Permission::create(['name' => 'Expense create']);
+        $permission = Permission::create(['name' => 'Expense edit']);
+        $permission = Permission::create(['name' => 'Expense delete']);
+
+        $permission = Permission::create(['name' => 'FeeCollection access']);
+        $permission = Permission::create(['name' => 'FeeCollection create']);
+        $permission = Permission::create(['name' => 'FeeCollection edit']);
+        $permission = Permission::create(['name' => 'FeeCollection delete']);
+
+        $permission = Permission::create(['name' => 'MailSetting access']);
+        $permission = Permission::create(['name' => 'MailSetting create']);
+        $permission = Permission::create(['name' => 'MailSetting edit']);
+        $permission = Permission::create(['name' => 'MailSetting delete']);
+
+        $permission = Permission::create(['name' => 'Salary access']);
+        $permission = Permission::create(['name' => 'Salary create']);
+        $permission = Permission::create(['name' => 'Salary edit']);
+        $permission = Permission::create(['name' => 'Salary delete']);
+
+        $permission = Permission::create(['name' => 'Salarysheet access']);
+        $permission = Permission::create(['name' => 'Salarysheet create']);
+        $permission = Permission::create(['name' => 'Salarysheet edit']);
+        $permission = Permission::create(['name' => 'Salarysheet delete']);
+
+        $permission = Permission::create(['name' => 'Student access']);
+        $permission = Permission::create(['name' => 'Student create']);
+        $permission = Permission::create(['name' => 'Student edit']);
+        $permission = Permission::create(['name' => 'Student delete']);
+
+        $permission = Permission::create(['name' => 'StudentPromotion access']);
+        $permission = Permission::create(['name' => 'StudentPromotion create']);
+        $permission = Permission::create(['name' => 'StudentPromotion edit']);
+        $permission = Permission::create(['name' => 'StudentPromotion delete']);
+
+        $permission = Permission::create(['name' => 'Subject access']);
+        $permission = Permission::create(['name' => 'Subject create']);
+        $permission = Permission::create(['name' => 'Subject edit']);
+        $permission = Permission::create(['name' => 'Subject delete']);
+
         $admin->givePermissionTo(Permission::all());
     }
 }

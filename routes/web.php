@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 // Route::get('/dashboard', function () {
@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
     /**
      * Auth Profile Dashbord
      */
-    Route::resource('auth-profile', DashbordProfileController::class);
+    //  Route::resource('auth-profile', DashbordProfileController::class);
 
     /**
      * Dashbord Controller

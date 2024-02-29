@@ -33,7 +33,7 @@
                 <div class="row d-flex justify-content-start bg-light rounded">
                     <div class="col-lg-2 p-1 ">
 
-                            <img src="{{ asset('upload/images/'.$student->image) }}" alt="User Image">
+                            <img class="avatar-100 rounded " src="{{ asset('upload/images/'.$student->image) }}" alt="User Image">
 
 
 

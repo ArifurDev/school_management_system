@@ -91,13 +91,22 @@ class RoleController extends BaseController
      */
     public function attachPermissions(Request $request, Role $role)
     {
-        if ($role->hasPermissionTo($request->permission)) {
-            return $this->returnMessage('This permission already exists', 'error');
-        } else {
-            $role->givePermissionTo($request->permission);
+        // if ($role->hasPermissionTo($request->permission)) {
+        //     return $this->returnMessage('This permission already exists', 'error');
+        // } else {
+        //     $role->givePermissionTo($request->permission);
 
-            return $this->returnMessage('The '.$request->permission.' has been attached successfully', 'success');
+        //     return $this->returnMessage('The '.$request->permission.' has been attached successfully', 'success');
+        // }
+
+        foreach ($request->permission as $permission) {
+            if (! $role->hasPermissionTo($permission)) {
+                $role->givePermissionTo($permission);
+            }
         }
+
+        return $this->returnMessage('permission has been attached successfully', 'success');
+
     }
 
     /**

@@ -15,17 +15,17 @@ class ProfileController extends BaseController
     public function index()
     {
         //Auth student role check
-        $student = User::where('id', Auth::id())->whereHas('roles', function ($query) {
-            $query->where('name', 'student');
-        })->exists(); // Check if any user with the given ID has the student role
+        // $student = User::where('id', Auth::id())->whereHas('roles', function ($query) {
+        //     $query->where('name', 'student');
+        // })->exists(); // Check if any user with the given ID has the student role
 
-        if ($student) {
-            $authProfile = $this->Profile(Auth::user());
+        // if ($student) {
+        //     $authProfile = $this->Profile(Auth::user());
 
-            return view('dashbord.AuthProfile.profile', $authProfile);
-        } else {
-            return $this->returnMessage('Only Student Profile', 'error');
-        }
+        //     return view('dashbord.AuthProfile.profile', $authProfile);
+        // } else {
+        //     return $this->returnMessage('Only Student Profile', 'error');
+        // }
 
     }
 

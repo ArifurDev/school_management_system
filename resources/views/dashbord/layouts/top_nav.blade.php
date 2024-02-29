@@ -1,3 +1,5 @@
+
+
 <div class="iq-top-navbar">
     <div class="iq-navbar-custom">
         <nav class="navbar navbar-expand-lg navbar-light p-0">
@@ -239,11 +241,9 @@
                                                 class="rounded profile-img img-fluid avatar-70">
                                         </div>
                                         <div class="p-3">
-                                            <h5 class="mb-1">JoanDuo@property.com</h5>
-                                            <p class="mb-0">Since 10 march, 2020</p>
+                                            <h5 class="mb-1">{{ auth()->user()->email ?? 'N/D' }}</h5>
+                                            <p class="mb-0">{{ auth()->user()->created_at ?? 'N/D' }}</p>
                                             <div class="d-flex align-items-center justify-content-center mt-3">
-                                                <a href="{{ route('auth-profile.index') }}" class="btn border mr-2">Profile</a>
-
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
                                                     <button type="submit" class="btn border">Sign Out</button>

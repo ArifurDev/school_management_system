@@ -40,17 +40,17 @@
                                         <li class="breadcrumb-item active" aria-current="page">Salary Sheet</li>
                                     </ol>
                                 </nav>
-                                <h4 class="mb-3">Salary Sheet</h4>
+                                <h4 class="mb-3">Salary Sheet Create</h4>
                             </div>
-                            <a href="{{ route('salarysheet.index') }}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Salary Sheets</a>
+                            <a href="{{ route('salarysheet.index') }}" class="btn btn-primary add-list">Salary Sheets</a>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="row rounded mt-3 p-3">
                     <div class="col-lg-12 col-md-10 col-sm-10">
                         <div class="card bg-white">
-                            <div class="card-body">                      
+                            <div class="card-body">
                                 <form action="{{ route('salarysheet.store') }}" method="POST">
                                     @csrf
                                         <div class="form-row p-2">

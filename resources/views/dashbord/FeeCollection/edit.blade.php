@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Fee Collection</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -58,13 +58,13 @@
                         </div>
                         <div class="card-body">
                             <div class="row mb-3">
-                                <div class="col-md-3">    
+                                <div class="col-md-3">
                                     <div class="card-body p-0 mt-lg-2 mt-0">
-                                        <img src="{{ asset('storage/upload/users_image/'.$feecollection->User->image) }}" class="align-self-start mr-3 avatar-120 img-fluid rounded" alt="#">   
+                                        <img src="{{ asset('upload/images/'.$feecollection->User->image) }}" class="align-self-start mr-3 avatar-120 img-fluid rounded" alt="#">
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">    
+                                <div class="col-md-3">
                                     <div class="card-body p-0 mt-lg-2 mt-0">
                                         <h6 class="mb-3">Name</h6>
                                         <p class="mb-0 mr-4">{{ $feecollection->User->name }}</p>
@@ -76,8 +76,8 @@
                                     </div>
                                 </div>
 
-                                
-                                <div class="col-md-3">    
+
+                                <div class="col-md-3">
                                     <div class="card-body p-0 mt-lg-2 mt-0">
                                         <h6 class="mb-3">Email</h6>
                                         <p class="mb-0 mr-4">{{ $feecollection->User->email }}</p>
@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">    
+                                <div class="col-md-3">
                                     <div class="card-body p-0 mt-lg-2 mt-0">
                                         <h6 class="mb-3">Phone</h6>
                                         <p class="mb-0 mr-4">{{ $feecollection->User->phone }}</p>
@@ -101,19 +101,19 @@
                             <form action="{{ route('feecollections.update',$feecollection->id) }}" method="POST" data-toggle="validator" novalidate="true">
                                 @csrf
                                 @method("PUT")
-                                <div class="row"> 
+                                <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="expense">Expense Type</label>
                                             <select class="custom-select" id="expense" name="expense_type">
-                                                <option value=" " >Please Select</option>    
+                                                <option value=" " >Please Select</option>
                                                 <option @selected( $feecollection->expense == "Exam" ) value="Exam" >Exam</option>
                                                 <option @selected( $feecollection->expense == "Class Test" ) value="Class Test">Class Test</option>
                                                 <option @selected( $feecollection->expense == "Monthly Fee" ) value="Monthly Fee">Monthly Fee</option>
                                                 <option @selected( $feecollection->expense == "Others" ) value="Others">Others</option>
                                             </select>
                                          </div>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Amount</label>
@@ -141,7 +141,7 @@
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
-                                </div>                            
+                                </div>
                                 <button type="submit" class="btn btn-primary mr-2 disabled">Update</button>
                             </form>
                         </div>
@@ -156,4 +156,4 @@
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

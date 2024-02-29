@@ -53,7 +53,7 @@
                 <div class="row d-flex justify-content-start bg-light rounded">
                     <div class="col-lg-2 p-1 ">
                         <img class="avatar-100 rounded "
-                            src="{{ asset('storage/upload/users_image/' . $user->image) }}" alt="#"
+                            src="{{ asset('upload/images/' . $user->image) }}" alt="#"
                             data-original-title="" title="">
                     </div>
                     <div class="col-lg-8 p-1">
@@ -213,13 +213,13 @@
                                       </td>
                                    </tr>
                                    @endforeach
-                                 
+
                                   </tbody>
                               </table>
                               </div>
                            </div>
                         </div>
-                     </div>      
+                     </div>
                 </div>
 
                 <!-- Page end  -->
@@ -234,7 +234,7 @@
             lengthChange: false,
             buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
         } );
-    
+
         table.buttons().container()
             .appendTo( '#example_wrapper .col-md-6:eq(0)' );
     } );
