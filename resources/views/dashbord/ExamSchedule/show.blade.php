@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Exam Schedules</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -40,26 +40,9 @@
                     </div>
                 </div>
 
-                <div class="col-lg-12">
-                  <div class="card">
-                      <div class="card-header d-flex justify-content-between">
-                          <div class="header-title">
-                              <h4 class="card-title">Exam Schedules</h4>
-                          </div>
-                          @if ($errors->any())
-                          <div class="alert alert-danger">
-                             <ul>
-                                   @foreach ($errors->all() as $error)
-                                      <li>{{ $error }}</li>
-                                   @endforeach
-                             </ul>
-                          </div>
-                       @endif
-                      </div>
-                  </div>
-              </div>
 
                 <div class="col-lg-12">
+                    <h4 class="">Exam Schedules</h4>
                     <div class="card card-block card-stretch card-height">
                        <div class="card-body">
                           <div class="table-responsive">
@@ -67,13 +50,13 @@
                               <thead>
                                   <tr>
                                       <th>SL</th>
-                                      <th>Exam</th>   
+                                      <th>Exam</th>
                                       <th>Class</th>
-                                      <th>Subject</th>   
+                                      <th>Subject</th>
                                       <th>Exam Date</th>
-                                      <th>Start Time</th>   
+                                      <th>Start Time</th>
                                       <th>End Time</th>
-                                      <th>Room Number</th>   
+                                      <th>Room Number</th>
                                       <th>Full Marks</th>
                                       <th>Pass Marks</th>
                                       <th>Action</th>
@@ -104,7 +87,7 @@
                                   </td>
                                </tr>
                                @endforeach
-                             
+
                               </tbody>
                           </table>
                           </div>
@@ -124,7 +107,7 @@
                 lengthChange: false,
                 buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
             } );
-        
+
             table.buttons().container()
                 .appendTo( '#example_wrapper .col-md-6:eq(0)' );
         } );
@@ -133,4 +116,4 @@
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

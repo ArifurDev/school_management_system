@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Exams</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -60,25 +60,25 @@
                       <div class="card-body">
                           <form action="{{ route('exams.store') }}" method="POST" data-toggle="validator" novalidate="true">
                               @csrf
-                              <div class="row"> 
-                                  <div class="col-md-7">                      
+                              <div class="row">
+                                  <div class="col-md-7">
                                       <div class="form-group">
                                           <label>Exam</label>
                                           <input type="text" class="form-control" required="" placeholder="Enter Exam Name" name="exam">
                                           <div class="help-block with-errors"></div>
                                       </div>
-                                  </div>    
+                                  </div>
                                   <div class="col-md-5">
                                       <div class="form-group">
                                           <label for="expense">Status</label>
                                           <select class="custom-select" id="expense" name="status">
-                                              <option value=" " >Please Select</option>    
+                                              <option value=" " >Please Select</option>
                                               <option value="Show" >Show</option>
                                               <option value="Hidden">Hidden</option>
                                           </select>
                                        </div>
-                                  </div> 
-                              </div>                            
+                                  </div>
+                              </div>
                               <button type="submit" class="btn btn-primary mr-2 disabled">Create Exam</button>
                               <button type="reset" class="btn btn-danger">Reset</button>
                           </form>
@@ -94,7 +94,7 @@
                               <thead>
                                   <tr>
                                       <th>SL</th>
-                                      <th>Exam</th>   
+                                      <th>Exam</th>
                                       <th>Status</th>
                                       <th>Action</th>
                                   </tr>
@@ -119,7 +119,7 @@
                                   </td>
                                </tr>
                                @endforeach
-                             
+
                               </tbody>
                           </table>
                           </div>
@@ -137,9 +137,8 @@
         $(document).ready(function() {
             var table = $('#example').DataTable( {
                 lengthChange: false,
-                buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
             } );
-        
+
             table.buttons().container()
                 .appendTo( '#example_wrapper .col-md-6:eq(0)' );
         } );
@@ -148,4 +147,4 @@
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

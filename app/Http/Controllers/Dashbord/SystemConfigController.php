@@ -89,22 +89,5 @@ class SystemConfigController extends BaseController
                 return $this->returnMessage('Somting with wrong', 'error');
                 break;
         }
-
-        // if ($request->command == 'db') {
-        //     Artisan::call('backup:run --only-db');
-
-        //     return $this->returnMessage('Backup MySQL file', 'success');
-        // } elseif ($request->command == 'file') {
-        //     Artisan::call('backup:run --only-files');
-
-        //     return $this->returnMessage('Backup Project File', 'success');
-        // } elseif ($request->command == 'both') {
-        //     Artisan::call('backup:run');
-
-        //     return $this->returnMessage('Backup MySQL and Project Flie', 'success');
-        // } else {
-        //     return $this->returnMessage('Somting with wrong', 'error');
-        // }
-
     }
 }

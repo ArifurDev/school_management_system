@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Dashbord;
 
 use App\Http\Controllers\Dashbord\BaseController as BaseController;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends BaseController
 {
@@ -14,19 +12,7 @@ class ProfileController extends BaseController
      */
     public function index()
     {
-        //Auth student role check
-        // $student = User::where('id', Auth::id())->whereHas('roles', function ($query) {
-        //     $query->where('name', 'student');
-        // })->exists(); // Check if any user with the given ID has the student role
-
-        // if ($student) {
-        //     $authProfile = $this->Profile(Auth::user());
-
-        //     return view('dashbord.AuthProfile.profile', $authProfile);
-        // } else {
-        //     return $this->returnMessage('Only Student Profile', 'error');
-        // }
-
+        //
     }
 
     /**

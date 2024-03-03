@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Exam Result</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -30,7 +30,7 @@
            <div class="row">
             <div class="col-sm-12 text-center">
                 <h3>{{ $exam->exam }}</h3>
-            </div>   
+            </div>
            </div>
            <div class="row">
             <div class="col-lg-12 d-flex flex-wrap align-items-center justify-content-between mb-4">
@@ -52,7 +52,7 @@
                         <span>33% to 39% = D</span><br>
                         <span>0% to 32% = F</span>
                     </div>
-                    <img src="{{ asset('storage/upload/users_image/'.$student->image ?? 'user/10.jpg' ) }}" class="style-img img-fluid m-auto p-3" width="150" alt="image">
+                    <img src="{{ asset('upload/images/'.$student->image ?? 'user/10.jpg' ) }}" class="style-img img-fluid m-auto p-3" width="150" alt="image">
                 </div>
             </div>
             <div class="col-lg-12">
@@ -78,7 +78,7 @@
                     </tbody>
                 </table>
 
-                  
+
 
                 </div>
             </div>
@@ -123,7 +123,7 @@
       </div>
     </div>
 
-    
+
     {{-- js code --}}
     <script>
         const printPage = () =>{
@@ -133,4 +133,4 @@
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Marks Registration</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -59,37 +59,37 @@
                        @endif
                       </div>
                         <div class="card-body">
-                              <div class="row">   
+                              <div class="row">
                                   <div class="col-md-5">
                                       <div class="form-group">
                                           <label for="examSelector">Exam</label>
                                           <select class="custom-select" id="examSelector" name="exam_id">
-                                              <option value=" " >Please Select</option>    
+                                              <option value=" " >Please Select</option>
                                               @foreach ($exams as $exam)
-                                                 <option value="{{ $exam->id }}" >{{ $exam->exam }}</option>    
+                                                 <option value="{{ $exam->id }}" >{{ $exam->exam }}</option>
                                               @endforeach
                                           </select>
                                        </div>
-                                  </div> 
+                                  </div>
 
                                   <div class="col-md-5">
                                     <div class="form-group">
                                         <label for="classSelector">Class</label>
                                         <select class="custom-select"  name="class" id="classSelector">
-                                            <option value=" " >Please Select</option>    
+                                            <option value=" " >Please Select</option>
                                             @foreach ($classes as $class)
-                                               <option value="{{ $class->id }}" >{{ $class->class_name }}</option>    
+                                               <option value="{{ $class->id }}" >{{ $class->class_name }}</option>
                                             @endforeach
                                         </select>
                                      </div>
-                                </div> 
-                              </div>                            
+                                </div>
+                              </div>
 
-                      </div> 
+                      </div>
                   </div>
               </div>
 
-                <div class="col-lg-12" id="tableData">
+                <div class="col-lg-12 " id="tableData">
                       <div class="card card-block card-stretch card-height">
                           <div class="card-body" >
                                 <div class="table-responsive" >
@@ -100,10 +100,10 @@
                                             <tr id="table_head_tr"><!--show data dynamically--></tr>
                                         </thead>
                                             <tbody id="studentsContainer"><!--show data dynamically--></tbody>
-                                            <input type="hidden" name="exam_id" id="setExamId"> 
-                                            <input type="hidden" name="class_id" id="setClassId"> 
+                                            <input type="hidden" name="exam_id" id="setExamId">
+                                            <input type="hidden" name="class_id" id="setClassId">
                                         </table>
-                                        <button type="submit" class="btn btn-primary ">Create Schedule</button>
+                                        <button type="submit" class="btn btn-primary ">Submit Exam Marks</button>
                                     </form>
                                 </div>
                           </div>
@@ -123,4 +123,4 @@
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

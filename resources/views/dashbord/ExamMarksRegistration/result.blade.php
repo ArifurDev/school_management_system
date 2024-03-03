@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Exam Result</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -48,9 +48,9 @@
                           <h4 class="mb-3">Exam Result</h4>
                           <p class="m-3">
                             <div class="d-flex align-items-center">
-                              <img src="{{ asset('storage/upload/users_image/'.$studentInfo->user->image ?? 'user/10.jpg' ) }}" class="img-fluid rounded avatar-50 mr-3" alt="image">
+                              <img src="{{ asset('upload/images/'.$studentInfo->user->image ?? 'user/10.jpg' ) }}" class="img-fluid rounded avatar-50 mr-3" alt="image">
                               <div>
-                                  {{ $studentInfo->user->name }}                 
+                                  {{ $studentInfo->user->name }}
                                   <p class="mb-0"><small>{{ $studentInfo->classes->class_name }}</small></p>
                                   <div class="d-flex align-items-center list-action">
                                     <a href="{{ route('marksheet.show', [
@@ -65,7 +65,7 @@
                                             <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1m-3 2v.634l.549-.317a.5.5 0 1 1 .5.866L7 7l.549.317a.5.5 0 1 1-.5.866L6.5 7.866V8.5a.5.5 0 0 1-1 0v-.634l-.549.317a.5.5 0 1 1-.5-.866L5 7l-.549-.317a.5.5 0 0 1 .5-.866l.549.317V5.5a.5.5 0 1 1 1 0m-2 4.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1m0 2h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1"/>
                                         </svg>
                                     </a>
-                      
+
                                 </div>
                               </div>
                           </div>
@@ -85,7 +85,7 @@
                                       <th>Subject</th>
                                       <th>Exam</th>
                                       <th>Class Work</th>
-                                      <th>Home Work</th>                                      
+                                      <th>Home Work</th>
                                       <th>Mark</th>
                                       <th>Attendance Mark</th>
                                       <th>Total</th>
@@ -114,7 +114,7 @@
                                   </td>
                                </tr>
                                @endforeach
-                             
+
                               </tbody>
                           </table>
                           </div>
@@ -134,7 +134,7 @@
                 lengthChange: false,
                 buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
             } );
-        
+
             table.buttons().container()
                 .appendTo( '#example_wrapper .col-md-6:eq(0)' );
         } );
@@ -143,4 +143,4 @@
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>
