@@ -59,13 +59,15 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center">
-                  <!-- Checkbox -->
-                  <div class="form-check mb-0">
-                    <input class="form-check-input me-2" type="checkbox" value="remember" id="remember_me" />
-                    <label class="form-check-label" for="remember_me">
-                      Remember me
-                    </label>
-                  </div>
+                  <!-- Remember Me -->
+                    <div class="block mt-4">
+                        <label for="remember_me" class="inline-flex items-center">
+                            <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                            <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                        </label>
+                    </div>
+
+
                   @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}" class="text-body">Forgot password?</a>
                   @endif

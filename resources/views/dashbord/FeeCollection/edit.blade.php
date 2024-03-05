@@ -54,7 +54,7 @@
                                      @endforeach
                                </ul>
                             </div>
-                         @endif
+                            @endif
                         </div>
                         <div class="card-body">
                             <div class="row mb-3">

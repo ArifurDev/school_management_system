@@ -137,7 +137,7 @@ class ExamMarksRegistrationController extends BaseController
      */
     public function edit(ExamMarksRegistration $exammarksregistration)
     {
-        return view('dashbord.ExamMarksRegistration.edit');
+        return view('dashbord.ExamMarksRegistration.edit', compact('exammarksregistration'));
     }
 
     /**
@@ -145,7 +145,31 @@ class ExamMarksRegistrationController extends BaseController
      */
     public function update(Request $request, ExamMarksRegistration $exammarksregistration)
     {
+        // validation
+        $request->validate([
+            'home_work' => ['required'],
+            'class_work' => ['required'],
+            'mark' => ['required'],
+        ]);
 
+        //get some data
+        $fullMark = $exammarksregistration->full_marks;
+        $attendance_mark = $exammarksregistration->attendance_mark;
+
+        $total_marks = $request->class_work + $request->home_work + $request->mark + $attendance_mark;
+
+        if (! ($total_marks > $fullMark)) {
+            $exammarksregistration->update([
+                'class_work' => $request->class_work,
+                'home_work' => $request->home_work,
+                'mark' => $request->mark,
+                'total_mark' => $total_marks,
+            ]);
+
+            return $this->returnMessage('Exam Marks update Successfully!', 'success');
+        } else {
+            return $this->returnMessage('Total Marks is greater than Full Marks!', 'error');
+        }
     }
 
     /**
@@ -159,8 +183,8 @@ class ExamMarksRegistrationController extends BaseController
     //show  result with student id and exam id
     public function result_show($student_id, $exam_id)
     {
-        $MarksRegistrations = ExamMarksRegistration::where('exam_id', $exam_id)->where('student_id', $student_id)->select('exam_id', 'subject_id', 'class_work', 'home_work', 'mark', 'attendance_mark', 'total_mark', 'full_marks', 'pass_marks')->get();
-        $studentInfo = ExamMarksRegistration::where('exam_id', $exam_id)->where('student_id', $student_id)->select('exam_id', 'student_id', 'class_id')->first();
+        $MarksRegistrations = ExamMarksRegistration::where('exam_id', $exam_id)->where('student_id', $student_id)->select('id', 'exam_id', 'subject_id', 'class_work', 'home_work', 'mark', 'attendance_mark', 'total_mark', 'full_marks', 'pass_marks')->get();
+        $studentInfo = ExamMarksRegistration::where('exam_id', $exam_id)->where('student_id', $student_id)->select('id', 'exam_id', 'student_id', 'class_id')->first();
 
         return view('dashbord.ExamMarksRegistration.result', compact('MarksRegistrations', 'studentInfo'));
     }

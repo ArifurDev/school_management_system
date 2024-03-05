@@ -39,11 +39,6 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-// Route::get('/dashboard', function () {
-//     // return view('dashboard');
-//     return view('dashbord.maniDashbord');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -55,7 +50,7 @@ Route::middleware('auth')->group(function () {
  * ---------------------Dashbord Controller-------------->
  * -------------------------------------------------
  */
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     /**
      * Auth Profile Dashbord
      */
@@ -167,7 +162,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/exammarksregistrations/result/shows/{student_id}/{exam_id}', [ExamMarksRegistrationController::class, 'result_show'])->name('marksregistrations.result');
 
     Route::get('/marksheet/generate/{student_id}-{student_slug}/{exam_id}-{exam_slug}/{class_id}-{class_slug}', [ExamMarksRegistrationController::class, 'markSheetGenerate'])->name('marksheet.show');
-    // Route::get('/marksheet/generate/{student_id}/{exam_id}/{class_id}', [ExamMarksRegistrationController::class, 'markSheetGenerate'])->name('marksheet.show');
 
     Route::resource('/results', ResultController::class);
 
