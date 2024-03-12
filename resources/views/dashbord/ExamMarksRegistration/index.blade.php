@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Marks Registration</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="col-lg-12">
-                    <h4 class="card-title">Exam Marks Registration</h4>    
+                    <h4 class="card-title">Exam Marks Registration</h4>
               </div>
 
                 <div class="col-lg-12">
@@ -71,7 +71,7 @@
                                   </td>
                                </tr>
                                @endforeach
-                             
+
                               </tbody>
                           </table>
                           </div>
@@ -89,9 +89,9 @@
         $(document).ready(function() {
             var table = $('#example').DataTable( {
                 lengthChange: false,
-                buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
+                // buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
             } );
-        
+
             table.buttons().container()
                 .appendTo( '#example_wrapper .col-md-6:eq(0)' );
         } );
@@ -100,4 +100,4 @@
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

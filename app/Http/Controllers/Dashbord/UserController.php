@@ -122,8 +122,12 @@ class UserController extends BaseController
             $request->validate([
                 'image' => 'mimes:jpg,png,jpeg,gif',
             ]);
-            //delete old image from folder
-            unlink(base_path('public/upload/images/'.$user->image));
+
+            if ($user->image) {
+                //delete old image from folder
+                unlink(base_path('public/upload/images/'.$user->image));
+            }
+
             //customer image update
             $file_name = $request->phone.'-'.time().'.'.$request->file('image')->getClientOriginalExtension();
             $img = Image::make($request->file('image'));

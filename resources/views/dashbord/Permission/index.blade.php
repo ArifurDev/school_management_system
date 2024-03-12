@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Dashbord</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -60,9 +60,8 @@
                                     <td>{{ $permission->name }}</td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
-                                            <a href="#" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
                                             <a href="{{ route('permissions.edit',$permission->id) }}" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
-                                           
+
                                             <form action="{{ route('permissions.destroy',$permission->id) }}" method="POST">
                                                 @csrf
                                                 @method("DELETE")
@@ -85,4 +84,4 @@
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

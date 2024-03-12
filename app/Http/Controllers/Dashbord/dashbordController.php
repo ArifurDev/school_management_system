@@ -39,7 +39,6 @@ class dashbordController extends BaseController
 
             'today_feeCollection' => FeeCollection::whereDate('date', $today_date)->sum('amount'),
             'today_feeCollection_due' => FeeCollection::whereDate('date', $today_date)->sum('due'),
-
         ];
 
         //student profile
