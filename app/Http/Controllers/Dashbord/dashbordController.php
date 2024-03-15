@@ -34,11 +34,11 @@ class dashbordController extends BaseController
             'today_present' => Attendance::where('attendances', 'Present')->whereDate('date', $today_date)->count(),
             'today_absent' => Attendance::where('attendances', 'Absent')->whereDate('date', $today_date)->count(),
 
-            'today_expens' => Expense::whereDate('date', $today_date)->sum('amount'),
-            'today_expens_due' => Expense::whereDate('date', $today_date)->sum('due'),
+            'today_expens' => Expense::whereDate('created_at', $today_date)->sum('amount'),
+            'today_expens_due' => Expense::whereDate('created_at', $today_date)->sum('due'),
 
-            'today_feeCollection' => FeeCollection::whereDate('date', $today_date)->sum('amount'),
-            'today_feeCollection_due' => FeeCollection::whereDate('date', $today_date)->sum('due'),
+            'today_feeCollection' => FeeCollection::whereDate('created_at', $today_date)->sum('amount'),
+            'today_feeCollection_due' => FeeCollection::whereDate('created_at', $today_date)->sum('due'),
         ];
 
         //student profile

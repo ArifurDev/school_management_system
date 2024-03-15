@@ -195,9 +195,9 @@
                 </div>
 
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row">
+            <div class="col-md-12">
+                <div class="row ">
+                       <div class="col-md-6">
                             <a href="{{ route('expenses.index') }}" title="expenses">
                                 <div class="card card-block card-stretch card-height">
                                     <div class="card-body">
@@ -207,83 +207,48 @@
                                                     <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z"/>
                                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                                     <path d="M8 13.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11m0 .5A6 6 0 1 0 8 2a6 6 0 0 0 0 12"/>
-                                                  </svg>
+                                                </svg>
                                             </div>
-                                            <div>
+                                            <div class="d-flex justify-content-between ">
                                                 <span class="btn mb-1 bg-success-light">
-                                                    Amount <span class="badge badge-success ml-2">${{ $today_feeCollection ?? '00.00' }}</span>
+                                                    Amount <span class="badge badge-success ml-2">${{ $today_expens ?? '00.00' }}</span>
                                                 </span></br>
-                                                <span class="btn mb-1 bg-primary-light">
-                                                    Due <span class="badge badge-primary ml-2">${{ $today_feeCollection_due ?? '00.00' }}</span>
+                                                <span class="btn mb-1 bg-primary-light ml-1">
+                                                    Due <span class="badge badge-danger ml-2">${{ $today_expens ?? '00.00' }}</span>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                </a>
-
-                                <a href="{{ route('feecollections.index') }}">
-                                    <div class="card">
-                                        <div class="card-header d-flex justify-content-between">
-                                            <div class="header-title">
-                                              <h4 class="card-title">Fee Collection</h4>
-                                            </div>
+                            </a>
+                       </div>
+                       <div class="col-md-6">
+                        <a href="{{ route('feecollections.index') }}" title="fee collection">
+                            <div class="card card-block card-stretch card-height">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center card-total-sale">
+                                        <div class="icon iq-icon-box-2 bg-success-light">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line-fill" viewBox="0 0 16 16">
+                                                <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
+                                            </svg>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="d-flex justify-content-between ">
                                             <span class="btn mb-1 bg-success-light">
                                                 Amount <span class="badge badge-success ml-2">${{ $today_feeCollection ?? '00.00' }}</span>
-                                            </span>
-                                            <span class="btn mb-1 bg-primary-light">
-                                                Due <span class="badge badge-primary ml-2">${{ $today_feeCollection_due ?? '00.00' }}</span>
+                                            </span></br>
+                                            <span class="btn mb-1 bg-primary-light ml-1">
+                                                Due <span class="badge badge-danger ml-2">${{ $today_feeCollection_due ?? '00.00' }}</span>
                                             </span>
                                         </div>
-                                      </div>
-                                    </a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-lg-4 col-md-4">
-                        <a href="{{ route('expenses.index') }}">
-                        <div class="card">
-                            <div class="card-header d-flex justify-content-between">
-                                <div class="header-title">
-                                  <h4 class="card-title">Expenses</h4>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <span class="btn mb-1 bg-success-light">
-                                    Amount <span class="badge badge-success ml-2">${{ $today_expens ?? '00.00' }}</span>
-                                </span>
-                                <span class="btn mb-1 bg-primary-light">
-                                    Due <span class="badge badge-primary ml-2">${{ $today_expens_due ?? '00.00' }}</span>
-                                </span>
-                            </div>
-                          </div>
                         </a>
-                    </div>
-                    <div class="col-lg-4 col-md-4">
-                        <a href="{{ route('feecollections.index') }}">
-                        <div class="card">
-                            <div class="card-header d-flex justify-content-between">
-                                <div class="header-title">
-                                  <h4 class="card-title">Fee Collection</h4>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <span class="btn mb-1 bg-success-light">
-                                    Amount <span class="badge badge-success ml-2">${{ $today_feeCollection ?? '00.00' }}</span>
-                                </span>
-                                <span class="btn mb-1 bg-primary-light">
-                                    Due <span class="badge badge-primary ml-2">${{ $today_feeCollection_due ?? '00.00' }}</span>
-                                </span>
-                            </div>
-                          </div>
-                        </a>
-                    </div>
+                       </div>
                 </div>
+              </div>
+
+
 
 
                 <div class="row">
