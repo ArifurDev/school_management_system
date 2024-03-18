@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('class_name')->nullable();
+            $table->string('head_teacher_id')->nullable();
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Class</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -30,7 +30,6 @@
                 <div class="col-lg-12">
                     <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                         <div>
-
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb ">
                                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-danger"><i class="ri-home-4-line mr-1 float-left"></i>Dashbord</a></li>
@@ -53,19 +52,31 @@
                                     <div class="form-group">
                                         <label for="exampleInputText">Class name</label>
                                        <input type="text" class="form-control" id="exampleInputText" name="class_name" placeholder="Enter a new class">
-            
+
                                         @error('class_name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
-            
+
                                     </div>
+
+                                    <div class="form-group">
+                                        <label>Head Teachers *</label>
+                                        <div class="dropdown bootstrap-select form-control show dropup">
+                                            <select name="head_teacher_id" class="selectpicker form-control" data-style="py-0" tabindex="null">
+                                                @foreach ($head_teachers as $head_teacher)
+                                                    <option value="{{ $head_teacher->id }}">{{ $head_teacher->name }}</option>
+                                                @endforeach
+                                           </select>
+                                        </div>
+                                    </div>
+
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                  </form>
                               </div>
                            </div>
                         </div>
                      </div>
-         
+
 
 
                     </div>
@@ -89,7 +100,7 @@
                                         <div class="d-flex align-items-center list-action">
                                             <a href="{{ route('classes.show',$classes->id) }}" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
                                             <a href="{{ route('classes.edit',$classes->id) }}" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
-                                           
+
                                             <form action="{{ route('classes.destroy',$classes->id) }}" method="POST">
                                                 @csrf
                                                 @method("DELETE")
@@ -112,4 +123,4 @@
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

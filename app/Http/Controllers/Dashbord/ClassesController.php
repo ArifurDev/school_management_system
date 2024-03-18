@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Dashbord;
 use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\Classes;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClassesController extends BaseController
 {
@@ -24,7 +26,12 @@ class ClassesController extends BaseController
     {
         $classes = Classes::all();
 
-        return view('dashbord.Class.index', compact('classes'));
+        //Auth Head Teacher role check
+        $head_teachers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Head Teacher');
+        })->select('id', 'name')->get(); // Check if any user with the given ID has the Head Teacher role
+
+        return view('dashbord.Class.index', compact('classes', 'head_teachers'));
     }
 
     /**
@@ -40,7 +47,10 @@ class ClassesController extends BaseController
      */
     public function store(Request $request)
     {
-        $validate = $request->validate(['class_name' => 'required|unique:classes']);
+        $validate = $request->validate([
+            'class_name' => 'required|unique:classes',
+            'head_teacher_id' => 'required|unique:classes',
+        ]);
         Classes::create($validate);
 
         return $this->returnMessage('Class Create Successfull', 'success');
