@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Subject Create</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -44,62 +44,90 @@
              </div>
              <div class="row">
                 <div class="col-lg-12">
+                    {{-- show this page error --}}
                     @if ($errors->any())
-                    <div class="alert alert-danger">
-                            <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                            </ul>
-                    </div>
-                @endif
+                        <div class="alert alert-danger">
+                                <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                </ul>
+                        </div>
+                     @endif
 
                 <form action="{{ route('subjects.store') }}" method="POST">
                 @csrf
                 <div class="row">
-                   <div class="form-group col-md-6">
-                       <label for="class">Class</label>
-                       <select class="form-control mb-1 " id="class" name="classes_id">
-                        @foreach ($Classes as $classes)
-                           <option value="{{ $classes->id }}">{{ $classes->class_name }}</option>
-                        @endforeach
-                     </select> 
+                    <div class="form-group col-md-4">
+                        <label for="class">Class Teacher*</label>
+                         <select class="form-control mb-1 " id="class" name="class_teacher_id">
+                                 @foreach ($teachers as $id => $name)
+                                 <option value="{{ $id }}">{{ $name }}</option>
+                                 @endforeach
+                             </select>
+
+                            @error('class_teacher_id')
+                               <span class="text-danger">{{ $message }}</span>
+                            @enderror
                     </div>
-                    <div class="form-group col-md-6">
+                   <div class="form-group col-md-4">
+                       <label for="class">Class</label>
+                        <select class="form-control mb-1 " id="class" name="classes_id">
+                                @foreach ($Classes as $classes)
+                                <option value="{{ $classes->id }}">{{ $classes->class_name }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('classes_id')
+                             <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                    </div>
+                    <div class="form-group col-md-4">
                        <label for="total_class">Toatal Class</label>
                        <input type="number" min="0" class="form-control" id="total_class" placeholder="Total Class" name="total_class">
+
+                        @error('total_class')
+                          <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="row">
-                   <div class="form-group col-md-4">
-                       <label for="Subject">Subject Name</label>
-                       <input type="text" class="form-control"  id="Subject" placeholder="Subject Name" name="name">
+                    <div class="form-group col-md-4">
+                        <label for="Subject">Subject Name</label>
+                        <input type="text" class="form-control"  id="Subject" placeholder="Subject Name" name="subject_name">
+
+                        @error('name')
+                         <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group col-md-4">
                        <label for="Code">Code</label>
                        <input type="text" class="form-control" id="Code" placeholder="Code" name="code">
+
+                       @error('code')
+                        <span class="text-danger">{{ $message }}</span>
+                       @enderror
                     </div>
                     <div class="form-group col-md-4">
-                      <label for="attendances_marks">Attendances Marks</label>
-                      <input type="number" min="0" class="form-control" id="attendances_marks" placeholder="Attendances Marks" name="attendances_marks">
-                   </div>
-                </div>
+                       <label for="attendances_marks">Attendances Marks</label>
+                       <input type="number" min="0" class="form-control" id="attendances_marks" placeholder="Attendances Marks" name="attendances_marks">
 
+                       @error('attendances_marks')
+                        <span class="text-danger">{{ $message }}</span>
+                       @enderror
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                </form>
                </div>
-            </div> 
-
+            </div>
             <!-- Page end  -->
         </div>
       </div>
     </div>
 
   {{-- js --}}
-
-  {{-- add  remove field js --}}
-
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

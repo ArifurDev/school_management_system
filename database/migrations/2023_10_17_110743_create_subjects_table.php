@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
+            $table->string('class_teacher_id')->nullable();
             $table->string('classes_id');
             $table->string('subject_name');
             $table->string('total_class')->nullable();

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Subjects</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -30,7 +30,6 @@
                 <div class="col-lg-12">
                     <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                         <div>
-
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb ">
                                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-danger"><i class="ri-home-4-line mr-1 float-left"></i>Dashbord</a></li>
@@ -52,6 +51,7 @@
                           <thead>
                               <tr>
                                 <th>ls</th>
+                                <th>Teacher Name</th>
                                 <th>Class</th>
                                 <th>Subject</th>
                                 <th>Code</th>
@@ -64,6 +64,7 @@
                            @foreach ($subjects as $subject)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ App\Models\User::find($subject->class_teacher_id)->name ??  'Not assigned'  }}</td>
                                 <td>{{ $subject->classes->class_name }}</td>
                                 <td>{{ $subject->subject_name }}</td>
                                 <td>{{ $subject->subject_code }}</td>
@@ -73,7 +74,7 @@
                                     <div class="d-flex align-items-center list-action">
                                         <a href="#" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
                                         <a href="{{ route('subjects.edit',$subject->id) }}" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
-                                    
+
                                         <form action="{{ route('subjects.destroy',$subject->id) }}" method="POST">
                                             @csrf
                                             @method("DELETE")
@@ -83,7 +84,7 @@
                                 </td>
                             </tr>
                            @endforeach
-                         
+
                           </tbody>
                       </table>
                       </div>
@@ -103,7 +104,7 @@
             lengthChange: false,
             buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
         } );
-    
+
         table.buttons().container()
             .appendTo( '#example_wrapper .col-md-6:eq(0)' );
     } );
@@ -113,4 +114,4 @@
 
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

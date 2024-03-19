@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashbord;
 use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\Classes;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SubjectController extends BaseController
@@ -34,7 +35,9 @@ class SubjectController extends BaseController
     {
         $Classes = Classes::all();
 
-        return view('dashbord.Subject.create', compact('Classes'));
+        $teachers = User::getTeachers();
+
+        return view('dashbord.Subject.create', compact('Classes', 'teachers'));
     }
 
     /**
@@ -43,25 +46,28 @@ class SubjectController extends BaseController
     public function store(Request $request)
     {
         $validate = $request->validate([
+            'class_teacher_id' => 'required',
             'classes_id' => 'required',
             'total_class' => 'required|numeric',
-            'name' => 'required',
+            'subject_name' => 'required',
             'attendances_marks' => 'required|numeric',
+            'class_teacher_id' => 'required|unique:subjects',
         ], [
             'classes_id.required' => 'Select class name',
             'total_class.required' => 'Total Class is emty!',
             'total_class.numeric' => 'Enter Numeric Value Only!',
-            'name.required' => 'The Subject field is required!',
+            'subject_name.required' => 'The Subject field is required!',
             'attendances_marks.required' => 'Attendances Marks Field Is Emty!',
         ]);
         // Insert Data into database
 
-        $subject_insert_check = Subject::where('classes_id', $request->classes_id)->where('subject_name', $request->name)->first();
+        $subject_insert_check = Subject::where('classes_id', $request->classes_id)->where('subject_name', $request->subject_name)->first();
 
         if (! $subject_insert_check) {
             Subject::insert([
+                'class_teacher_id' => $request->class_teacher_id,
                 'classes_id' => $request->classes_id,
-                'subject_name' => $request->name,
+                'subject_name' => $request->subject_name,
                 'subject_code' => $request->code,
                 'total_class' => $request->total_class,
                 'attendances_marks' => $request->attendances_marks,
@@ -79,7 +85,7 @@ class SubjectController extends BaseController
      */
     public function show(string $id)
     {
-
+        //
     }
 
     /**
@@ -89,7 +95,9 @@ class SubjectController extends BaseController
     {
         $Classes = Classes::all();
 
-        return view('dashbord.Subject.edit', compact('Subject', 'Classes'));
+        $teachers = User::getTeachers();
+
+        return view('dashbord.Subject.edit', compact('Subject', 'Classes', 'teachers'));
     }
 
     /**
@@ -98,24 +106,26 @@ class SubjectController extends BaseController
     public function update(Request $request, Subject $subject)
     {
         $validate = $request->validate([
+            'class_teacher_id' => 'required',
             'classes_id' => 'required',
             'total_class' => 'required|numeric',
-            'name' => 'required',
+            'subject_name' => 'required',
             'attendances_marks' => 'required|numeric',
         ], [
             'classes_id.required' => 'Select class name',
             'total_class.required' => 'Total Class is emty!',
             'total_class.numeric' => 'Enter Numeric Value Only!',
-            'name.required' => 'The Subject field is required!',
+            'subject_name.required' => 'The Subject field is required!',
             'attendances_marks.required' => 'Attendances Marks Field Is Emty!',
         ]);
 
-        $subject_insert_check = Subject::where('classes_id', $request->classes_id)->where('subject_name', $request->name)->count();
+        $subject_insert_check = Subject::where('classes_id', $request->classes_id)->where('subject_name', $request->subject_name)->count();
 
         if ($subject_insert_check == 1) {
             $subject->update([
+                'class_teacher_id' => $request->class_teacher_id,
                 'classes_id' => $request->classes_id,
-                'subject_name' => $request->name,
+                'subject_name' => $request->subject_name,
                 'subject_code' => $request->code,
                 'total_class' => $request->total_class,
                 'attendances_marks' => $request->attendances_marks,

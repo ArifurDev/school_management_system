@@ -60,15 +60,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Head Teachers *</label>
-                                        <div class="dropdown bootstrap-select form-control show dropup">
-                                            <select name="head_teacher_id" class="selectpicker form-control" data-style="py-0" tabindex="null">
-                                                @foreach ($head_teachers as $head_teacher)
-                                                    <option value="{{ $head_teacher->id }}">{{ $head_teacher->name }}</option>
-                                                @endforeach
-                                           </select>
-                                        </div>
-                                    </div>
+                                        <label for="teachers">Head Teachers *</label>
+                                        <select class="form-control mb-3" name="head_teacher_id" id="teachers">
+                                            @foreach ($head_teachers as $head_teacher)
+                                              <option value="{{ $head_teacher->id }}">{{ $head_teacher->name }}</option>
+                                            @endforeach
+                                        </select>
+                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                  </form>
@@ -76,11 +74,10 @@
                            </div>
                         </div>
                      </div>
-
-
-
                     </div>
                 </div>
+
+                {{-- show classes information --}}
                 <div class="col-lg-12">
                     <div class="table-responsive rounded mb-3">
                     <table class="data-table table mb-0 tbl-server-info">
@@ -88,6 +85,7 @@
                             <tr class="ligth ligth-data">
                                 <th>ls</th>
                                 <th>Class</th>
+                                <th>Teacher Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -96,6 +94,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $classes->class_name }}</td>
+                                    <td>{{ App\Models\User::find($classes->head_teacher_id)->name ??  'Not assigned'  }}</td>
                                     <td>
                                         <div class="d-flex align-items-center list-action">
                                             <a href="{{ route('classes.show',$classes->id) }}" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>

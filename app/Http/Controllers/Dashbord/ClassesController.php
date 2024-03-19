@@ -7,7 +7,6 @@ use App\Models\Classes;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ClassesController extends BaseController
 {
@@ -26,7 +25,6 @@ class ClassesController extends BaseController
     {
         $classes = Classes::all();
 
-        //Auth Head Teacher role check
         $head_teachers = User::whereHas('roles', function ($query) {
             $query->where('name', 'Head Teacher');
         })->select('id', 'name')->get(); // Check if any user with the given ID has the Head Teacher role
@@ -39,7 +37,7 @@ class ClassesController extends BaseController
      */
     public function create()
     {
-        return view('dashbord.Class.create');
+        //
     }
 
     /**
@@ -71,7 +69,11 @@ class ClassesController extends BaseController
      */
     public function edit(Classes $class)
     {
-        return view('dashbord.Class.edit', compact('class'));
+        $head_teachers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Head Teacher');
+        })->select('id', 'name')->get(); // Check if any user with the given ID has the Head Teacher role
+
+        return view('dashbord.Class.edit', compact('class', 'head_teachers'));
     }
 
     /**
@@ -79,7 +81,10 @@ class ClassesController extends BaseController
      */
     public function update(Request $request, Classes $class)
     {
-        $validate = $request->validate(['class_name' => 'required|unique:classes,class_name,'.$class->id]);
+        $validate = $request->validate([
+            'class_name' => 'required|unique:classes,class_name,'.$class->id,
+            'head_teacher_id' => 'required|unique:classes,head_teacher_id,'.$class->id,
+        ]);
         $class->update($validate);
 
         return $this->returnMessage('Class updated', 'info');

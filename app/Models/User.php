@@ -82,4 +82,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(SalarySheet::class);
     }
+
+    //if any user role teacher or head teacher, then get name and id and add it to the list.
+    public static function getTeachers()
+    {
+        return User::whereHas('roles', function ($query) {
+            $query->where('name', 'Teacher');
+            $query->OrWhere('name', 'Head Teacher');
+        })->get()->pluck('name', 'id')->toArray();
+    }
 }

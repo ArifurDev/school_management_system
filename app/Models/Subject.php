@@ -9,7 +9,7 @@ class Subject extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['classes_id', 'subject_name', 'subject_code', 'total_class', 'attendances_marks'];
+    protected $fillable = ['classes_id', 'subject_name', 'subject_code', 'total_class', 'attendances_marks', 'class_teacher_id'];
 
     // one to many reletioship ---classes model and subject model
     public function classes()

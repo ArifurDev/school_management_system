@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>class Edit</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -43,19 +43,35 @@
                         </div>
 
                     </div>
-                    
+
                     <form action="{{ route('classes.update',$class->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="form-group">
-                            <label for="exampleInputText">Class name</label>
-                           <input type="text" class="form-control" id="exampleInputText" name="class_name" placeholder="Enter a new class" value="{{ $class->class_name }}">
+                        <div class="row d-flex justify-content-center">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputText">Class name</label>
+                               <input type="text" class="form-control" id="exampleInputText" name="class_name" placeholder="Enter a new class" value="{{ $class->class_name }}">
 
-                            @error('class_name')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                                @error('class_name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
 
+                            <div class="form-group col-md-6">
+                                <label for="teachers">Head Teachers *</label>
+                                <select class="form-control mb-3" name="head_teacher_id" id="teachers">
+                                    @foreach ($head_teachers as $head_teacher)
+                                      <option @selected($head_teacher->id == $class->head_teacher_id) value="{{ $head_teacher->id }}">{{ $head_teacher->name }}</option>
+                                    @endforeach
+                                </select>
+
+
+                                @error('head_teacher_id')
+                                 <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                             </div>
                         </div>
+
                         <button type="submit" class="btn btn-primary">Update</button>
                      </form>
                 </div>
@@ -69,4 +85,4 @@
   {{-- js --}}
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>

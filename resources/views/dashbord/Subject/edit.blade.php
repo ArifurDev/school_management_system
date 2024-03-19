@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Subject Edit</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -58,15 +58,26 @@
                 @csrf
                 @method("PUT")
                 <div class="row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
+                      <label for="class">Class Teacher*</label>
+                       <select class="form-control mb-1 " id="class" name="class_teacher_id">
+                               @foreach ($teachers as $id => $name)
+                               <option @selected($Subject->class_teacher_id == $id ) value="{{ $id }}">{{ $name }}</option>
+                               @endforeach
+                           </select>
+                          @error('class_teacher_id')
+                             <span class="text-danger">{{ $message }}</span>
+                          @enderror
+                  </div>
+                  <div class="form-group col-md-4">
                       <label for="class">Class</label>
                       <select class="form-control mb-1 " id="class" name="classes_id">
                        @foreach ($Classes as $classes)
                           <option @selected($Subject->classes_id == $classes->id) value="{{ $classes->id }}">{{ $classes->class_name }}</option>
                        @endforeach
-                    </select> 
+                    </select>
                    </div>
-                   <div class="form-group col-md-6">
+                   <div class="form-group col-md-4">
                       <label for="total_class">Toatal Class</label>
                       <input type="number" min="0" class="form-control" id="total_class" placeholder="Total Class" name="total_class" value="{{ $Subject->total_class }}">
                    </div>
@@ -75,7 +86,7 @@
                 <div class="row">
                    <div class="form-group col-md-4">
                        <label for="Subject">Subject Name</label>
-                       <input type="text" class="form-control"  id="Subject" placeholder="Subject Name" name="name" value="{{ $Subject->subject_name }}">
+                       <input type="text" class="form-control"  id="Subject" placeholder="Subject Name" name="subject_name" value="{{ $Subject->subject_name }}">
                     </div>
                     <div class="form-group col-md-4">
                        <label for="Code">Code</label>
@@ -90,7 +101,7 @@
                 <button type="submit" class="btn btn-primary">Update</button>
                </form>
                </div>
-            </div> 
+            </div>
 
             <!-- Page end  -->
         </div>
@@ -103,4 +114,4 @@
 
   @include('dashbord.layouts.js')
   </body>
-</html> 
+</html>
