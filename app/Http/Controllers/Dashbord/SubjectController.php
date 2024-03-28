@@ -7,6 +7,7 @@ use App\Models\Classes;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends BaseController
 {
@@ -23,7 +24,18 @@ class SubjectController extends BaseController
      */
     public function index()
     {
-        $subjects = Subject::all();
+
+        if (User::hasRoleChecker('Head Teacher')) {
+            // Get all subjects for head teacher
+            $class = Classes::where('head_teacher_id', Auth::user()->id)->select('id')->first();
+            $subjects = Subject::where('classes_id', $class->id)->get();
+        } elseif (User::hasRoleChecker('Teacher')) {
+            // Get only own subjects for teachers
+            $subjects = Subject::where('class_teacher_id', Auth::id())->get();
+        } else {
+            // Get all subjects
+            $subjects = Subject::all();
+        }
 
         return view('dashbord.Subject.index', compact('subjects'));
     }
