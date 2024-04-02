@@ -100,4 +100,10 @@ class User extends Authenticatable
 
         return $user->contains('name', $role);
     }
+
+    //student query get student information  by class wise and User role wise
+    public static function StudentListByUserRole($classID)
+    {
+        return User::where('student_status', 'running')->where('class_id', $classID)->latest()->get();
+    }
 }

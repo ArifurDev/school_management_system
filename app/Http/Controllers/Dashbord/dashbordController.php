@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashbord;
 
 use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\Attendance;
+use App\Models\ExamMarksRegistration;
 use App\Models\Expense;
 use App\Models\FeeCollection;
 use App\Models\User;
@@ -25,6 +26,16 @@ class dashbordController extends BaseController
      */
     public function index()
     {
+
+        $examMarksRegistrations = ExamMarksRegistration::select('student_id', 'class_id', 'exam_id')
+        ->where('student_id', Auth::id())
+        ->groupBy('student_id', 'class_id', 'exam_id')
+        ->get();
+
+        return $examMarksRegistrations;
+
+        die();
+
         $today_date = date('Y-m-d');
 
         $data = [

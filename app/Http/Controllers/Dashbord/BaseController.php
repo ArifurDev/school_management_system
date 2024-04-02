@@ -137,6 +137,11 @@ class BaseController extends Controller
             $query->where('class_id', $student->class_id);
         })->get();
 
+
+
+        //get latest exam result
+        
+
         return compact('student', 'monthlyFee', 'allPayments', 'presentCount', 'lateCount', 'apsentCount', 'ExamSchedules');
     }
 }

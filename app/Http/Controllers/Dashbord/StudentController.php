@@ -8,6 +8,7 @@ use App\Models\Student;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -26,7 +27,17 @@ class StudentController extends BaseController
      */
     public function index()
     {
-        $students = User::where('student_status', 'running')->latest()->get();
+        if (User::hasRoleChecker('Head Teacher')) {
+            // Get all subjects for head teacher
+            $class = Classes::where('head_teacher_id', Auth::user()->id)->select('id')->first();
+            $students = User::StudentListByUserRole($class->id);
+        } elseif (User::hasRoleChecker('admin')) {
+            // Get all subjects
+            $students = User::where('student_status', 'running')->latest()->get();
+        } else {
+            // Get only own subjects for teachers
+            $students = [];
+        }
 
         return view('dashbord.student.index', compact('students'));
     }

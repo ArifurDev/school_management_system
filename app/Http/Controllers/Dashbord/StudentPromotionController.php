@@ -7,6 +7,7 @@ use App\Models\Classes;
 use App\Models\StudentPromotion;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentPromotionController extends BaseController
 {
@@ -23,7 +24,18 @@ class StudentPromotionController extends BaseController
      */
     public function index()
     {
-        $classes = Classes::all();
+
+        if (User::hasRoleChecker('Head Teacher')) {
+            // Get all subjects for head teacher
+            $classes = Classes::where('head_teacher_id', Auth::user()->id)->get();
+        } elseif (User::hasRoleChecker('admin')) {
+            // Get all subjects
+            $classes = Classes::all();
+        } else {
+            // Get only own subjects for teachers
+            $classes = [];
+        }
+
         $sections = User::where('student_status', 'running')->groupBy('section')->pluck('section');
         $groupes = User::where('student_status', 'running')->groupBy('group')->pluck('group');
 

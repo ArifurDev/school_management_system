@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Dashbord</title>
-      
+      <title>Students</title>
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -54,7 +54,7 @@
                                   <tr>
                                       <th>SL</th>
                                       <th>Name</th>
-                                      <th>Email </th>    
+                                      <th>Email </th>
                                       <th>Gender</th>
                                       <th>Religion</th>
                                       <th>Blood</th>
@@ -66,10 +66,10 @@
                               </thead>
                               <tbody>
                                @foreach ($students as $student)
-  
+
                                <tr>
-  
-                                <?php 
+
+                                <?php
                                     $prevDate = date('Y-m', strtotime("-1 month"));
                                     $monthlyFee = App\Models\FeeCollection::where('user_id', $student->id)
                                     ->whereYear('date', date('Y', strtotime($prevDate)))
@@ -77,12 +77,12 @@
                                     ->where('expense', 'Monthly Fee')
                                     ->first();
                                  ?>
-  
-  
+
+
                                   <td>{{ $loop->iteration  }}</td>
                                   <td>{{ $student->name }}</td>
                                   <td>{{ $student->email }}</td>
-                                  <td>{{ $student->gender }}</td> 
+                                  <td>{{ $student->gender }}</td>
                                   <td>{{ $student->religion  }}</td>
                                   <td>{{ $student->blood }}</td>
                                   <td>{{ $student->classes->class_name}}</td>
@@ -107,10 +107,10 @@
                                         <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
                                         <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
                                       </svg></a>
-  
+
                                       <a href="{{ route('students.show',$student->id) }}" class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" ><i class="ri-eye-line mr-0"></i></a>
                                       <a href="{{ route('students.edit',$student->id) }}" class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" ><i class="ri-pencil-line mr-0"></i></a>
-                                     
+
                                       <form action="{{ route('students.destroy',$student->id) }}" method="POST">
                                           @csrf
                                           @method("DELETE")
@@ -120,7 +120,7 @@
                                   </td>
                                </tr>
                                @endforeach
-                             
+
                               </tbody>
                           </table>
                           </div>
@@ -135,7 +135,7 @@
 
 
 
-   
+
  <!--datatable-->
           <script>
           $(document).ready(function() {
@@ -143,12 +143,12 @@
                   lengthChange: false,
                   buttons: [ 'copy', 'excel', 'csv', 'pdf' ]
               } );
-          
+
               table.buttons().container()
                   .appendTo( '#example_wrapper .col-md-6:eq(0)' );
           } );
        </script>
-   
+
 
 
   {{-- js --}}

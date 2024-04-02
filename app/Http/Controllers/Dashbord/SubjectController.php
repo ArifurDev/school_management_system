@@ -24,7 +24,6 @@ class SubjectController extends BaseController
      */
     public function index()
     {
-
         if (User::hasRoleChecker('Head Teacher')) {
             // Get all subjects for head teacher
             $class = Classes::where('head_teacher_id', Auth::user()->id)->select('id')->first();

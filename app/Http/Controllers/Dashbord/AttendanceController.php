@@ -26,13 +26,56 @@ class AttendanceController extends BaseController
      */
     public function index()
     {
-        $classes = Classes::all();
+
+        if (User::hasRoleChecker('Head Teacher')) {
+            $class = Classes::where('head_teacher_id', Auth::user()->id)->first();
+            $classes = Classes::where('head_teacher_id', Auth::user()->id)->get();
+
+            $attendances = Attendance::where('class_id',$class->id)->groupBy('user_id', 'subject_id', 'date', 'class_id')
+            ->select('user_id', 'subject_id', 'date', 'class_id')
+            ->get();
+
+        } elseif (User::hasRoleChecker('admin')) {
+            $classes = Classes::all();
+
+            $attendances = Attendance::groupBy('user_id', 'subject_id', 'date', 'class_id')
+            ->select('user_id', 'subject_id', 'date', 'class_id')
+            ->get();
+        } elseif(User::hasRoleChecker('Teacher'))
+        {
+            $subjects = Subject::where('class_teacher_id', Auth::user()->id)->get();
+
+            $classes = [];
+            foreach ($subjects as $subject)
+            {
+                $classes[]= Classes::where('id',$subject->classes_id)->first();
+            }
+
+            // Fetch attendance records for the subjects
+             $attendances = []; //empty array store Attendance
+
+            foreach ($subjects as $subject)
+            {
+              $attendances[]= Attendance::where('subject_id',$subject->id)->groupBy('user_id', 'subject_id', 'date', 'class_id')
+              ->select('user_id', 'subject_id', 'date', 'class_id')
+              ->get();
+
+            }
+
+            return $attendances;
+        }
+        else {
+            $classes = [];
+        }
+
+
+
+
+
         $sections = User::where('student_status', 'running')->groupBy('section')->pluck('section');
         $groupes = User::where('student_status', 'running')->groupBy('group')->pluck('group');
 
-        $attendances = Attendance::groupBy('user_id', 'subject_id', 'date', 'class_id')
-            ->select('user_id', 'subject_id', 'date', 'class_id')
-            ->get();
+
 
         return view('dashbord.Attendance.index', compact('classes', 'sections', 'groupes', 'attendances'));
     }
