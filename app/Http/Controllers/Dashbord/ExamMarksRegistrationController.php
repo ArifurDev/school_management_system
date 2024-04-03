@@ -192,14 +192,17 @@ class ExamMarksRegistrationController extends BaseController
     //marksheet Generator
     public function markSheetGenerate($student_id, $student_slug, $exam_id, $exam_slug, $class_id, $class_slug)
     {
+
         $student = User::find($student_id)->where('name', $student_slug)->first();
         $class = Classes::find($class_id)->where('class_name', $class_slug)->first();
         $exam = Exam::find($exam_id)->where('exam', $exam_slug)->first();
 
         if ($student && $class && $exam) {
 
-            $examMarks = ExamMarksRegistration::where(['student_id' => $student_id], ['class_id' => $class_id], ['exam_id' => $exam_id])->get();
-
+            $examMarks = ExamMarksRegistration::where('student_id', $student_id)
+                ->where('class_id', $class_id)
+                ->where('exam_id', $exam_id)
+                ->get();
             if ($examMarks) {
 
                 //store calculated total  marks

@@ -34,12 +34,6 @@
                     <div class="col-lg-2 p-1 ">
 
                             <img class="avatar-100 rounded " src="{{ asset('upload/images/'.$student->image) }}" alt="User Image">
-
-
-
-                            {{-- <img class="avatar-100 rounded "
-                            src="{{ storage_path()'./app/users_image/'.$student->image }}" alt="#"
-                            data-original-title="" title=""> --}}
                     </div>
                     <div class="col-lg-8 p-1">
                         <h2>{{ $student->name }}</h2>
@@ -236,7 +230,10 @@
                         <div class="card">
                            <div class="card-body">
                               <h4 class="card-title">Result</h4>
-                              <a href="http://"></a>
+                              <div class="justify-content-between">
+                                <p class="mt-2 badge badge-primary">GPA {{ $Grade_Calculator[1] }}</p>
+                                <p class="mt-2 badge badge-success">Grade {{ $Grade_Calculator[0] }}</p>
+                              </div>
                            </div>
                         </div>
                      </div>
