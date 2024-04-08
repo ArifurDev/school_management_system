@@ -45,55 +45,35 @@
                     <div class="col-lg-12">
                        <div class="card auth-card">
                           <div class="card-body p-0">
-                             <div class="d-flex align-items-center auth-content">
-                                   <div class="p-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                           <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                              Lorem Ipsum has been the industry's standard dummy text ever
-                                           </p>
-
-                                        </div>
-                                     </div>
+                            <form class="form-horizontal m-2 col-md-8" action="{{ route('site-configurations.update',$config->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="form-group row">
+                                   <label class="control-label col-sm-3 align-self-center" for="Name">Site Name:</label>
+                                   <div class="col-sm-6">
+                                      <input type="text" class="form-control" id="Name" placeholder="Enter Site Name" value="{{ $config->site_name ?? '' }}" name="site_name">
                                    </div>
+                                </div>
 
-                                   <div class="p-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                           <p class="mb-4">After a month your site will backup automatic.If you click button backup MySQL/project File.
-                                           </p>
-{{--
-                                           <div class="btn-group btn-group-toggle" id="backup">
-                                            <a class="button btn button-icon btn-outline-primary" target="_blank" href="{{ route('system.backup',['command'=>'db']) }}">DB</a>
-                                            <a class="button btn button-icon bg-primary " target="_blank" href="{{ route('system.backup',['command'=>'file']) }}">File</a>
-                                            <a class="button btn button-icon btn-outline-primary" target="_blank" href="{{ route('system.backup',['command'=>'both']) }}">Both</a>
-                                           </div> --}}
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-3 align-self-center" for="logo">Site Logo:</label>
+                                    <div class="custom-file col-sm-6 ml-3">
+                                       <input type="file" class="custom-file-input" id="customFile" name="site_logo">
+                                       <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
+                                 </div>
 
+                                 <div class="form-group row">
+                                    <label class="control-label col-sm-3 align-self-center" for="Description">Site Description:</label>
+                                    <div class="col-sm-6">
+                                       <textarea class="form-control" id="Description" placeholder="Enter Site Description" style="height: 110px;" name="site_description">{{ $config->site_description ?? '' }}</textarea>
+                                    </div>
+                                 </div>
 
-                                           {{-- <div class="btn-group btn-group-toggle" id="backup">
-                                            <a class="button btn button-icon btn-outline-primary" target="_blank" href="" id="db">DB</a>
-                                            <a class="button btn button-icon bg-primary " target="_blank" href="" id="files">File</a>
-                                            <a class="button btn button-icon btn-outline-primary" target="_blank" href="" id="both">Both</a>
-                                           </div> --}}
-
-                                             <form action="{{ route('system.backup') }}" method="post">
-                                              @csrf
-                                                <div class="form-group">
-                                                    <select class="form-control mb-3" id="backup" name="command">
-                                                    <option selected="">Open this select Command</option>
-                                                    <option value="db">DB</option>
-                                                    <option value="files">Files</option>
-                                                    <option value="both">Both</option>
-                                                    </select>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary-dark"><i class="las la-file-download"></i>Backup</button>
-                                            </form>
-
-
-                                        </div>
-                                     </div>
-                                   </div>
-                             </div>
+                                <div class="form-group">
+                                   <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                             </form>
                           </div>
                        </div>
                     </div>

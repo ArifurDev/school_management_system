@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashbord\BaseController as BaseController;
 use App\Models\SystemConfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Intervention\Image\Facades\Image;
 
 class SystemConfigController extends BaseController
 {
@@ -22,7 +23,9 @@ class SystemConfigController extends BaseController
      */
     public function create()
     {
-        return view('dashbord.systemSetting.setting');
+        $config = SystemConfig::first();
+
+        return view('dashbord.systemSetting.setting', compact('config'));
     }
 
     /**
@@ -30,7 +33,7 @@ class SystemConfigController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -52,9 +55,36 @@ class SystemConfigController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SystemConfig $systemConfig)
+    public function update(Request $request, SystemConfig $site_configuration)
     {
-        //
+        $site_configuration->update([
+            'site_name' => $request->site_name,
+            'site_description' => $request->email,
+        ]);
+
+        //image check and upload
+        if ($request->hasFile('site_logo')) {
+            //product image validation if set image
+            $request->validate([
+                'site_logo' => 'mimes:png',
+            ]);
+
+            if ($site_configuration->site_logo) {
+                //delete old image from folder
+                unlink(base_path('public/upload/site_image/'.$site_configuration->site_logo));
+            }
+
+            //customer image update
+            $file_name = time().'.'.$request->file('image')->getClientOriginalExtension();
+            $img = Image::make($request->file('site_logo'));
+            $img->save(base_path('public/upload/site_image/'.$file_name), 80);
+
+            $site_configuration->update([
+                'site_logo' => $file_name,
+            ]);
+        }
+
+        return $this->returnMessage('Update successfulliy', 'success');
     }
 
     /**

@@ -123,7 +123,7 @@
                                 <span class="ml-4">Exams</span>
                             </a>
                         </li>
-                        <li class="{{ Request::is('examsschedules','examsschedules/*') ? 'active' : '' }} ">
+                        <li class="{{ Request::is('examsschedules','examsschedules/*') || Request::is('examsschedules','examsschedule/shows/*') ? 'active' : '' }} ">
                             <a href="#Examsschedules" class="collapsed" data-toggle="collapse" aria-expanded="false">
                                 <svg class="svg-icon" id="p-dash10" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline>
@@ -147,7 +147,7 @@
                             </ul>
                         </li>
 
-                        <li class="{{ Request::is('exammarksregistrations','exammarksregistrations/*') ? 'active' : '' }}  ">
+                        <li class="{{ Request::is('exammarksregistrations','exammarksregistrations/*')  ? 'active' : '' }}  ">
                             <a href="#MarksRegistration" class="collapsed" data-toggle="collapse" aria-expanded="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clipboard2-plus" viewBox="0 0 16 16">
                                     <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
@@ -160,7 +160,7 @@
                                 </svg>
                             </a>
                             <ul id="MarksRegistration" class="iq-submenu collapse" data-parent="#MarksRegistration" style="">
-                                    <li class="{{ Request::is('exammarksregistrations','exammarksregistrations/index') ? 'active' : '' }} ">
+                                    <li class="{{ Request::is('exammarksregistrations','exammarksregistrations/index') || Request::is('examsschedules','marksheet/generate/*') ? 'active' : '' }} ">
                                         <a href="{{ route('exammarksregistrations.index') }}">
                                             <i class="las la-minus"></i><span>Exam Marks</span>
                                         </a>

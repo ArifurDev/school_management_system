@@ -26,7 +26,6 @@ class AttendanceController extends BaseController
      */
     public function index()
     {
-
         if (User::hasRoleChecker('Head Teacher')) {
             $class = Classes::where('head_teacher_id', Auth::user()->id)->first();
             $classes = Classes::where('head_teacher_id', Auth::user()->id)->get();
