@@ -4,12 +4,19 @@
             $query->where('name', 'student');
         })->exists();
 
+        $config = App\Models\SystemConfig::first();
+
 ?>
 
 <div class="iq-sidebar  sidebar-default ">
     <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
         <a href="{{ route('dashboard') }}" class="header-logo">
-            <img src="{{ asset('backend/assets') }}/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">POSDash</h5>
+            @if ($config->site_logo)
+            <img src="{{ asset('upload/site_image') }}/{{ $config->site_logo }}" class="img-fluid rounded-normal" alt="logo">
+            @else
+            <img src="{{ asset('backend/assets') }}/images/logo.png" class="img-fluid rounded-normal" alt="logo">
+            @endif
+            <h5 class="logo-title ml-3"> {{ $config->site_name ?? 'POSDash' }}</h5>
         </a>
         <div class="iq-menu-bt-sidebar ml-0">
             <i class="las la-bars wrapper-menu"></i>

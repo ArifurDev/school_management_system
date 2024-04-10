@@ -45,7 +45,7 @@
                     <div class="col-lg-12">
                        <div class="card auth-card">
                           <div class="card-body p-0">
-                            <form class="form-horizontal m-2 col-md-8" action="{{ route('site-configurations.update',$config->id) }}" method="POST">
+                            <form class="form-horizontal m-2 col-md-8" action="{{ route('site-configurations.update',$config->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group row">
@@ -58,7 +58,7 @@
                                 <div class="form-group row">
                                     <label class="control-label col-sm-3 align-self-center" for="logo">Site Logo:</label>
                                     <div class="custom-file col-sm-6 ml-3">
-                                       <input type="file" class="custom-file-input" id="customFile" name="site_logo">
+                                       <input type="file" class="custom-file-input" id="image" name="site_logo">
                                        <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                  </div>

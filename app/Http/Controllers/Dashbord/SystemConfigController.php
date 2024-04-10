@@ -24,7 +24,6 @@ class SystemConfigController extends BaseController
     public function create()
     {
         $config = SystemConfig::first();
-
         return view('dashbord.systemSetting.setting', compact('config'));
     }
 
@@ -57,9 +56,11 @@ class SystemConfigController extends BaseController
      */
     public function update(Request $request, SystemConfig $site_configuration)
     {
+
+
         $site_configuration->update([
             'site_name' => $request->site_name,
-            'site_description' => $request->email,
+            'site_description' => $request->site_description,
         ]);
 
         //image check and upload
@@ -75,16 +76,19 @@ class SystemConfigController extends BaseController
             }
 
             //customer image update
-            $file_name = time().'.'.$request->file('image')->getClientOriginalExtension();
+            $file_name = time().'.'.$request->file('site_logo')->getClientOriginalExtension();
+
+
             $img = Image::make($request->file('site_logo'));
             $img->save(base_path('public/upload/site_image/'.$file_name), 80);
 
             $site_configuration->update([
                 'site_logo' => $file_name,
             ]);
+
         }
 
-        return $this->returnMessage('Update successfulliy', 'success');
+         return $this->returnMessage('Update successfulliy', 'success');
     }
 
     /**

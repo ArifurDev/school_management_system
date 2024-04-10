@@ -1,15 +1,15 @@
     <!-- Backend Bundle JavaScript -->
     <script src="{{ asset('backend/assets') }}/js/backend-bundle.min.js"></script>
-    
+
     <!-- Table Treeview JavaScript -->
     <script src="{{ asset('backend/assets') }}/js/table-treeview.js"></script>
-    
+
     <!-- Chart Custom JavaScript -->
     <script src="{{ asset('backend/assets') }}/js/customizer.js"></script>
-    
+
     <!-- Chart Custom JavaScript -->
     <script async src="{{ asset('backend/assets') }}/js/chart-custom.js"></script>
-    
+
     <!-- app JavaScript -->
     <script src="{{ asset('backend/assets') }}/js/app.js"></script>
 
@@ -57,18 +57,19 @@
     </script>
 
 
-    <!-- image upload time show   -->
-    <script type="text/javascript">
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#image')
-                        .attr('src', e.target.result);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
+
+
+    <!-- COPY TO JAVASCRIPT SECTION  -->
+{{-- <script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#image')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
         }
-        
-        
-    </script>
+    }
+
+</script> --}}

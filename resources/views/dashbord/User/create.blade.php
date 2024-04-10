@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Dashbord</title>
-      
+
       {{-- css --}}
       @include('dashbord.layouts.css')
     </head>
@@ -57,12 +57,13 @@
                          <div class="card-body">
                             <form action="{{ route('users.store') }}" method="POST"  enctype="multipart/form-data">
                                 @csrf
+
                                <div class="form-group">
                                   <div class="crm-profile-img-edit position-relative">
                                      <img class="crm-profile-pic rounded avatar-100" src="{{ asset('backend/assets') }}/images/user/11.png" alt="profile-pic" id="image">
                                      <div class="crm-p-image bg-primary">
                                         <i class="las la-pen upload-button"></i>
-                                        <input class="file-upload" type="file" id="photo"  name="image" accept="image/*" onchange="readURL(this)">
+                                        <input class="file-upload" type="file" id="imgInp"  name="image" accept="image/*">
                                      </div>
                                   </div>
                                <div class="img-extension mt-3">
@@ -147,6 +148,21 @@
         </div>
       </div>
     </div>
+
+    <script>
+        const imgInp = document.getElementById('photo'); // Assuming 'photo' is the id of your file input element
+        const image = document.getElementById('image'); // Assuming 'image' is the id of your target <img> element
+
+        // imgInp.onchange = evt => {
+        //     const [file] = imgInp.files;
+        //     if (file) {
+        //         image.src = URL.createObjectURL(file);
+        //     }
+        // };
+        console.log(image);
+    </script>
+
+
 
   {{-- js --}}
   @include('dashbord.layouts.js')

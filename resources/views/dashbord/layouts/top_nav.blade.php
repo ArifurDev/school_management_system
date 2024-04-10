@@ -1,6 +1,7 @@
 <?php
 
   $admin_info = App\Models\User::where('student_status', '0')->whereHas('roles', fn ($query) => $query->where('name', 'admin'))->first();
+  $config = App\Models\SystemConfig::first();
 
 ?>
 
@@ -9,10 +10,13 @@
         <nav class="navbar navbar-expand-lg navbar-light p-0">
             <div class="iq-navbar-logo d-flex align-items-center justify-content-between">
                 <i class="ri-menu-line wrapper-menu"></i>
-                <a href="../backend/index.html" class="header-logo">
+                <a href="#" class="header-logo">
+                    @if ($config->site_logo)
+                    <img src="{{ asset('upload/site_image') }}/{{ $config->site_logo }}" class="img-fluid rounded-normal" alt="logo">
+                    @else
                     <img src="{{ asset('backend/assets') }}/images/logo.png" class="img-fluid rounded-normal" alt="logo">
-                    <h5 class="logo-title ml-3">POSDash</h5>
-
+                    @endif
+                    <h5 class="logo-title ml-3"> {{ $config->site_name ?? 'POSDash' }}</h5>
                 </a>
             </div>
             <div class="iq-search-bar device-search">
@@ -29,7 +33,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-list align-items-center">
-                       
+
                         <li>
                             <a href="#" class="btn border add-btn shadow-none mx-2 d-none d-md-block"
                                 data-toggle="modal" data-target="#admin-info"><i class="las la-plus mr-2"></i>Admin</a>
