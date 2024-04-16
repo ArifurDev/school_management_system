@@ -10,6 +10,12 @@ use Intervention\Image\Facades\Image;
 
 class SystemConfigController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('role_or_permission:System config control', ['only' => ['create', 'update']]);
+        $this->middleware('role_or_permission:System config create', ['only' => ['create']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -24,6 +30,7 @@ class SystemConfigController extends BaseController
     public function create()
     {
         $config = SystemConfig::first();
+
         return view('dashbord.systemSetting.setting', compact('config'));
     }
 
@@ -32,7 +39,7 @@ class SystemConfigController extends BaseController
      */
     public function store(Request $request)
     {
-        return $request;
+        //
     }
 
     /**
@@ -57,7 +64,6 @@ class SystemConfigController extends BaseController
     public function update(Request $request, SystemConfig $site_configuration)
     {
 
-
         $site_configuration->update([
             'site_name' => $request->site_name,
             'site_description' => $request->site_description,
@@ -78,7 +84,6 @@ class SystemConfigController extends BaseController
             //customer image update
             $file_name = time().'.'.$request->file('site_logo')->getClientOriginalExtension();
 
-
             $img = Image::make($request->file('site_logo'));
             $img->save(base_path('public/upload/site_image/'.$file_name), 80);
 
@@ -88,7 +93,7 @@ class SystemConfigController extends BaseController
 
         }
 
-         return $this->returnMessage('Update successfulliy', 'success');
+        return $this->returnMessage('Update successfulliy', 'success');
     }
 
     /**

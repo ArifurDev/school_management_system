@@ -31,7 +31,7 @@ class StudentController extends BaseController
             // Get all subjects for head teacher
             $class = Classes::where('head_teacher_id', Auth::user()->id)->select('id')->first();
             $students = User::StudentListByUserRole($class->id);
-        } elseif (User::hasRoleChecker('admin')) {
+        } elseif ([User::hasRoleChecker('admin') && User::hasRoleChecker('Demo Admin')]) {
             // Get all subjects
             $students = User::where('student_status', 'running')->latest()->get();
         } else {

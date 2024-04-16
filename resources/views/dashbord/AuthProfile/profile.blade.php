@@ -231,8 +231,8 @@
                            <div class="card-body">
                               <h4 class="card-title">Result</h4>
                               <div class="justify-content-between">
-                                <p class="mt-2 badge badge-primary">GPA {{ $Grade_Calculator[1] }}</p>
-                                <p class="mt-2 badge badge-success">Grade {{ $Grade_Calculator[0] }}</p>
+                                <p class="mt-2 badge badge-primary">GPA {{ $Grade_Calculator[1] ?? 'N/A' }}</p>
+                                <p class="mt-2 badge badge-success">Grade {{ $Grade_Calculator[0] ?? 'N/A' }}</p>
                               </div>
                            </div>
                         </div>

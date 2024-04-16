@@ -110,6 +110,9 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Subject edit']);
         $permission = Permission::create(['name' => 'Subject delete']);
 
+        $permission = Permission::create(['name' => 'System config control']);
+        $permission = Permission::create(['name' => 'System config create']);
+
         $admin->givePermissionTo(Permission::all());
     }
 }
