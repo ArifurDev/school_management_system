@@ -1,9 +1,11 @@
-simple school management system 
+# simple school management system 
+
 ## Login Info
 **click this:** [School management System](https://sms.arifurrahmanrifat.com)<br>
 **Email:** demoteacher@gmail.com<br>
 **Password:** 12345678<br>
 
+**You can clone this repo and then scroll down**
 ## About this project
 
 ![d1](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/2875e130-4c6d-4a71-8624-24cf567c725b)
@@ -24,4 +26,41 @@ simple school management system
 ![d16](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/4850deec-a81a-4cd8-b48f-13e7ba545a8b)
 ![d17](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/29462782-da62-4606-90f9-4214fff92d84)
 ![d18](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/17071d11-c4f7-4d83-9677-834fe37b1039)
+
+## clone the repository from GitHub, follow these steps:
+### Clone the repository
+```
+git clone https://github.com/Arifurrahmanrifat29112002/school_management_system.git
+```
+```
+cd school_management_system
+```
+
+### Install dependencies
+```
+composer install
+```
+```
+npm install
+```
+
+### Set up environment configuration
+```
+cp .env.example .env
+```
+```
+php artisan key:generate
+```
+
+### Update .env file with your database configuration
+
+### Run migrations
+```
+php artisan migrate
+```
+### Run the development server
+```
+php artisan serve
+```
+
 
