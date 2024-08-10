@@ -338,7 +338,7 @@
                     </svg>
                 </a>
                 <ul id="Setting" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                        <li class="{{ Request::is('mailsettings/index') ? 'active' : '' }}">
+                        <li class="{{ Request::is('mailsettings') ? 'active' : '' }}">
                                 <a href="{{ route('mailsettings.index') }}">
                                     <i class="las la-minus"></i><span>Env List</span>
                                 </a>
