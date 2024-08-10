@@ -1,66 +1,66 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# simple school management system 
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Login Info
+**click this:** [School management System](https://sms.arifurrahmanrifat.com)<br>
+**Email:** demoteacher@gmail.com<br>
+**Password:** 12345678<br>
 
-## About Laravel
+**You can clone this repo and then scroll down**
+## About this project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![d1](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/2875e130-4c6d-4a71-8624-24cf567c725b)
+![d2](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/d072e8b4-ac28-49fb-8ede-f1c824cb1848)
+![d3](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/afa98f57-e9e0-403e-a3bc-b883aaddb6ee)
+![d4](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/0ee3a0d8-9ad3-4291-9398-058585c2ee2b)
+![d5](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/0415b6b8-7c81-423f-b781-139343301919)
+![d6](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/c5eae86f-53e2-47dc-9a23-21ef86916829)
+![d7](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/a21ff9e2-0121-4572-94a5-0c749ab4208a)
+![d8](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/2fd9d7c3-65a8-465a-a6c0-b5adc9e013bd)
+![d9](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/b748d4b6-8244-462c-8d27-80da2ad48cf2)
+![d10](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/32923d22-4420-45dc-a566-deca286fd9ed)
+![d11](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/5b5bde98-e947-4f6c-9dbd-43f0f7d70cd4)
+![d12](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/d09f7b81-34e5-4102-ade4-933a4942bac5)
+![d13](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/b94b4b42-a3ae-48d8-9db8-996769756ae0)
+![d14](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/3145d925-54e8-4440-8cc8-e2d6a82d96a5)
+![d15](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/8d999cd3-36d0-410e-8e3e-fa99d7fb6629)
+![d16](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/4850deec-a81a-4cd8-b48f-13e7ba545a8b)
+![d17](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/29462782-da62-4606-90f9-4214fff92d84)
+![d18](https://github.com/Arifurrahmanrifat29112002/school_management/assets/98427204/17071d11-c4f7-4d83-9677-834fe37b1039)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## clone the repository from GitHub, follow these steps:
+### Clone the repository
+```
+git clone https://github.com/Arifurrahmanrifat29112002/school_management_system.git
+```
+```
+cd school_management_system
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Install dependencies
+```
+composer install
+```
+```
+npm install
+```
 
-## Learning Laravel
+### Set up environment configuration
+```
+cp .env.example .env
+```
+```
+php artisan key:generate
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Update .env file with your database configuration
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Run migrations
+```
+php artisan migrate
+```
+### Run the development server
+```
+php artisan serve
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
