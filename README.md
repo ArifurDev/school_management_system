@@ -2,7 +2,7 @@
 
 ## Login Info
 **click this:** [School management System](https://school.arifurdev.xyz/)<br>
-**Email:** demoteacher@gmail.com<br>
+**Email:**admin@gmail.com<br>
 **Password:** 12345678<br>
 
 **You can clone this repo and then scroll down**
