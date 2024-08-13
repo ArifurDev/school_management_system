@@ -1,7 +1,7 @@
 # simple school management system 
 
 ## Login Info
-**click this:** [School management System](https://sms.arifurrahmanrifat.com)<br>
+**click this:** [School management System](https://school.arifurdev.xyz/)<br>
 **Email:** demoteacher@gmail.com<br>
 **Password:** 12345678<br>
 
